@@ -1,0 +1,80 @@
+<import src="/utils/template/timePicker/timePicker.wxml"/>
+<view class='container'>
+  <view class='serach-box'>
+    <view class='searchText'>
+      <picker disabled mode='selector' bindcancel="cancelPicker" catchtap='changePickerStatus' bindchange="changeGoods" value="{{goodsIndex}}" range="{{goodsArray}}" range-key='name'>
+        <view class="picker">{{member.store_name}}</view>
+        <!-- <view class='picIcon imgBox'>
+          <image src="/images/sale/{{goodsPickerOpen?'up':'down'}}.png"></image>
+        </view> -->
+        <view class='picText'>实时业绩(当日)</view>
+      </picker>
+    </view>
+  </view>
+  <view class='mainBox'>
+    <view class='excelBox'>
+      <!-- <view class='excelItemMain'>
+        <view class='excelTitleMain'>销售额（元）</view>
+        <view class='excelValueMain'>5369.5</view>
+        <view class='excelmonthValMain'>当月销售额：56455.35</view>
+      </view> -->
+      <view class='excelItem'>
+        <view class='excelTitle'>销售额（元）<text class='excelValue'>{{saleData.today_sales}}</text></view>
+        <view class='excelmonthVal'>当月销售额：<text>{{saleData.month_sales}}</text></view>
+      </view>
+      <view class='excelItem'>
+        <view class='excelTitle'>销售单数<text class='excelValue'>{{saleData.today_num}}</text></view>
+        <view class='excelmonthVal'>当月销售单数：<text>{{saleData.month_num}}</text></view>
+      </view>
+      <view class='excelItem'>
+        <view class='excelTitle'>新增会员数<text class='excelValue'>{{saleData.today_customer_num}}</text></view>
+        <view class='excelmonthVal'>当月新增会员数：<text>{{saleData.month_customer_num}}</text></view>
+      </view>
+      <view class='excelItem'>
+        <view class='excelTitle'>客单价(元)<text class='excelValue'>{{saleData.today_average_price}}</text></view>
+        <view class='excelmonthVal'>当月客单价：<text>{{saleData.month_average_price}}</text></view>
+      </view>
+      <view class='eChartBoxPie' hidden='{{ifLoading_pie}}'>
+        <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+      </view>
+      <view class='loadingModal eChartBoxPie' wx:if='{{ifLoading_pie}}'>
+        <view class='loading loadingPie'></view>
+      </view>
+      <view class='excelList'>
+        <view>待付款：<text>{{saleData.today_pay_0_num}}</text></view>
+        <view>已付款：<text>{{saleData.today_pay_2_num}}</text></view>
+      </view>
+      <view class='excelList'>
+        <view catchtap='toOrderList' data-status="1-0">
+          待自提：<text>{{saleData.today_pick_0_num}}</text>
+          <view class='intoIcon imgBox'><image src='/images/into.png'></image></view>
+        </view>
+        <view catchtap='toOrderList' data-status="1-2">
+          已自提：<text>{{saleData.today_pick_2_num}}</text>
+          <view class='intoIcon imgBox'><image src='/images/into.png'></image></view>
+        </view>
+      </view>
+      <view class='excelList'>
+        <view catchtap='toOrderList' data-status="2-0">
+          待配送：<text>{{saleData.today_dispatch_0_num}}</text>
+          <view class='intoIcon imgBox'><image src='/images/into.png'></image></view>
+        </view>
+        <view catchtap='toOrderList' data-status="2-2">
+          已配送：<text>{{saleData.today_dispatch_2_num}}</text>
+          <view class='intoIcon imgBox'><image src='/images/into.png'></image></view>
+        </view>
+      </view>
+      <view class='excelList'>
+        <view catchtap='toOrderList' data-status="2-1">
+          配送中：<text>{{saleData.today_dispatch_1_num}}</text>
+          <view class='intoIcon imgBox'><image src='/images/into.png'></image></view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- <view class='eChartBox'>
+      <template is="timePicker" data='{{id,cur_year,ifLoading,ec}}'/>
+    </view> -->
+  </view>
+</view>
+

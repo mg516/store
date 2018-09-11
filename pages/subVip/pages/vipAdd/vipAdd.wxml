@@ -1,0 +1,107 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='group_cont'>
+      <view class='card_ul'>
+        <view class='card_li'>
+          <view class='card_label'>会员ID</view>
+          <view class='card_value'><input name="n_1" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>门店会员卡号</view>
+          <view class='card_value'><input name="n_2" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>发卡门店</view>
+          <view class="card_value {{storeIndex!='-1'?'':'pltext'}}">
+            <picker name="n_3" mode="selector" value="{{storeIndex}}" range='{{storeList}}' range-key='name' bindchange="bindDateChange" data-valtype='curstore'>
+              <view class="picker">
+                {{storeIndex!='-1'?storeList[storeIndex].name:'发卡门店'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员名称</view>
+          <view class='card_value'><input name="n_4" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员密码</view>
+          <view class='card_value'><input name="n_5" cursor-spacing='50' type="password" placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>确认密码</view>
+          <view class='card_value'><input name="n_6" cursor-spacing='50' type="password" placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+      </view>
+      <view class='card_ul'>
+        <view class='card_li'>
+          <view class='card_label'>会员生日</view>
+          <view class="card_value {{birthday?'':'pltext'}}">
+            <picker name="n_7" mode="date" value="{{birthday}}" start="{{birthStart}}" end="{{birthEnd}}" bindchange="bindDateChange" data-valtype='birthday'>
+              <view class="picker">
+                {{birthday?birthday:'会员生日'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>邮箱</view>
+          <view class='card_value'><input name="n_8" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>父卡卡号</view>
+          <view class='card_value'><input name="n_9" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>父卡ID</view>
+          <view class='card_value'><input name="n_10" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>积分到期日</view>
+          <view class="card_value {{intDay?'':'pltext'}}">
+            <picker name="n_11" mode="date" value="{{intDay}}" start="{{today}}" bindchange="bindDateChange" data-valtype='intDay'>
+              <view class="picker">
+                {{intDay?intDay:'积分到期日'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>储值到期日</view>
+          <view class="card_value {{moneyDay?'':'pltext'}}">
+            <picker name="n_12" mode="date" value="{{moneyDay}}" start="{{today}}" bindchange="bindDateChange" data-valtype='moneyDay'>
+              <view class="picker">
+                {{moneyDay?moneyDay:'储值到期日'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员联系方式</view>
+          <view class='card_value'><input name="n_13" cursor-spacing='50' placeholder='' placeholder-class='pTexta'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员性别</view>
+          <view class="card_value {{sexIndex!='-1'?'':'pltext'}}">
+            <picker name="n_14" mode="selector" value="{{sexIndex}}" range='{{sexList}}' range-key='name' bindchange="bindDateChange" data-valtype='sex'>
+              <view class="picker">
+                {{sexIndex!='-1'?sexList[sexIndex].name:'性别'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员卡状态</view>
+          <view class="card_value {{cardStatusIndex!='-1'?'':'pltext'}}">
+            <picker name="n_15" mode="selector" value="{{cardStatusIndex}}" range='{{cardStatusList}}' range-key='name' bindchange="bindDateChange" data-valtype='cardStatus'>
+              <view class="picker">
+                {{cardStatusIndex!='-1'?cardStatusList[cardStatusIndex].name:'会员卡状态'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='submit vbtn' formType="submit">确认<button formType="submit">确认</button></view>
+  </form>
+</view>

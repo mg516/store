@@ -1,0 +1,73 @@
+<!--index.wxml-->
+<view class='container'>
+  <view class='headBoxlag'>
+    <view class='headBox'>
+      <view class='headPic'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class='userInfo'>
+        <view class='nickname' wx:if="{{member}}">{{member.realname}}　{{member.mobile}}</view>
+        <open-data wx:else class='nickname' type="userNickName" lang="zh_CN"></open-data>
+        <view class='locationLi' wx:if="{{member.store_name}}">
+          <view class='location imgBox'>
+            <image src='/images/location.png'></image>
+          </view>
+          <view class='locationText ellipsis'>{{member.store_name}}</view>
+        </view>
+        <!-- <view class='usernum'>51651413138</view> -->
+      </view>
+      <!-- <view class='msgBox imgBox'>
+        <image src='../../images/msg.png'></image>
+        <view class='msgBar'>99</view>
+      </view> -->
+    </view>
+  </view>
+  <view class='blockBox'>
+    <view class='block' wx:for="{{entrance}}" wx:for-item="enItem" wx:key="{{index}}">
+      <view class='title'>{{enItem.name}}</view>
+      <view class="appBox">
+        <view class='appItem' wx:for='{{enItem.list}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>
+          <view class='iconBox imgBox'>
+            <image src='{{item.icon}}'></image>
+          </view>
+          <view>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='block2 block'>
+    <view class='title'>分拣·销售</view>
+    <view class="appBox">
+      <view class='appItem' wx:for='{{entrance2}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>
+        <view class='iconBox imgBox'>
+          <image src='{{item.image}}'></image>
+        </view>
+        <view>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='block3 block'>
+    <view class='title'>客户·服务</view>
+    <view class="appBox">
+      <view class='appItem' wx:for='{{entrance3}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>
+        <view class='iconBox imgBox'>
+          <image src='{{item.image}}'></image>
+        </view>
+        <view>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='block3 block'>
+    <view class='title'>销售·报表</view>
+    <view class="appBox">
+      <view class='appItem' wx:for='{{entrance4}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>
+        <view class='iconBox imgBox'>
+          <image src='{{item.image}}'></image>
+        </view>
+        <view>{{item.name}}</view>
+      </view>
+    </view>
+  </view> -->
+</view>
+<include src="../../utils/signUp/signUp.wxml" />
+<view style="opacity:0;height:0;">{{opacity}}</view>

@@ -1,0 +1,87 @@
+/* pages/search-list/search-list.wxss */
+/* 搜索 */
+.serach-box{
+  width:100%;
+  padding:10rpx 0;
+  box-shadow:  0 0 5px #fcfcfc;
+  position:fixed;
+  background-color:#fff;
+  top:0;
+  left: 0;
+}
+.serach-box>view{
+  display: inline-block;
+  vertical-align: middle;
+}
+.list-search{
+  width: 620rpx;
+  height:60rpx;
+  margin: 15rpx 0 15rpx 15rpx;
+  background-color:#f1f1f1;
+  border-radius:20rpx;
+  position: relative;  
+  padding:5rpx 0;
+}
+.search-icon{
+  width:34rpx;
+  height:34rpx;
+  position: absolute;
+  top:14rpx;
+  left:12rpx;
+  margin:5rpx;
+}
+.search-input{
+  font-size:30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  padding-left:60rpx;
+  width:80%;
+}
+.delect-icon{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:10rpx;
+  right:10rpx;
+  margin:5rpx;
+}
+.codeIcon{
+  width:46rpx;
+  height:46rpx;
+  margin:0 30rpx;
+}
+
+/* 内容 */
+.content-title{
+  font-size: 30rpx;
+  color: #727272;
+  line-height: 70rpx;
+}
+.content-title,.content-list{
+  text-align: center;
+}
+.content-title>view,.content-list>view{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.content-list{
+  padding:30rpx 20rpx;
+  font-size:34rpx;
+  /* border-bottom:1px solid #f1f1f1; */
+}
+.content-list>view{
+  color: #333333;
+  font-size: 26rpx;
+}
+.content-name{
+  width:300rpx;
+  margin-right:6rpx;
+}
+.content-number{
+  width: 240rpx;
+}
+.content-num{
+  width: 160rpx;
+}

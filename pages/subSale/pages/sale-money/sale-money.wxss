@@ -1,0 +1,78 @@
+/* @import '../../../../utils/appList.wxss'; */
+/* @import '../../../../utils/appList_details.wxss'; */
+@import "/utils/template/timePicker/timePicker.wxss";
+@import '../sale-goods/sale-goods.wxss';
+.serach-box{background-color: #4E74FD;color: #fff;height: 66rpx;}
+/* .searchText{text-align: left;text-indent: 20rpx;} */
+.picker{font-size: 28rpx; max-width:500rpx;}
+.picText{display: inline-block;vertical-align: middle;line-height: 66rpx;font-size: 28rpx; margin-left: 10rpx;}
+.mainBox{
+  padding-top: 66rpx;
+}
+
+.excelBox{
+  width: 750rpx;
+  height: 38vh;
+}
+.excelBox>.excelItem{
+  width: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10rpx 0;
+  border-bottom:1px solid #eee;
+  box-sizing:border-box;
+}
+.excelBox>.excelItem:nth-of-type(2n){border-right: 1px solid #eee;}
+.excelBox>.excelItemMain{width: 100%;background-color: #4E74FD;color: #fff;padding: 10rpx 0 10rpx 36rpx;box-sizing: border-box;}
+.excelTitleMain{font-size: 28rpx;font-weight: bold;}
+.excelValueMain{font-size:80rpx;line-height:110rpx;margin-top:10rpx;}
+.excelmonthValMain{font-size: 28rpx;}
+.excelItem>.excelTitle{
+  font-size: 28rpx;
+  color: #333;
+  line-height: 70rpx;
+}
+.excelValue{
+  font-size: 40rpx;
+  color: #4E74FD;
+  /* font-weight: bold; */
+  padding-left: 10rpx;
+}
+.excelItem>.excelmonthVal{
+  font-size: 26rpx;
+  color: #999;
+}
+.excelmonthVal>text{color: #4E74FD;}
+.excelList{font-size: 28rpx;line-height: 100rpx;border-bottom: 1px dashed #eee;}
+.excelList>view{
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  text-indent:36rpx;
+}
+.intoIcon{
+  position:absolute;
+  width:30rpx;
+  height:30rpx;
+  top:40rpx;
+  right:20rpx;
+}
+.eChartBoxPie{
+  width: 750rpx;
+  height: 460rpx;
+}
+.loadingPie{
+  margin: 130rpx 300rpx;
+  width:150rpx;
+  height:150rpx;
+}
+.eChartBox{
+  width: 750rpx;
+  height: 500rpx;
+}
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+

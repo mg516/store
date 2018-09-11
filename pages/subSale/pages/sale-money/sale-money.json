@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "门店销售额",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "ec-canvas": "../../resource/ec-canvas/ec-canvas"
+  },
+  "navigationBarBackgroundColor": "#4E74FD",
+  "navigationBarTextStyle": "#fff"
+}

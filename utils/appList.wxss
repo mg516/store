@@ -1,0 +1,155 @@
+/* pages/breakage-list/breakage-list.wxss */
+.root-section1{
+  width:100%;
+}
+
+/* 选择列表 */
+.choose-box{
+  border-bottom:1rpx solid #f1f1f1;
+  height:100rpx; 
+  background-color:#fff;
+
+  position: fixed;
+  z-index:2;
+  width:750rpx;
+  top: 0;
+}  
+.choose-list{
+  float: left;
+  padding: 25rpx 0;
+  font-size: 30rpx;
+  width: calc(100% / 3);
+  text-align: center; 
+}
+.choose-color{
+  border-bottom: 3px solid #24ae5f;
+  padding:30rpx 0;
+  color: #24ae5f;
+}
+
+/* 搜索栏 */
+.list-search{
+  /* width: 94%; */
+  width: 710rpx;
+  height:60rpx;
+  margin: 15rpx auto;
+  background-color:#f6f6f6;
+  border-radius:20rpx;
+  position: relative;  
+  padding:5rpx 0;
+}
+.search-icon{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:10rpx;
+  left:16rpx;
+  margin:5rpx;
+}
+.search-input{
+  font-size:30rpx;
+  height:60rpx;
+  line-height:60rpx;
+  padding-left:20rpx;
+  width:540rpx;
+  margin-left:64rpx;
+}
+.delect-icon{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:10rpx;
+  right:10rpx;
+  margin:5rpx;
+}
+/* 选择时间 */
+.list-time{
+  width: 94%;
+  height:60rpx;
+  line-height:60rpx;
+  margin: 15rpx auto;
+  background-color:#f6f6f6;
+  border-radius:20rpx;
+  padding:5rpx 0;
+}
+.time-title{
+  font-size:32rpx;
+  float:left;
+}
+.time-title image{
+  width:40rpx;
+  height:40rpx;
+  display:blcok;
+  margin:10rpx 10rpx 10rpx 20rpx;
+}
+.time-picker{
+  float:left;
+  color:#808080;
+  font-size:30rpx;
+  margin:0 10rpx;
+  width:180rpx;
+  text-align:center;
+}
+.time-text{
+  float:left;
+  color:#808080;
+  font-size:30rpx;
+} 
+
+.wait-wrap{
+  padding-bottom:120rpx;
+}
+.wait-box{
+  /* width:94%; */
+  margin:20rpx auto;
+  display: table;
+}
+.wait-img{
+  width:60rpx;
+  display: table-cell;
+  vertical-align: middle;
+}
+.wait-list1{
+  border:1px solid #e5e5e5;
+  border-radius:10rpx;
+  margin :0 auto;
+  padding:22rpx 26rpx;
+  width:650rpx;
+  box-sizing: border-box;
+}
+.wait-rows{
+  font-size:28rpx;
+  line-height: 48rpx;
+}
+
+/* 暂无订单 */
+.list-none{
+  width:100%;
+  height: 100%;
+  margin:300rpx 0 560rpx 0;
+}
+.img-none{
+  margin:0rpx auto;
+  width:140rpx;
+  height:192rpx;
+  display: block;
+}
+.text-none{
+  text-align: center;
+  font-size:28rpx;
+}
+
+.breakage-add{
+  width:80rpx;
+  height: 80rpx;
+  position: fixed;
+  bottom:30px;
+  right:30px;
+  box-shadow: 0 0 10px #24ae5f;
+  border-radius:50%;
+
+}
+.breakage-add image{
+  width:80rpx;
+  height:80rpx;
+}

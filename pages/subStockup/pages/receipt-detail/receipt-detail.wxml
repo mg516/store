@@ -1,0 +1,126 @@
+<!--pages/receipt-detail/receipt-detail.wxml-->
+<!-- <view class='container'> -->
+    <!-- 订单详情 -->
+    <view class='root-section1'>
+        
+        <view class='order-view'>
+            <view class='img-view'>
+                <image src='/images/greenbg.png'></image>
+            </view>
+            <view class='img-text'>收货信息</view>
+
+            <view class='order-list'>订单号：1</view>   
+            <view class='order-list'>日期：2018.06.28</view>
+            <view class='order-list'>收货人：章子怡</view>
+            <view class='order-list'>收货门店：武汉市江岸区石桥一路店</view>
+        </view>
+    
+    </view>
+
+    <!-- 订货信息和收货信息 -->
+    <view class='root-section2'>
+        <!-- 选项卡 -->
+        <view class='choose-box'>
+            <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
+                <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
+            </view>
+        </view>
+        <!-- 订货信息 -->
+        <view class='detail-view' wx:if="{{currentid==0}}">
+            <!-- <view class='detail-box'>
+                <view class='goods-single'>名称</view>
+                <view class='goods-single'>商品单位</view>
+                <view class='goods-single'>订货数量</view>
+                <view class='goods-single'>订货金额</view>
+            </view>
+            <view class='detail-list'>
+                <view class='goods-single'>大白菜</view>
+                <view class='goods-single'>斤</view>
+                <view class='goods-single goods-style'>26</view>
+                <view class='goods-single goods-style'>435.28</view>
+            </view>
+            <view class='detail-list'>
+                <view class='goods-single'>大白菜</view>
+                <view class='goods-single'>斤</view>
+                <view class='goods-single goods-style'>26</view>
+                <view class='goods-single goods-style'>435.28</view>
+            </view>
+            <view class='detail-list'>
+                <view class='goods-single'>大白菜</view>
+                <view class='goods-single'>斤</view>
+                <view class='goods-single goods-style'>26</view>
+                <view class='goods-single goods-style'>435.28</view>
+            </view> -->
+            <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+              <view class='contTable'>
+                <view class='contTl'>
+                  <view style='min-width:160rpx;'>名称</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:280rpx;'>商品单位</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:100rpx;'>订货数量</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>
+                    <input type='text' value='{{item.pickNum}}' style='color:#24ae5f;'></input>
+                  </view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:130rpx;'>订货金额</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
+                </view>
+              </view>
+              <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+            </scroll-view>
+        </view>
+        <!-- 收货信息 -->
+        <view class='frame-view' wx:if="{{currentid==1}}">
+            <!-- <scroll-view class="topSliding" scroll-x='true' >
+              <view class='detail-box'>
+                  <view class='goods-single'>名称</view>
+                  <view class='goods-single'>商品条码</view>
+                  <view class='goods-single'>实际收货数量</view>
+                  <view class='goods-single'>实际收货金额</view>
+              </view>
+              <view class='detail-list'>  
+                  <view class='goods-single'>大白菜</view>
+                  <view class='goods-single'>1234344444444</view>
+                  <input type='number' class='goods-single goods-style' value='26'></input>
+                  <view class='goods-single goods-style'>435.28</view>
+              </view>
+            </scroll-view> -->
+            <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+              <view class='contTable'>
+                <view class='contTl'>
+                  <view style='min-width:160rpx;'>名称</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:300rpx;'>商品条码</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:100rpx;'>实际收货数量</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}'>
+                    <input type='text' value='{{item.pickNum}}' style='color:#24ae5f;'></input>
+                  </view>
+                </view>
+                <view class='contTl'>
+                  <view style='min-width:130rpx;'>实际收货金额</view>
+                  <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
+                </view>
+              </view>
+              <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+            </scroll-view>
+        </view>
+    </view>
+   
+<!-- </view> -->
+
+ <!-- 按钮 -->
+    <view class='root-section3'>
+        <view class='goto' bindtap='receipt' wx:if='{{Listcurrentid==0}}'>去收货</view>
+        <view class='goto' bindtap='receipt' wx:if='{{Listcurrentid==1}}'>去入库</view>
+    </view>

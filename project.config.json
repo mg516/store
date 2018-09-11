@@ -1,0 +1,196 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.4",
+	"appid": "wxa9793fe767f8d2b5",
+	"projectname": "%E9%97%A8%E5%BA%97%EF%BC%88%E9%9B%B6%E5%94%AE%E4%B8%AD%E5%BF%83%EF%BC%89--1",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 25,
+			"list": [
+				{
+					"id": -1,
+					"name": "receipt-list",
+					"pathName": "pages/receipt-list/receipt-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "breakage-list",
+					"pathName": "pages/breakage-list/breakage-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "search-list",
+					"pathName": "pages/search-list/search-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "return-list",
+					"pathName": "pages/return-list/return-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "transfer-list",
+					"pathName": "pages/transfer-list/transfer-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "request-list",
+					"pathName": "pages/request-list/request-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "check-list",
+					"pathName": "pages/check-list/check-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "request-add",
+					"pathName": "pages/request-add/request-add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "request-search",
+					"pathName": "pages/request-search/request-search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "报损详情",
+					"pathName": "pages/breakage-detail/breakage-detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收货详情",
+					"pathName": "pages/receipt-detail/receipt-detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "报损选商品",
+					"pathName": "pages/search-list/search-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单选择商品",
+					"pathName": "pages/subOrder/pages/order-search/order-search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新增订单",
+					"pathName": "pages/subOrder/pages/order-add/order-add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "人员列表",
+					"pathName": "pages/member-list/member-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单品销售排行",
+					"pathName": "pages/subSale/pages/sale-goods/sale-goods",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "门店销售额",
+					"pathName": "pages/subSale/pages/sale-money/sale-money",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "门店销售额",
+					"pathName": "pages/subSale/pages/sale-money/sale-money",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "id=123"
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 20,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员详情",
+					"pathName": "pages/subVip/pages/vipDetail/vipDetail",
+					"query": "id=1&name=张三"
+				},
+				{
+					"id": -1,
+					"name": "新增收货地址",
+					"pathName": "pages/subVip/pages/addAddress/addAddress",
+					"query": "id=4003"
+				},
+				{
+					"id": -1,
+					"name": "新增会员",
+					"pathName": "pages/subVip/pages/vipAdd/vipAdd",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新增列表",
+					"pathName": "pages/subVip/pages/vipList/vipList"
+				}
+			]
+		}
+	}
+}

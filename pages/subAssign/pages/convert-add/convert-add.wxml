@@ -1,0 +1,75 @@
+<!--pages/request-add/request-add.wxml-->
+<scroll-view scroll-y class='mainScroll' scroll-into-view="{{scrollToThere}}">
+  <!-- 商品信息 -->
+  <view class='root-section1'>
+      <view class='goods-view'>
+          <view class='goods-box'>
+              <view class='box-name'>请货人</view>
+              <view class='box-view'>张三</view>
+          </view>
+          <view class='goods-box'>
+              <view class='box-name'>请货门店</view>
+              <view class='box-view'>江岸区苗栗路店</view>
+          </view>
+      </view>
+  </view>
+
+  <!-- 详细信息 -->
+  <view class='root-section2' wx:for='{{convertGoods}}' wx:for-item='items' wx:key='convertGoods' data-infoid='{{items.id}}' id='scroll{{index}}'>
+      <view class='goods-title clearfix'>
+          <view class='goods-style'></view>
+          <view class='goods-name'>商品信息</view>
+          <view class='goods-del imgBox' data-index='{{index}}' catchtap='delGoods'>
+            <image src='/images/del.png'></image>
+          </view>
+      </view>
+      <!-- 商品信息 -->
+      <view class='goods-view'>
+          <view class='goods-box1 clearfix'>
+              <view class='name-box'>{{items.name}}</view>
+              <view class='number-box'>{{items.number}}</view>
+          </view>
+          <view class='goods-box1 clearfix'>
+            <view class='price-view'><view class='unit-list'>折价细数：</view><input type='digit' class='input-list' value='{{items.key1}}' placeholder-style='font-size:26rpx;' placeholder='折价细数' bindinput='inputNumber' data-index='{{index}}' data-typeval="key1"></input>
+              <view class='unit-list'>斤</view></view>
+            <view class='total-view'><view class='unit-list'>折后价：</view><input type='digit' class='input-list' value='{{items.key2}}' placeholder-style='font-size:26rpx;' placeholder='折后价' bindinput='inputNumber' data-index='{{index}}' data-typeval="key2"></input><view class='unit-list'>元</view></view>
+          </view>
+          <view class='goods-box1 clearfix'>
+            <view class='price-view'>原价:<text class='price-style'><text style='font-size:30rpx;'>￥</text>{{items.price}}</text>元/斤</view>
+            <view class='total-view'>折价总额:<text class='price-style'><text style='font-size:30rpx;'>￥</text>{{items.key3*1>0?items.key3:'-'}}</text>元</view>
+          </view>
+          <view class='goods-box1 clearfix'>
+            <view class='unit-list'>折价原因：</view>
+            <input type='digit' class='input-list input-long' value='{{items.key4}}' placeholder-style='font-size:26rpx;' placeholder='折价原因' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}' data-typeval="key4"></input>
+            <view class='unit-list' style='font-size:24rpx;color:#FC7903'>(必填)</view>
+          </view>
+          <view class='goods-box1 clearfix'>
+            <view class='unit-list'>附件：</view>
+            <view class="box-item">
+              <block wx:for="{{items.file}}" wx:for-item="itemImg" wx:for-index="indeximg" wx:key="*this">
+                <view class="weui-uploader__file" catchtap="previewImage" id="{{item}}" data-index="{{index}}" data-indeximg="{{indeximg}}">
+                  <view class='weui-uploader__img imgBox'>
+                    <image src="{{itemImg}}" mode="aspectFill"/>
+                    <view class='delImg' catchtap='delThisImg' data-index="{{index}}" data-indeximg="{{indeximg}}">删除</view>
+                  </view>
+                </view>
+              </block>
+              <view class="weui-uploader__input-box" wx:if="{{!items.file||items.file.length<9}}">
+                <view class="weui-uploader__input" bindtap="chooseImage" data-index="{{index}}"></view>
+              </view>
+            </view>
+          </view>
+      </view>
+  </view>
+
+  <!-- 继续添加 -->
+  <view class='goods-add clearfix'>
+      <image src='/images/icon_jia.png'></image>
+      <view class='goods-text' bindtap='goToSearch'>添加商品</view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class='submit' bindtap='Submit'>提交</view>
+</scroll-view>
+
+

@@ -1,0 +1,23 @@
+.card_ul{width: 690rpx;margin: 0 auto;border-radius: 10rpx;padding: 50rpx 0;}
+.card_li{text-align: center;line-height: 60rpx;padding:10rpx 0;}
+.card_li:last-of-type{border-bottom: 0;}
+.card_li>view{display: inline-block;vertical-align: middle;font-size: 28rpx;text-align: left;}
+.card_li>view.cl_top{vertical-align: top;}
+.card_label{width: 200rpx;color:#333;font-weight:bold;}
+.card_value{width: 400rpx;color: #222222;padding:4rpx 10rpx;border:2rpx solid #dedede;border-radius: 6rpx;}
+
+.card_value>input{width: 400rpx;line-height: 50rpx;}
+.card_value>textarea{width: 400rpx;height: 200rpx;line-height: 50rpx;}
+.pTexta{line-height: 50rpx;}
+
+.submit{
+  margin:200rpx auto 0;
+  width: 230rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  color: #fff;
+  background-color: #24ae5f;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  text-align: center;
+}

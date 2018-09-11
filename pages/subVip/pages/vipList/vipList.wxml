@@ -1,0 +1,33 @@
+<view class="container">
+  <view class='group_top'>
+    <view class='list-search'>
+      <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
+      <input class='search-input' placeholder='搜索会员' bindinput='searchContent' value='{{searchContent}}'  confirm-type='search' bindconfirm="getSearchOrderList" ></input>
+      <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+    </view>
+    <view class='list-title'>
+      <view>会员名称</view>
+      <view class='callphone'>电话</view>
+      <view class='addOrder'>新增订单</view>
+    </view>
+  </view>
+  <view class='group_cont'>
+    <scroll-view scroll-y>
+      <view class='userLi' wx:for="{{userList}}" wx:for-item="userItem" wx:key="{{index}}" catchtap='userDetail' data-id="{{userItem.id}}" data-name="{{userItem.name}}">
+        <view class='ellipsis'>
+          <text class='userIndex'>{{index+1}}</text>
+          <text class='userName'>{{userItem.name}}</text>
+        </view>
+        <view class='callphone imgBox' catchtap='callphone' data-phonenum="{{userItem.phone}}">
+          <image src='../../images/callphone.png'></image>
+        </view>
+        <view class='addOrder imgBox' catchtap='toAddOrder' data-name="{{userItem.name}}" data-id="{{userItem.id}}">
+          <image src='../../images/addOrder.png'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class='addUser imgBox' catchtap='addUser'>
+  <image src='../../images/add.png'></image>
+</view>

@@ -1,0 +1,16 @@
+@import '../../../../utils/appList_details.wxss';
+@import '../order-search/order-search.wxss';
+@import '../../../../utils/inputModal/inputModal.wxss';
+.mainBox {
+  top:120rpx;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.mainBox>.mainRight{
+  width:750rpx;
+  height:100%;
+  vertical-align:top;
+  margin-left:0rpx;
+}

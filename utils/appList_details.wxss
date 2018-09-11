@@ -1,0 +1,160 @@
+/* 订单详情 */
+.root-section1{
+  background-color:#fff;
+  margin:20rpx 30rpx;
+}
+.order-view{
+  position: relative;
+  border-radius:20rpx;
+  box-shadow: 0px 0px 10px #f1f1f1;
+  padding:60rpx 30rpx 30rpx 50rpx;
+  margin-top:20rpx;
+}
+.order-list{
+  padding:12rpx 0;
+  font-size:26rpx;
+}
+.img-view{
+  position: absolute;
+  top:0rpx;
+  left:-15rpx;
+}
+.img-view image{
+  width:140rpx;
+  height:60rpx;
+  display: block;
+}
+.img-text{
+  position: absolute;
+  top:20rpx;
+  left:0rpx;
+  font-size:26rpx;
+  color:#fff;
+}
+/* 商品详情以及箱子序号 */
+.root-section2{
+  width:100%;
+}
+
+/* 选择列表 */
+.choose-box{
+  border-bottom:1rpx solid #f1f1f1;
+  height:90rpx; 
+  line-height: 90rpx;
+  background-color:#fff;
+  display: flex;
+}  
+.choose-list{
+  border-top:1px solid #f1f1f1;
+  font-size: 32rpx;
+  flex: 1;
+  text-align: center;
+}
+.choose-color{
+  border-bottom: 3px solid #24ae5f;
+  padding:18rpx 0;
+  color: #24ae5f;
+}
+/* 商品详情 */
+.detail-view{
+  background-color:#fff;
+}
+.detail-box{
+  display: flex;
+  font-size:28rpx;
+  color:#808080;
+  border-bottom:1px solid #f1f1f1;
+  padding:20rpx 0;
+  width: 100%;
+}
+.goods-single{
+  flex:1;
+  text-align: center;
+  padding:10rpx 0;
+}
+.goods-style{
+  color:#24ae5f;
+}
+.detail-list{
+  display:flex;
+  width: 100%;
+  font-size:30rpx;
+  padding:20rpx 0;
+  border-bottom:1px solid #f1f1f1;
+}
+
+.frame-view{
+  background-color:#fff;
+}
+.root-section3{
+  margin-top:80rpx;
+}
+.goto{
+  background-color:#24ae5f;
+  color:#fff;
+  font-size:32rpx;
+  text-align: center;
+  width:40%;
+  margin:20rpx auto;
+  height:90rpx;
+  line-height: 90rpx;
+  border-radius:50rpx;
+}
+
+
+/* 操作↓ */
+.contTable{
+  display: flex;
+  flex-wrap: no-wrap;
+}
+.contTl{
+  display: flex;
+  flex-wrap: wrap;
+  min-width: auto;
+}
+.contTl>view{
+  white-space:nowrap;
+  line-height:100rpx;
+  height:100rpx;
+  width:100%;
+  padding:0 10rpx;
+  text-align:center;
+  /* border-bottom:1rpx solid #eee; */
+  box-sizing:border-box;
+  font-size: 30rpx;
+}
+.contTl>view:nth-child(odd){
+  /* background-color:#F5F5F5; */
+}
+.contTl>view:nth-child(even){
+  background-color:#FFFFFF;
+}
+.contTl>view:nth-child(1){
+  background-color:#fff!important;
+  color:#666;
+  /* font-weight:bold; */
+}
+.contTl input{
+  /* border:1rpx solid #666; */
+  margin:20rpx 30rpx;
+  height:50rpx;
+  width: 100%;
+  min-width:160rpx;
+  /* border-radius:10rpx; */
+  /* color:#24ae5f; */
+}
+.postHandle{
+  margin:10rpx;
+  background-color:#FE3939;
+  line-height:50rpx;
+  padding:2px;
+  border-radius:10rpx;
+  color:#fff;
+}
+.noHandle{
+  font-size:26rpx;
+  line-height:200rpx;
+  text-align:center;
+  color:#666;
+}
+/* 操作↑ */

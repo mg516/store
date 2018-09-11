@@ -1,0 +1,183 @@
+@import '../../../../utils/appList_details.wxss';
+@import '../../../../utils/inputModal/inputModal.wxss';
+.table_row2{
+  line-height: 50rpx;
+}
+.contTl>view:nth-of-type(1){
+  height: 100rpx;
+  /* font-size: 26rpx; */
+}
+.contTl>view{
+  height: 130rpx;
+}
+.table_bold{
+  font-weight:bold;
+  color:#222222;
+}
+.table_lighter{
+  color: #666;
+  font-size: 24rpx;
+}
+
+
+.serach-box{
+  width:100%;
+  padding:10rpx 0;
+  box-shadow: 0 0 2px #e5e5e5;
+
+  position: fixed;
+  /* width: 750rpx; */
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+.list-search{
+  width: 94%;
+  height:60rpx;
+  margin: 15rpx auto;
+  background-color:#f1f1f1;
+  border-radius:20rpx;
+  position: relative;  
+  padding:5rpx 0;
+}
+.search-icon{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:10rpx;
+  left:10rpx;
+  margin:5rpx;
+}
+.search-input{
+  font-size:30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  padding-left:60rpx;
+  width:80%;
+}
+.delect-icon{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:10rpx;
+  right:10rpx;
+  margin:5rpx;
+}
+
+.mainBox{
+  position: fixed;
+  top: 120rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.mainBox>view{
+  display: inline-block;
+  width: 750rpx;
+}
+.mainBox>.mainLeft{
+  width: 150rpx;
+  /* height: 100%; */
+  box-shadow:2rpx 2rpx 5rpx #eee;
+  vertical-align: top;
+  overflow-y: scroll;
+  position: absolute;
+  top: 40rpx;
+  bottom: 0;
+  left: 0;
+}
+.mainBox>.mainRight{
+  width:590rpx;
+  /* height:100%; */
+  vertical-align:top;
+  margin-left:10rpx;
+
+  position:absolute;
+  top:0;
+  left: 150rpx;
+  bottom:200rpx;
+}
+.mainRight>scroll-view{
+  width: 100%;
+  height: 100%;
+}
+.pName{
+  font-size: 30rpx;
+  text-align: center;
+  width: 100%;
+  color: #666;
+  padding: 26rpx 0;
+  line-height: 40rpx;
+  font-weight: bold;
+}
+.cNameBox{
+  min-height: 6rpx;
+}
+.cName{
+  font-size: 24rpx;
+  text-align: center;
+  width: 100%;
+  color: #666;
+  padding: 14rpx 0;
+  line-height: 34rpx;
+}
+.activeI{
+  color: #24ae5f;
+}
+
+/* 加减 */
+.numberBox{
+  padding: 0 10rpx;
+}
+.numberBox>view,.numberBox>input{
+  display: inline-block;
+  vertical-align: middle;
+}
+.numberBox>.reduce,.numberBox>.add{
+  /* width: 36rpx;
+  background-color: #fff;
+  color: #24ae5f;
+  border: 2rpx solid #24ae5f;
+  border-radius: 6rpx;
+  line-height: 32rpx;
+  text-align: center; */
+  width: 38rpx;
+  height: 34rpx;
+}
+.numberBox>.li_num{
+  width:100rpx;
+  min-width:70rpx;
+  border-bottom: 2rpx solid #24ae5f;
+  color: #24ae5f;
+  font-weight: bold;
+  font-size: 28rpx; 
+  margin: 0 4rpx;
+  text-align: center;
+}
+/* 采购按钮 */
+.caigou{
+  width: 100rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #24ae5f;
+  margin:30rpx auto;
+}
+
+.nextStep{
+  width: 320rpx;
+  line-height: 100rpx;
+  margin:30rpx auto;
+}
+
+.nextStep{
+  width: 240rpx;
+  line-height: 90rpx;
+  background-color: #24ae5f;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  position: fixed;
+  bottom: 50rpx;
+  left: 335rpx;
+  border-radius: 40rpx;
+}

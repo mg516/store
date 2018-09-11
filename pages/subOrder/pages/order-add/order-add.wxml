@@ -1,0 +1,59 @@
+<!--pages/request-add/request-add.wxml-->
+<!-- 商品信息 -->
+<view class='root-section1'>
+    <view class='goods-view'>
+        <view class='goods-box'>
+            <view class='box-name'>请货人</view>
+            <input class='box-view' value='张三'></input>
+            <!-- <view class='box-view'>张三</view> -->
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>请货门店</view>
+            <view class='box-view'>江岸区苗栗路店</view>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 详细信息 -->
+<view class='root-section2' wx:if="{{curGoods.length>0}}" data-infoid='{{items.id}}'>
+    <view class='goods-title clearfix'>
+        <view class='goods-style'></view>
+        <view class='goods-name'>商品信息</view>
+        <!-- <view class='goods-del imgBox' data-index='{{index}}' catchtap='delGoods'>
+          <image src='/images/del.png'></image>
+        </view> -->
+    </view>
+    <!-- 商品信息 -->
+    <view class='goods-view'>
+      <view class='goods_li' wx:for='{{curGoods}}' wx:for-item='items' wx:key='curGoods'>
+        <view class='li_detail'>
+          <view class='li_name'>{{items.name}}</view>
+          <view class='li_price'>单价:￥<text class='bigMoney'>{{items.price}}</text></view>
+        </view>
+        <view class='li_detail'>
+          <!-- <view class='li_index'>{{index+1}}</view> -->
+          <view class='li_numberBox'>
+            <view class='reduce imgBox' catchtap='changeNum' data-index="{{index}}">
+              <image src='/images/-.png'></image>
+            </view>
+            <input class='li_num' bindfocus='showInputModal' bindinput='inputNumber' value='{{items.num?items.num:1}}' data-index="{{index}}"></input>
+            <view class='add imgBox' catchtap='changeNum' data-index="{{index}}">
+              <image src='/images/+.png'></image>
+            </view>
+          </view>
+          <view class='li_totals'>小计:<text class='rmb'>￥</text><text class='totals bigMoney'>60.00{{items.totals}}</text></view>
+        </view>
+      </view>
+    </view>
+</view>
+<!-- 继续添加 -->
+<view class='goods-add clearfix'>
+    <image src='/images/icon_jia.png'></image>
+    <view class='goods-text' bindtap='goToSearch'>添加商品</view>
+</view>
+<!-- 按钮 -->
+<view class='submit' bindtap='Submit'>提交</view>
+
+<include src="../../../../utils/inputModal/inputModal.wxml"/>

@@ -1,0 +1,88 @@
+<view class='container'>
+  <!-- 搜索 -->
+  <view class='list-box'>
+    <view class='list-search'>
+      <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
+      <input class='search-input' placeholder='输入商品名称' placeholder-style='place-style' bindinput='getSearchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="searchText"></input>
+      <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+    </view>
+    <view class='codeIcon imgBox' catchtap='scanCode'>
+      <image src='/images/code.png'></image>
+    </view>
+  </view>
+  <!-- 选项卡 -->
+  <view class='choose-box'>
+    <view class="choose-list clear" catchtap='ChooseList' wx:for="{{chooselistData}}" data-index="{{index}}" wx:key='{{item.id}}'>
+      <text class="{{activeIndex==index?'choose-color':''}}">{{item.name}}</text>
+    </view>
+  </view>
+  <!-- 库存 -->
+  <scroll-view class='detail-view' wx:if="{{stockData && stockData.length>0 && activeIndex==0}}">
+    <view class='detail-box'>
+      <view class='goods-single goods1'>名称/条码</view>
+      <view class='goods-single goods2'>数量</view>
+      <view class='goods-single goods3'>单位</view>
+    </view>
+    <view class='detail-item'>
+      <view class='detail-list' wx:for='{{stockData}}' wx:key="{{index}}">
+        <view class='goods-single goods-list'>
+          {{item.name}}
+          <view class='detail-code'>{{item.bar_code}}</view>
+        </view>
+        <view class='goods-single goods2'>{{item.num}}</view>
+        <view class='goods-single goods3'>{{item.unit}}</view>
+      </view>
+    </view>
+    <view class='none-text' wx:if="{{showmore}}">没有更多了</view>
+  </scroll-view>
+  <!-- 库存上限 -->
+  <scroll-view class='frame-view' wx:elif="{{stockData && stockData.length>0 && activeIndex==1}}">
+    <view class='detail-box'>
+      <view class='goods-single goods4'>名称/条码</view>
+      <view class='goods-single goods5'>现有库存</view>
+      <view class='goods-single goods7'>库存上限</view>
+      <view class='goods-single goods6'>单位</view>
+    </view>
+    <view class='detail-item'>
+      <view class='detail-list' wx:for='{{stockData}}' wx:key="{{index}}">
+        <view class='goods-single goods-list1'>
+          {{item.name}}
+          <view class='detail-code'>{{item.bar_code}}</view>
+        </view>
+        <view class='goods-single goods5'>{{item.num}}</view>
+        <view class='goods-single goods7'>{{item.max_num}}</view>
+        <view class='goods-single goods6'>{{item.unit}}</view>
+      </view>
+      <view class='none-text' wx:if="{{showmore}}">没有更多了</view>
+    </view> 
+  </scroll-view>
+  <!-- 库存下限 -->
+  <scroll-view class='frame-view' wx:elif="{{stockData && stockData.length>0 && activeIndex==2}}">
+    <view class='detail-box'>
+      <view class='goods-single goods4'>名称/条码</view>
+      <view class='goods-single goods5'>现有库存</view>
+      <view class='goods-single goods7'>库存下限</view>
+      <view class='goods-single goods6'>单位</view>
+    </view>
+    <view class='detail-item'>
+      <view class='detail-list' wx:for='{{stockData}}' wx:key="{{index}}">
+        <view class='goods-single goods-list1'>
+          {{item.name}}
+          <view class='detail-code'>{{item.bar_code}}</view>
+        </view>
+        <view class='goods-single goods5'>{{item.num}}</view>
+        <view class='goods-single goods7'>{{item.min_num}}</view>
+        <view class='goods-single goods6'>{{item.unit}}</view>
+      </view> 
+      <view class='none-text' wx:if="{{showmore}}">没有更多了</view>  
+    </view>
+  </scroll-view>
+  <!-- <view wx:elif="{{!stockData || stockData.length<=0}}" style="margin-top:30vh;">
+    没有商品
+  </view> -->
+  <view class='list-none' wx:elif="{{(!stockData || stockData.length<=0)&&!ifLoading}}">
+    <image class='img-none' src='/images/bg.png'></image>
+    <view class='text-none'>暂时没有相关商品</view>
+  </view>
+  <view wx:if="{{nomore}}" class='nomore'>没有更多数据了~</view>
+</view>

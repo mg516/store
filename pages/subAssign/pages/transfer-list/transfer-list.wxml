@@ -1,0 +1,97 @@
+<!--pages/transfer-list/transfer-list.wxml-->
+<view class="root-section1 pt110">
+    <!-- 选项卡 -->
+    <view class='choose-box'>
+        <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
+            <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
+        </view>
+    </view>
+
+
+
+    <view class='search-box' wx:if='{{items1}}'>
+      <block wx:if="{{currentid==0}}">
+          <view class='addBox'><view class='addPlanting' bindtap='goToOutAdd'>新增调出单</view></view>
+      </block>
+      <block wx:if="{{currentid==1}}">
+          <view class='addBox'><view class='addPlanting' bindtap='goToInAdd'>新增调入单</view></view>
+      </block>
+      <!-- 搜索 -->
+      <view class='list-search'>
+          <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
+          <input class='search-input' placeholder='输入收货人名称/订单号/手机号' bindinput='searchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="searchText"></input>
+          <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+      </view>
+      <!-- 选择时间 -->
+      <view class="list-time clear">
+          <view class="time-title"><image src='/images/timeSearch.png'></image></view> 
+          <picker mode="date" bindchange="startTimeChange" class="time-picker">{{Startdate}}</picker>
+          <view class="time-text"> - </view>
+          <picker mode="date" bindchange="endTimeChange" class="time-picker">{{Enddate}}</picker>
+      </view>
+    </view>
+        
+    <!-- 调出 -->
+    <view class='wait-view' wx:if="{{currentid==0}}">
+
+        <!-- 列表 -->
+        <view class="wait-wrap">
+            <view class='wait-box' wx:for="{{items}}" wx:key="items" wx:for-item="i" data-currentid="{{index}}">
+                <view class='wait-img' bindtap='select' data-currentid="{{index}}">
+                    <block wx-if="{{!i.checked}}"><icon type="circle" size="20" color="#b2b2b2" /></block>
+                    <block wx-if="{{i.checked}}"><icon type="success" size="20" color="#24ae5f" /></block>
+                </view>
+                <view class='wait-list' bindtap='transferDetail'>
+                    <view class='wait-rows'>订单号：{{i.ordername}}</view>
+                    <view class='wait-rows'>日期：2018.09.08</view>
+                    <view class='wait-rows'>收货人：张三</view>
+                    <view class='wait-rows'>收货地址：江岸区菱角湖万达一店</view>
+                </view>
+            </view>
+        </view>   
+
+        <!-- 全选 -->
+        <view class='list-choose clear'>
+            <block wx:if="{{showselect}}">
+                <view bindtap='selectNone' class='choose-view clear'>
+                    <icon class='choose-icon' type="success" size="20" color="#24ae5f" />
+                    <view class='choose-text'>取消全选</view>
+                </view>
+            </block>
+
+            <block wx:if="{{!showselect}}">
+                <view bindtap='selectAll' class='choose-view clear'>
+                    <icon class='choose-icon' type="circle" size="20" color="#b2b2b2" />
+                    <view class='choose-text'>全选</view>
+                </view>
+            </block>
+
+            <view class='choose-btn' bindtap='Carry'>调入</view>
+        </view>
+
+    </view>
+        
+    <!-- 调入 -->
+    <view class='complete-view' wx:if="{{currentid==1}}">
+        <!-- 列表 -->
+        <view class="{{showselect?'wait-wrap':''}}">
+            <view class='wait-box' wx:for="{{items1}}" wx:key="items" wx:for-item="i" data-currentid="{{index}}" wx:if='{{items1}}'>
+                <view class='wait-list1' bindtap='transferDetail'>
+                    <view class='wait-rows'>订单号：{{i.ordername}}</view>
+                    <view class='wait-rows'>日期：2018.09.08</view>
+                    <view class='wait-rows'>收货人：张三</view>
+                    <view class='wait-rows'>收货地址：江岸区菱角湖万达一店</view>
+                </view>
+            </view>
+        </view>   
+    </view>
+
+    <view class='list-none' wx:if='{{!items1}}'>
+        <image class='img-none' src='/images/bg.png'></image>
+        <view class='text-none'>暂时没有订单噢</view>
+    </view>
+
+    <!-- <view class='breakage-add' bindtap='returnAdd'><image src='/images/icon_jia.png'></image></view> -->
+
+
+</view>    

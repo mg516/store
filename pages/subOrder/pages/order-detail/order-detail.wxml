@@ -1,0 +1,98 @@
+<!--pages/receipt-detail/receipt-detail.wxml-->
+<!-- <view class='container'> -->
+<!-- 订单详情 -->
+<view class='root-section1'>
+    <view class='order-view'>
+        <view class='img-view'>
+            <image src='/images/greenbg.png'></image>
+        </view>
+        <view class='img-text'>订单详情</view>
+        <view class='orderMsgBox'>
+          <view class='order-list' style='width:100%;'>订单号：<text>{{orderMsg.sn}}</text></view>
+          <view class='order-list' style='width:100%;'>下单时间：<text>{{orderMsg.create_time}}</text></view>
+          <view class='order-list'>付款状态：<text wx:if="{{orderMsg.pay==0}}">未付款</text><text wx:elif="{{orderMsg.pay==1}}">部分付款</text><text wx:elif="{{orderMsg.pay==2}}">已付款</text></view>
+          <view class='order-list'>
+            订单状态：<text wx:if="{{orderMsg.confirm==-1}}">已取消</text>
+            <text wx:elif="{{orderMsg.type==1 && orderMsg.pick==0}}">待提货</text>
+            <text wx:elif="{{orderMsg.type==1 && orderMsg.pick==1}}">提货中</text>
+            <text wx:elif="{{orderMsg.type==1 && orderMsg.pick==2}}">提货完成</text>
+            <text wx:elif="{{orderMsg.type==2 && orderMsg.dispatch==0}}">待配送</text>
+            <text wx:elif="{{orderMsg.type==2 && orderMsg.dispatch==1}}">配送中</text>
+            <text wx:elif="{{orderMsg.type==2 && orderMsg.dispatch==2}}">配送完成</text>
+          </view>
+          <view class='order-list'>订单类型：<text wx:if="{{orderMsg.type==1}}">自提</text><text wx:elif="{{orderMsg.type==2}}">送货上门</text></view>
+          <view class='order-list'>合计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>{{orderMsg.total}}元</text></view>
+          <view class='order-list' style='width:100%;'>客户：<text>{{orderMsg.user_name}}</text></view>
+          <view class='order-list' style='width:100%;'>
+            客户手机号：<text>{{orderMsg.user_mobile}}</text>
+            <view class='callPhoneImg imgBox' catchtap='callPhone' data-phonenum='{{orderMsg.user_mobile}}'>
+              <image src='/images/callphone.png'></image>
+            </view>
+          </view>
+          <view class='order-list' style='width:100%;' wx:if="{{orderMsg.type==1}}">提货时间：<text>{{orderMsg.ps_date}} {{orderMsg.ps_time}}</text></view>
+          <view class='order-list' style='width:100%;' wx:if="{{orderMsg.trade_time}}">完成时间：<text>{{orderMsg.trade_time}}</text></view>
+          <!-- <view class='order-list' style='width:100%;' wx:elif="{{orderMsg.type==2}}">配送时间：<text>{{orderMsg.ps_date}} {{orderMsg.ps_time}}</text></view> -->
+          <!-- <view class='order-list' style='width:100%;' wx:if="{{orderMsg.type==2}}">收货人：<text>{{orderMsg.sh_name}}</text></view>
+          <view class='order-list' style='width:100%;' wx:if="{{orderMsg.type==2}}">收货人手机号：<text>{{orderMsg.sh_mobile}}</text></view>
+          <view class='order-list' style='width:100%;white-space:normal;' wx:if="{{orderMsg.sh_address}}">收货地址：<text>{{orderMsg.sh_address}}</text></view> -->
+        </view>
+        <view class='handle-sm pickUp' catchtap='orderHandle' wx:if="{{orderMsg.pay==2 && orderMsg.type==1 && orderMsg.pick==0}}">自提</view>
+        <view class='handle-sm pickUp' catchtap='orderHandle' wx:elif="{{orderMsg.pay==2 && orderMsg.type==2 && orderMsg.dispatch==0}}">配送</view>
+        <view class='handle-sm pickUp' catchtap='orderHandle' wx:elif="{{orderMsg.pay==2 && orderMsg.type==2 && orderMsg.dispatch==1}}">配送完成</view>
+        <!-- <view class='order-list'>订单号：1</view>   
+        <view class='order-list'>日期：2018.06.28</view>
+        <view class='order-list'>收货人：章子怡</view>
+        <view class='order-list'>收货门店：武汉市江岸区石桥一路店</view> -->
+    </view>
+    <view class='order-view' wx:if='{{orderMsg.type==2}}'>
+        <view class='img-view'>
+            <image src='/images/greenbg.png'></image>
+        </view>
+        <view class='img-text'>收货信息</view>
+        <view class='orderMsgBox'>
+          <view class='order-list' style='width:100%;'>收货人：<text>{{orderMsg.sh_name}}</text></view>
+          <view class='order-list' style='width:100%;'>
+            收货人手机号：<text>{{orderMsg.sh_mobile}}</text>
+            <view class='callPhoneImg imgBox' catchtap='callPhone' data-phonenum='{{orderMsg.sh_mobile}}'>
+              <image src='/images/callphone.png'></image>
+            </view>
+          </view>
+          <view class='order-list' style='width:100%;white-space:normal;'>收货地址：<text>{{orderMsg.sh_address}}</text></view>
+          <view class='order-list' style='width:100%;'>配送时间：<text>{{orderMsg.ps_date}} {{orderMsg.ps_time}}</text></view>
+        </view>
+    </view>
+</view>
+
+<!-- 订货信息和收货信息 -->
+<view class='root-section2'>
+    <!-- 订货信息 -->
+    <view class='detail-view' wx:if="{{currentid==0}}">
+        <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+          <view class='contTable' wx:if="{{orderMsg && orderMsg.goods && orderMsg.goods.length>0}}">
+            <view class='contTl'>
+              <view style='min-width:200rpx;'>名称</view>
+              <view wx:for='{{orderMsg.goods}}' wx:key='{{item.md_goods_id}}'>
+                <!-- {{item.name}} -->
+                <view class='ellipsis' style='font-size:30rpx;text-align:left;width:320rpx;line-height:60rpx;font-weight:bold;'>{{item.name}}</view>
+                <view style='text-align:left;font-size:26rpx;line-height:40rpx;color:#808080;'>{{item.bar_code}}</view>
+              </view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:80rpx;'>数量</view>
+              <view wx:for='{{orderMsg.goods}}' wx:key='{{item.md_goods_id}}'>{{item.num}} {{item.unit}}</view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:120rpx;'>单价</view>
+              <view wx:for='{{orderMsg.goods}}' wx:key='{{item.md_goods_id}}'>
+                ￥{{item.price}}<!-- <input type='text' value='{{item.pickNum}}' style='color:#24ae5f;'></input> -->
+              </view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:120rpx;'>小计</view>
+              <view wx:for='{{orderMsg.goods}}' wx:key='{{item.md_goods_id}}' style='font-weight:bold;'>￥{{item.total}}</view>
+            </view>
+          </view>
+          <view class='noHandle' wx:else>无商品</view>
+        </scroll-view>
+    </view>
+</view>

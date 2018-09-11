@@ -1,0 +1,6 @@
+@import '../addAddress/addAddress.wxss';
+page{background-color: #fff;}
+.card_ul{width: 750rpx;}
+.card_ul:nth-of-type(1){border-bottom: 16rpx solid #F6F6F6;}
+.pltext{color: #9F9F95;}
+.submit{margin: 40rpx auto 40rpx}

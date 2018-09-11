@@ -1,0 +1,14 @@
+<view class="inputModel" wx:if="{{inputModelStatus}}">
+  <view class='inputBox'>
+    <view class='inputTitle'>修改采购数量</view>
+    <view class='inputNumBox'>
+      <view class="inputReduce {{curInputValue>1?'':'onlyOne'}}" catchtap="{{curInputValue>1?'inputReduce':'xx'}}">-</view>
+      <view class='inputNum'><input type='number' cursor-spacing="120" focus="true" value='{{curInputValue}}' bindinput='changeInputModal'></input></view>
+      <view class='inputAdd' catchtap='inputAdd'>+</view>
+    </view>
+    <view class='inputHandleBox'>
+      <view class='inputClose' catchtap='inputClose'>取消</view>
+      <view class='inputSure' catchtap='inputSure'>确定</view>
+    </view>
+  </view>
+</view>

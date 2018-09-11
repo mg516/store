@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search-list/search-list",
+    "pages/member-list/member-list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "青蛙家门店管理",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#E5E5E5"
+  },
+  "subPackages": [
+    {
+      "root": "pages/subOrder",
+      "pages": [
+        "pages/order-add/order-add",
+        "pages/order-detail/order-detail",
+        "pages/order-list/order-list",
+        "pages/order-search/order-search",
+        "pages/order-search-list/order-search-list",
+        "pages/userOrder/userOrder"
+      ]
+    },
+    {
+      "root": "pages/subSale",
+      "pages": [
+        "pages/sale-goods/sale-goods",
+        "pages/sale-money/sale-money",
+        "pages/sales-status/sales-status"
+      ]
+    },
+    {
+      "root": "pages/subStockup",
+      "pages": [
+        "pages/request-add/request-add",
+        "pages/request-list/request-list",
+        "pages/request-detail/request-detail",
+        "pages/request-search/request-search",
+        "pages/receipt-list/receipt-list",
+        "pages/receipt-detail/receipt-detail",
+        "pages/return-list/return-list",
+        "pages/return-detail/return-detail",
+        "pages/return-add/return-add",
+        "pages/stock-goods/stock-goods"
+      ]
+    },
+    {
+      "root": "pages/subAssign",
+      "pages": [
+        "pages/breakage-list/breakage-list",
+        "pages/breakage-detail/breakage-detail",
+        "pages/breakage-add/breakage-add",
+        "pages/transfer-list/transfer-list",
+        "pages/transfer-detail/transfer-detail",
+        "pages/transfer-outadd/transfer-outadd",
+        "pages/transfer-inadd/transfer-inadd",
+        "pages/check-list/check-list",
+        "pages/check-detail/check-detail",
+        "pages/check-add/check-add",
+        "pages/check-search/check-search",
+        "pages/convert-list/convert-list",
+        "pages/convert-add/convert-add",
+        "pages/convert-detail/convert-detail",
+        "pages/convert-search/convert-search"
+      ]
+    },
+    {
+      "root": "pages/subVip",
+      "pages": [
+        "pages/vipList/vipList",
+        "pages/vipDetail/vipDetail",
+        "pages/addAddress/addAddress",
+        "pages/vipAdd/vipAdd"
+      ]
+    }
+  ]
+}

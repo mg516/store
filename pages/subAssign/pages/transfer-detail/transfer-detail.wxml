@@ -1,0 +1,91 @@
+<!--pages/transfer-detail/transfer-detail.wxml-->
+
+<!-- 订单详情 -->
+<view class='root-section1'>
+    
+    <view class='order-view'>
+        <view class='img-view'>
+            <image src='/images/greenbg.png'></image>
+        </view>
+        <view class='img-text'>调拨信息</view>
+
+        <view class='order-list'>订单号：1</view>   
+        <view class='order-list'>日期：2018.06.28</view>
+        <view class='order-list'>收货人：章子怡</view>
+        <view class='order-list'>收货门店：武汉市江岸区石桥一路店</view>
+    </view>
+
+</view>
+
+<!-- 调拨数量和调拨原因 -->
+<view class='root-section2'>
+    <!-- 选项卡 -->
+    <view class='choose-box'>
+        <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
+            <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
+        </view>
+    </view>
+    <!-- 调拨数量 -->
+    <view class='detail-view' wx:if="{{currentid==0}}">
+        <!-- <view class='detail-box'>
+            <view class='goods-single'>名称</view>
+            <view class='goods-single'>商品单位</view>
+            <view class='goods-single'>调拨数量</view>
+            <view class='goods-single'>退货金额</view>
+        </view>
+        <view class='detail-list'>
+            <view class='goods-single'>大白菜</view>
+            <view class='goods-single'>斤</view>
+            <view class='goods-single goods-style'>26</view>
+            <view class='goods-single goods-style'>435.28</view>
+        </view>
+        <view class='detail-list'>
+            <view class='goods-single'>大白菜</view>
+            <view class='goods-single'>斤</view>
+            <view class='goods-single goods-style'>26</view>
+            <view class='goods-single goods-style'>435.28</view>
+        </view>
+        <view class='detail-list'>
+            <view class='goods-single'>大白菜</view>
+            <view class='goods-single'>斤</view>
+            <view class='goods-single goods-style'>26</view>
+            <view class='goods-single goods-style'>435.28</view>
+        </view> -->
+        <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+          <view class='contTable'>
+            <view class='contTl'>
+              <view style='min-width:160rpx;'>名称</view>
+              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:100rpx;'>商品单位</view>
+              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:100rpx;'>调拨数量</view>
+              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
+                <!-- <input type='text' value='{{item.pickNum}}'></input> -->
+              </view>
+            </view>
+            <view class='contTl'>
+              <view style='min-width:160rpx;'>退货金额</view>
+              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
+            </view>
+          </view>
+          <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+        </scroll-view>
+    </view>
+    <!-- 调拨原因 -->
+    <view class='frame-view' wx:if="{{currentid==1}}">
+        <view class='detail-box'>
+            <view class='goods-single'>调拨原因</view>
+        </view>
+        <view class='detail-list'>
+            <view class='goods-single'>缺货</view>
+        </view>
+        <view class='detail-list'>
+            <view class='goods-single'>销量好</view>
+        </view>
+    </view>
+</view>
+

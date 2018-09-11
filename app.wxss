@@ -1,0 +1,41 @@
+/**app.wxss**/
+.clearfix::after{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.imgBox>image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.pt110{
+  padding-top:110rpx;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.vbtn{position: relative;}
+.vbtn>button{position: absolute;top: 0;left: 0;bottom: 0;right: 0;z-index: 9;opacity: 0;}
+
+/* 暂无数据 */
+/* <view class='list-none'><image class='img-none' src='/images/bg.png'></image><view class='text-none'>暂时没有商品</view></view> */
+.list-none{width:100%;height: 100%;margin-top:30vh;}
+.img-none{margin:0rpx auto;width:140rpx;height:192rpx;display: block;}
+.text-none{text-align: center;font-size:28rpx;color: #999;}
+
+/* 没有更多数据 */
+/* <view wx:if="{{nomore}}" class='nomore'>没有更多数据了~</view> */
+.nomore{font-size:24rpx;line-height:70rpx;color:#999;text-align: center;}

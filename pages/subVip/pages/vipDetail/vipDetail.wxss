@@ -1,0 +1,45 @@
+@import '../../../../utils/appList.wxss';
+/* 选择列表 */
+.group_top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.choose-box{
+  height:90rpx; 
+  background-color:#fff;
+  width:750rpx;
+  border-bottom: 0;
+}  
+.choose-list{
+  display: inline-block;
+  padding: 25rpx 0;
+  font-size: 30rpx;
+  width: calc(100% /3);
+  text-align: center; 
+}
+.choose-color{
+  border-bottom: 3px solid #24ae5f;
+  padding:18rpx 0;
+  color: #24ae5f;
+}
+.group_cont{
+  margin-top: 100rpx;
+  margin-bottom: 40rpx;
+}
+
+.card_ul{width: 690rpx;margin: 40rpx auto 0;box-shadow:0px 4rpx 20rpx #aaaaaa;border-radius: 10rpx;padding: 50rpx 0;}
+.card_li{text-align: center;line-height: 60rpx;}
+.card_li>view{display: inline-block;vertical-align: top;font-size: 28rpx;text-align: left;}
+.card_label{width: 200rpx;color: #666666;}
+.card_value{width: 400rpx;color: #222222;}
+
+.add_addr{width: 690rpx;margin: 10rpx auto 0;}
+.add_addr>view{display: inline-block;vertical-align: top;}
+.addr_l,.addr_r{width: 32rpx;height: 32rpx;padding: 4rpx;}
+.addr_text{width: 600rpx;font-size: 30rpx;line-height: 40rpx;text-indent: 20rpx;}
+
+.wait-box{box-shadow:0px 4rpx 20rpx #aaaaaa;border-radius: 10rpx;margin:40rpx auto;}
+.wait-list1{width: 690rpx;padding:40rpx 30rpx;}
+.callPhoneImg{display:inline-block;vertical-align:middle;height:40rpx;width:40rpx;margin-left:10rpx;}

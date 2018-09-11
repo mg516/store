@@ -1,0 +1,58 @@
+<view class='container'>
+  <view class='serach-box'>
+    <view class='list-search'>
+        <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
+        <input class='search-input' placeholder='输入您想要搜索的内容' bindinput='searchContent' value='{{searchContent}}'  confirm-type='search' bindconfirm="getSearchOrderList" ></input>
+        <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+    </view>
+    <!-- 选择时间 -->
+    <view class="list-time clearfix">
+        <view class="time-title"><image src='/images/timeSearch.png'></image></view> 
+        <picker mode="date" bindchange="startTimeChange" class="time-picker" end="{{Enddate}}" value="{{Startdate}}">{{Startdate}}</picker>
+        <view class="time-text"> - </view>
+        <picker mode="date" bindchange="endTimeChange" class="time-picker" start="{{Startdate}}" value="{{Enddate}}">{{Enddate}}</picker>
+    </view>
+    <!-- <view class='searchText'>
+      <picker mode='selector' bindcancel="cancelPicker" catchtap='changePickerStatus' bindchange="changeGoods" value="{{goodsIndex}}" range="{{goodsArray}}" range-key='name'>
+        <view class="picker">
+          {{goodsArray[goodsIndex].name}}
+        </view>
+        <view class='picIcon imgBox'>
+          <image src="/images/sale/{{goodsPickerOpen?'up':'down'}}.png"></image>
+        </view>
+      </picker>
+    </view> -->
+  </view>
+  <view class='mainBox'>
+    <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%;color:#222222;">
+      <view class='contTable'>
+        <view class='contTl'>
+          <view style='width:60rpx;'></view>
+          <view wx:for='{{saleList}}' wx:key='{{item.id}}' style='font-weight:bold;'>{{index+1}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='width:180rpx;'>品名</view>
+          <view wx:for='{{saleList}}' wx:key='{{item.id}}'>
+            <view class='' style='font-size:28rpx;text-align:left;line-height:60rpx;font-weight:bold;'>{{item.name}}</view>
+            <view style='text-align:left;font-size:24rpx;line-height:40rpx;color:#808080;'>{{item.bar_code}}</view>
+          </view>
+        </view>
+        <view class='contTl'>
+          <view style='max-width:180rpx;'>数量</view>
+          <view wx:for='{{saleList}}' wx:key='{{item.id}}' style='font-weight:bold;font-size:26rpx;'>{{item.num}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='max-width:160rpx;'>单价</view>
+          <view wx:for='{{saleList}}' wx:key='{{item.id}}' style='font-size:26rpx;'>{{item.price}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='max-width:160rpx;'>金额</view>
+          <view wx:for='{{saleList}}' wx:key='{{item.id}}' style='font-weight:bold;'>{{item.total}}</view>
+        </view>
+      </view>
+      <view class='noHandle' wx:if='{{(!saleList||saleList.length<=0)&&!ifLoading}}'>无商品</view>
+      <view wx:if="{{nomore}}" class='nomore'>没有更多数据了~</view>
+    </scroll-view>
+  </view>
+</view>
+

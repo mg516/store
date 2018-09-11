@@ -1,0 +1,77 @@
+page,.container,.ul,.ul>scroll-view{
+  width: 100%;
+  height: 100%;
+}
+.li_title{
+  width: 750rpx;
+  border-bottom: 2rpx solid #eee;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  text-indent: 30rpx;
+  color: #999;
+}
+.li{
+  width: 730rpx;
+  height: 120rpx;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #eee;
+}
+.li>view{
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 20rpx;
+}
+.memImg{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:20%;
+  overflow:hidden;
+}
+.memName{
+  font-size: 28rpx;
+  line-height: 120rpx;
+}
+radio {
+  transform:scale(0.8);
+}
+
+.reCheck{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100rpx;
+  border-top: 2rpx solid #ddd;
+  z-index: 1;
+  background-color: #fff;
+}
+.reCheck>view{
+  display: inline-block;
+  vertical-align: middle;
+}
+.imgList{
+  width: 510rpx;
+  height: 100rpx;
+  margin: 0 20rpx;
+}
+.imgList>scroll-view{
+  white-space: nowrap;
+}
+.reImg{
+  display: inline-block;
+  vertical-align: middle;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx 10rpx 0 0;
+}
+.makeSure{
+  width: 160rpx;
+  line-height: 70rpx;
+  margin: 15rpx 20rpx;
+  background-color: #26a2d0;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #fff;
+}

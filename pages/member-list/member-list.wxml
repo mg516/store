@@ -1,0 +1,26 @@
+<view class="container">
+  <view class='ul'>
+    <scroll-view scroll-y>
+      <view class='li_title'>常用联系人</view>
+      <view class='li' wx:for="{{memberList}}" wx:for-item="item" data-index='{{index}}' catchtap='checkIt' wx:key="{{index}}">
+        <view>
+          <radio checked="{{item.ifCheck}}" color="#26a2d0"/>
+        </view>
+        <view class='memImg imgBox'>
+          <image src="{{item.thumb?item.thumb:''}}"></image>
+        </view>
+        <view class='memName'>{{item.now_realname}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='reCheck'>
+    <view class='imgList'>
+      <scroll-view scroll-x scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+        <view class='reImg imgBox' wx:for="{{reList}}" wx:for-item="lItem" data-index="{{index}}" catchtap='removeCheck' wx:key="{{index}}">
+          <image src="{{lItem.thumb?lItem.thumb:''}}"></image>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='makeSure' catchtap='makeSure'>确定{{reList&&reList.length>0?'(' + reList.length + ')':''}}</view>
+  </view>
+</view>

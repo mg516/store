@@ -1,0 +1,217 @@
+.bottomLine{
+  /* height:1px; */
+  width:700rpx;
+  margin:0 auto;
+  background-color:#ccc;
+}
+/* 一级模块 */
+.viewShow{
+  width: 750rpx;
+  height: 300rpx;
+  background-color: #199CFB;
+  display: flex;
+  flex-wrap:nowrap;
+}
+.countShow{
+  width: 750rpx;
+  box-sizing:border-box;
+}
+.tableShow{
+  width: 750rpx;
+  /* min-height: 560rpx; */
+  /* border: 1rpx solid #F6FB0A; */
+  box-sizing: border-box;
+  position: relative;
+}
+/* 次级模块 */
+/* 一 */
+.viewShow .viewLeft{
+ width: 220rpx;
+ text-align: center;
+ padding-top:35px;
+}
+.viewShow .viewCenter{
+ width: 310rpx;
+}
+.viewShow .viewRight{
+ width: 220rpx;
+ text-align: center;
+ padding-top:35px;
+}
+/* 二 */
+.countShow>.countI{
+  display: flex;
+  flex-wrap: nowrap;
+  /* border-bottom: 1rpx solid #199CFB; */
+  box-sizing:border-box;
+  justify-content: center;
+}
+.countShow>view .countItem{
+  width: 375rpx;
+  height: 120rpx;
+  box-sizing:border-box;
+}
+.countShow>view .countItem:nth-of-type(1){
+  /* border-right: 1px solid #199CFB; */
+}
+.tableShow .loadingModal{
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}
+.loading{
+  margin: 200rpx 300rpx;
+  width:150rpx;
+  height:150rpx;
+}
+.loadingModal>.loading{
+  display:inline-block;
+  vertical-align:middle;
+  -webkit-animation:wx-button-loading-animate 1s steps(12, end) infinite;
+  animation:wx-button-loading-animate 1s steps(12, end) infinite;
+  background:transparent url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTM1MTAyNjMwNzQ4IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIwNTUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxNS42OTgzMDMgOTY5LjEyNzQ5OWMtOTcuMTg3OTcyIDAtMTkxLjI3OTY5MS0zMS4xMzQ1NTQtMjcwLjQwNjE4Mi05MC40Nzk0MjItOTYuNjcxOTMtNzIuMjQ1OTI2LTE1OS40NTcwOC0xNzguMjA2NjE5LTE3Ni42NTg0OTItMjk3LjkyODQzOXMxMy4yNDUwODctMjM4LjkyNzYgODUuNjYzMDI3LTMzNS41OTk1M0MzMDQuMTIwOTQ3IDQ1LjIzOTcxMSA1ODguMjg4MjU4IDQuNjQ0MzgxIDc4Ny45OTY2NCAxNTQuMTI0NjQzYzgzLjc3MDg3MiA2Mi43ODUxNSAxNDMuNDU5NzY4IDE1My4wOTI1NTggMTY4LjIyOTggMjU0LjU4MDg4NCA0LjMwMDM1MyAxNy4zNzM0MjUtNi4zNjQ1MjIgMzQuOTE4ODY0LTIzLjczNzk0NyAzOS4wNDcyMDMtMTcuMzczNDI1IDQuMTI4MzM5LTM0LjkxODg2NC02LjM2NDUyMi0zOS4wNDcyMDMtMjMuNzM3OTQ3LTIxLjE1NzczNi04Ni44NjcxMjYtNzIuNDE3OTQxLTE2NC40NDU0OS0xNDQuMTQ3ODI1LTIxOC4yODU5MDZDNTc4LjEzOTQyNSA3Ny43NTAzNzggMzM0LjM5NTQzMSAxMTIuNjY5MjQyIDIwNi4yNDQ5MTkgMjgzLjgyMzI4MmMtNjIuMDk3MDk0IDgyLjkxMDgwMS04OC4yNDMyMzkgMTg1LjA4NzE4My03My40NTAwMjUgMjg3LjYwNzU5M3M2OC40NjE2MTYgMTkzLjM0Mzg2IDE1MS4zNzI0MTcgMjU1LjQ0MDk1NGMxNzEuMzI2MDU0IDEyOC4zMjI1MjYgNDE0Ljg5ODAzNSA5My40MDM2NjIgNTQzLjIyMDU2MS03Ny45MjIzOTIgMzMuNTQyNzUyLTQ0Ljg5NTY4MyA1Ni41OTI2NDItOTUuMTIzODAzIDY4LjI4OTYwMi0xNDkuMzA4MjQ4IDMuNzg0MzEtMTcuMzczNDI1IDIxLjE1NzczNi0yOC41NTQzNDIgMzguMzU5MTQ3LTI0Ljc3MDAzMiAxNy4zNzM0MjUgMy43ODQzMSAyOC41NTQzNDIgMjAuOTg1NzIxIDI0Ljc3MDAzMiAzOC4zNTkxNDctMTMuNzYxMTI5IDYzLjQ3MzIwNy00MC41OTUzMyAxMjIuMTMwMDE4LTc5LjgxNDU0NyAxNzQuNDIyMzA4LTcyLjQxNzk0MSA5Ni42NzE5My0xNzguMzc4NjMzIDE1OS40NTcwOC0yOTguMTAwNDU0IDE3Ni42NTg0OTJDNTU5LjIxNzg3MyA5NjcuNTc5MzcyIDUzNy4zNzIwODEgOTY5LjEyNzQ5OSA1MTUuNjk4MzAzIDk2OS4xMjc0OTl6IiBwLWlkPSIyMDU2IiBmaWxsPSIjNTE1OERGIj48L3BhdGg+PC9zdmc+) no-repeat;
+  background-size:100%;
+}
+/* 三 */
+.tableBar{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  padding: 15rpx 0;
+}
+.tableBar>view{
+  width: 160rpx;
+  border-radius: 5rpx;
+  margin: 0 10rpx;
+  background-color: #F3F3F3;
+  font-size:25rpx;
+  line-height:50rpx;
+  color: #444;
+}
+.tableBar>view.activeBar{
+  background-color: #4FB5F7;
+  color: #fff;
+}
+/* 三级模块 */
+.viewIcon{
+  height: 70rpx;
+}
+.viewIcon image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.viewText{
+  font-size: 25rpx;
+  color: #fff;
+}
+.viewVal{
+  font-size: 30rpx;
+  color: #F6FB0A;
+}
+
+.countItem{
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 20rpx;
+}
+.countLeft{
+  width: 100rpx;
+  text-align: right;
+}
+.countRight{
+  width: 275rpx;
+}
+.countLeft>image{
+  width: 70rpx;
+  height: 70rpx;
+}
+.countTitle{
+  color: #69798B;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 35rpx;
+}
+.countVal{
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 55rpx;
+}
+
+
+/* 时间控件 */
+/* pages/calendar/calendar.wxss */
+.box {
+    display: flex;
+}
+
+.box-lr {
+    flex-direction: row;
+}
+
+.box-rl {
+    flex-direction: row-reverse;
+}
+
+.box-tb {
+    flex-direction: column;
+}
+
+.box-pack-center {
+    justify-content: center;
+}
+
+.box-align-center {
+    align-items: center;
+}
+
+.flex {
+    flex-grow: 1;
+}
+.bg {
+  background-image: linear-gradient(to bottom, #faefe7, #ffcbd7);
+  overflow: hidden;
+}
+.pink-color {
+  color: #ff629a;
+}
+.blue-color{
+  color: #3257DB;
+}
+.fs28 {
+  font-size: 28rpx;
+}
+.top-handle {
+    height: 80rpx;
+    width: 750rpx;
+}
+.prev {
+    text-align: right;
+    height: 80rpx;
+}
+.next {
+    height: 80rpx;
+}
+.prev-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.next-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.date-area {
+    width: 60%;
+    height: 80rpx;
+    text-align: center;
+}
+
+.chartBox{
+  width: 100%;
+  height: 400rpx;
+  margin-top:30rpx;
+}

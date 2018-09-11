@@ -1,0 +1,87 @@
+@import '/utils/appList.wxss';
+.wait-view,.complete-view{
+  padding-top: 280rpx;
+}
+.search-box{
+  position:fixed;
+  width:750rpx;
+  background-color:#fff;
+  z-index:1;
+  top:100rpx;
+  left: 0;
+}
+
+
+.choose-list{
+  float: left;
+  padding: 25rpx 0;
+  font-size: 32rpx;
+  width: calc(100% / 2)!important;
+  text-align: center; 
+}
+/* 新增 */
+.addBox{
+  width: 90%;
+  padding:35rpx 5% 10rpx;
+  background: white;
+}
+.addPlanting{
+  width: 100%;
+  height: 80rpx;
+  color: white;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  background: #24ae5f;
+}
+
+/* ------------------待配送-------------- */
+
+.wait-list{
+  display: table-cell;
+  border:1px solid #e5e5e5;
+  border-radius:10rpx;
+  padding:15rpx;
+  width:650rpx;
+  box-sizing: border-box;
+}
+/* 全选 */
+.list-choose{
+  position: fixed;
+  left:0;
+  bottom:0;
+  height:100rpx;
+  line-height:100rpx;
+  background-color:#fff;
+  width:100%;
+  box-shadow: 5rpx 5rpx 35rpx #ccc;
+}
+.choose-view{
+  float:left;
+  margin:20rpx 25rpx;
+  height:60rpx;
+  line-height: 60rpx;
+}
+.choose-icon{
+  float:left;
+  margin-top:5rpx;
+}
+
+.choose-text{
+  font-size:32rpx;
+  float:left;
+  margin-left:20rpx;
+}
+.choose-btn{
+  float:right;
+  margin:20rpx;
+  background-color:#24ae5f;
+  color:#fff;
+  font-size:32rpx;
+  border-radius:30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  padding:5rpx 35rpx;
+}
+

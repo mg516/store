@@ -1,0 +1,40 @@
+<template name="timePicker">
+  <view class="container">
+    <view class='tableShow'>      
+      <view class='loadingModal' wx:if='{{ifLoading}}'>
+        <view class='loading'></view>
+      </view>
+      <view class='bottomLine'></view>  
+      <!-- 时间控件 ↓-->
+      <view class="flex box box-tb box-align-center">
+        <view class="calendar blue-color box box-tb"> 
+          <view class="top-handle fs28 box box-lr box-align-center box-pack-center">
+            <view class="prev box box-rl" bindtap="handleCalendar" data-handle="prev">
+                <view class="prev-handle box box-lr box-align-center box-pack-center">
+                  <view class='imgBox' style='width:24rpx;height:30rpx;'><image src='/images/left.png'></image></view>
+                </view>
+            </view>
+            <view class="date-area box box-lr box-align-center box-pack-center">
+              <view>
+                <picker mode="date" value="{{cur_year}}" end="{{date}}" bindchange="bindDateChange" fields="year">
+                  {{cur_year || "--"}}
+                </picker>
+              </view>
+            </view>
+            <view class="next box box-lr" bindtap="handleCalendar" data-handle="next">
+                <view class="next-handle box box-lr box-align-center box-pack-center">
+                  <view class='imgBox' style='width:24rpx;height:30rpx;'><image src='/images/right.png'></image></view>
+                </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 时间控件 ↑-->
+      <!-- 图表 ↓-->
+      <view class='chartBox' hidden='{{ifLoading}}'>
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+      </view>
+      <!-- 图表 ↑-->
+    </view>
+  </view>
+</template>

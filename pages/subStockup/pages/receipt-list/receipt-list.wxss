@@ -1,0 +1,12 @@
+@import '/utils/appList.wxss';
+.ul{
+  padding-top: 160rpx;
+}
+.search-box{
+  position:fixed;
+  width:750rpx;
+  background-color:#fff;
+  z-index:1;
+  top:100rpx;
+  left: 0;
+}

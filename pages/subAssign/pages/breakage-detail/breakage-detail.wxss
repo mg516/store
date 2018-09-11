@@ -1,0 +1,2 @@
+@import '/utils/appList_details.wxss';
+.imgUl>.imgLi{width: 100rpx;height: 100rpx;display: inline-block;vertical-align: top;padding: 10rpx;}

@@ -1,0 +1,59 @@
+<!--pages/return-add/return-add.wxml-->
+<!-- 商品信息 -->
+<view class='root-section1'>
+    <view class='goods-title clearfix'>
+        <view class='goods-style'></view>
+        <view class='goods-name'>商品信息</view>
+    </view>
+    <view class='goods-view'>
+        <view class='goods-box'>
+            <view class='box-name'>商品名称</view>
+            <input class='box-input' placeholder='请输入商品名称' disabled='true' catchtap='goToSearch' value='{{curMsg.name}}'></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>商品单位</view>
+            <input class='box-input' value='{{curMsg.unit}}'></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>商品条码</view>
+            <input class='box-input' value='{{curMsg.code}}'></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>退货数量</view>
+            <input class='box-input' value='{{curMsg.curNum}}' bindinput='changeNum'></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>退货金额</view>
+            <input class='box-input' value='{{curMsg.curMoney}}' bindinput='changeMoney'></input>
+        </view>
+    </view>
+</view>
+<!-- 详细信息 -->
+<view class='root-section2'>
+    <view class='goods-title clearfix'>
+        <view class='goods-style'></view>
+        <view class='goods-name'>详细信息</view>
+    </view>
+    <view class='goods-view'>
+        <view class='goods-box'>
+            <view class='box-name'>报损人</view>
+            <input class='box-input' value=''></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>报损门店</view>
+            <input class='box-input' value=''></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>日期</view>
+            <input class='box-input' rows='5' value='{{curMsg.time}}'></input>
+        </view>
+        <view class='goods-box'>
+            <view class='box-name'>退货原因</view>
+            <textarea class='box-input1' placeholder='请输入退货原因' value='{{curMsg.curReason}}' bindinput='changeReason'></textarea>
+        </view>
+    </view>
+
+</view>
+<!-- 按钮 -->
+<view class='submit' bindtap='Submit'>提交</view>
+
