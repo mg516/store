@@ -93,8 +93,6 @@ Page({
     wx.navigateBack({
       delta: 1
     })
-
-    
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -584,6 +582,7 @@ Page({
     this.getCategory();
   },
   onLoad: function (options) {
+    if (options.backStatus == 'request') wx.setNavigationBarTitle({title: '选择请货商品'})
     inputModal.inputModal(this, this.MtouchInput, this.MsureInput)
   },
   // 点击输入框回调

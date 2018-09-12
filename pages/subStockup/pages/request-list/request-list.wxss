@@ -1,12 +1,20 @@
 @import '../../../../utils/appList.wxss';
-.ul{
-  padding-top: 160rpx;
-}
 .search-box{
   position:fixed;
   width:750rpx;
   background-color:#fff;
   z-index:1;
-  top:100rpx;
+  top:0;
   left: 0;
 }
+.search-box>view{display: inline-block;vertical-align: middle;}
+.list-search{width: 618rpx;margin: 15rpx 0 15rpx 20rpx;}
+.search-input{width: 380rpx;}
+._timePicker{width: 490rpx;margin: 15rpx 0 15rpx 20rpx;}
+._orderStatus{width: 200rpx;margin: 15rpx 0 15rpx 20rpx;}
+.order-picker{color:#808080;font-size:30rpx;margin:0 10rpx;width:180rpx;text-align:center;}
+.choose-list{float: left;padding: 25rpx 0;font-size: 30rpx;width: calc(100% / 2);text-align: center;}
+
+.ul{padding-top: 200rpx;}
+.search-box{position:fixed;width:750rpx;background-color:#fff;z-index:1;top:0;left: 0;}
+.codeIcon{width:46rpx;height:46rpx;margin:0 30rpx;}

@@ -30,8 +30,9 @@ Page({
   },
   // 获取光标跳转
   goToSearch: function () {
+    let backStatus = 'request';
     wx.navigateTo({
-      url: '../request-search/request-search'
+      url: `/pages/common/pages/search-goods-all/search-goods-all?backStatus=${backStatus}`
     })
   },
   inputNumber:function(e){

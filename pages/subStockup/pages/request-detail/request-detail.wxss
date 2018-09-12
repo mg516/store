@@ -1,2 +1,24 @@
 @import '../../../../utils/appList_details.wxss';
+.order-view>view{
+  display: inline-block;
+  vertical-align: middle;
 
+  padding-left:6px;
+  padding-right:6px;
+  box-sizing:border-box;
+}
+.order-list{
+  color: #666;
+}
+.order-list>text{
+  color: #000;
+}
+.order-list:nth-child(2n-1){
+  width: 340rpx;
+  /* overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap; */
+}
+.order-list:nth-child(2n){
+  width: 270rpx;
+}

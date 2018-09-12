@@ -115,13 +115,13 @@ Page({
       typeval: typeval
     });
     wx.navigateTo({
-      url: '/pages/member-list/member-list?typeval=' + typeval + '&list=' + JSON.stringify(thisList),
+      url: '/pages/common/pages/member-list/member-list?typeval=' + typeval + '&list=' + JSON.stringify(thisList),
     });
   },
   // 获取光标跳转
   goToSearch: function () {
     wx.navigateTo({
-      url: '/pages/search-list/search-list?goodsType=baosun',
+      url: '/pages/common/pages/search-list/search-list?goodsType=baosun',
     })
   },
   countMoney:function(){

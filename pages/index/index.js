@@ -12,6 +12,7 @@ Page({
       {
         list:[
           { id: '1', name: '门店请货单', icon: '/images/index/qinghuo.png', url: '/pages/subStockup/pages/request-list/request-list' },
+          { id: '1', name: '门店直供单', icon: '/images/index/qinghuo.png', url: '/pages/subStockup/pages/request-list/request-list' },
           { id: '2', name: '门店收货单', icon: '/images/index/shouhuo.png', url: '/pages/subStockup/pages/receipt-list/receipt-list' },
           { id: '3', name: '门店退货单', icon: '/images/index/tuihuo.png', url: '/pages/subStockup/pages/return-list/return-list' },
           { id: '3', name: '商品库存', icon: '/images/index/stock.png', url: '/pages/subStockup/pages/stock-goods/stock-goods' },

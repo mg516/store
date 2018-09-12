@@ -11,7 +11,7 @@
   margin-top:20rpx;
 }
 .order-list{
-  padding:12rpx 0;
+  /* padding:8rpx 0; */
   font-size:26rpx;
 }
 .img-view{

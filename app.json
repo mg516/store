@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/search-list/search-list",
-    "pages/member-list/member-list"
+    "pages/common/pages/search-list/search-list",
+    "pages/common/pages/member-list/member-list",
+    "pages/common/pages/search-goods-all/search-goods-all"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +19,6 @@
         "pages/order-add/order-add",
         "pages/order-detail/order-detail",
         "pages/order-list/order-list",
-        "pages/order-search/order-search",
         "pages/order-search-list/order-search-list",
         "pages/userOrder/userOrder"
       ]
@@ -75,5 +75,16 @@
         "pages/vipAdd/vipAdd"
       ]
     }
-  ]
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "pages/subOrder",
+        "pages/subAssign",
+        "pages/subStockup",
+        "pages/subSale"
+      ]
+    }
+  }
 }

@@ -5,26 +5,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chooselistData: ['商品库存', '订货信息'],
+    chooselistData: ['订货信息', '收货信息'],
     currentid: 0,
     orderList: [{
       name: '大白菜',
       code: '515431341345',
-      pickNum: '9654.6',
+      pickNum: '94.6',
       pickMoney: '63515.3',
-      id: 1
+      id: 1,
+      unit:'个',
+      total:1500,
+      remark:'备注。。。',
+
     }, {
       name: '胡萝卜',
       code: '515431341345',
       pickNum: '654.6',
       pickMoney: '3515.3',
-      id: 2
+      id: 2,
+      unit:'个',
+      total:500,
+      remark:'备注。。。',
+
     }, {
       name: '农夫山泉',
       code: '515431341345',
       pickNum: '20',
       pickMoney: '30',
-      id: 3
+      id: 3,
+      unit:'个',
+      total:3500,
+      remark:'备注。。。',
+
     }],
   },
   //选项卡列表类型切换

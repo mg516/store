@@ -2,130 +2,120 @@
 
 <!-- 订单详情 -->
 <view class='root-section1'>
-    
-    <view class='order-view'>
-        <view class='img-view'>
-            <image src='/images/greenbg.png'></image>
-        </view>
-        <view class='img-text'>请货信息</view>
-
-        <view class='order-list'>订单号：1</view>   
-        <view class='order-list'>日期：2018.06.28</view>
-        <view class='order-list'>收货人：章子怡</view>
-        <view class='order-list'>订单状态：未确认</view>
-        <view class='order-list'>收货门店：武汉市江岸区石桥一路店</view>
+  <view class='order-view'>
+    <view class='img-view'>
+      <image src='/images/greenbg.png'></image>
     </view>
-
+    <view class='img-text'>请货信息</view>
+    <view class='order-list' style='width:100%;'>订单号：<text>QWJ20180912163728700233</text></view>
+    <view class='order-list' style='width:100%;'>日期：<text>2018-09-12 16:37:28</text></view>
+    <view class='order-list'>收货人：<text>章子怡</text></view>
+    <view class='order-list'>订单状态：<text>未确认</text></view>
+    <view class='order-list'>分拣状态：<text>未分拣</text></view>
+    <view class='order-list'>付款状态：<text>未付款</text></view>
+    <view class='order-list'>订单状态：<text>未完成</text></view>
+    <view class='order-list'>订单来源：<text>移动端</text></view>
+    <view class='order-list'>是否直供：<text>直供订单</text></view>
+    <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>116.60元</text></view>
+    <view class='order-list' style='width:100%;'>收货门店：<text>青蛙家万松园千禧店　17771736154　万松园93号千禧园1栋1层4室其中一间门面</text></view>
+    <view class='order-list' style='width:100%;'>发货时间：<text>1970-01-01 08:00:00</text></view>
+    <view class='order-list' style='width:100%;'>订单确认状态：<text>配送端已确认</text></view>
+  </view>
 </view>
 
 <!-- 商品库存和订货信息 -->
 <view class='root-section2'>
-    <!-- 选项卡 -->
-    <view class='choose-box'>
-        <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
-            <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
-        </view>
+  <!-- 选项卡 -->
+  <view class='choose-box'>
+    <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
+      <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
     </view>
-    <!-- 商品库存 -->
-    <view class='detail-view' wx:if="{{currentid==0}}">
-        <!-- <view class='detail-box'>
-            <view class='goods-single'>名称</view>
-            <view class='goods-single'>商品单位</view>
-            <view class='goods-single'>即时库存</view>
-            <view class='goods-single'>昨日销量</view>
+  </view>
+  <!-- 商品库存 -->
+  <view class='detail-view' wx:if="{{currentid==0}}">
+    <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+      <view class='contTable'>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>名称</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
         </view>
-        <view class='detail-list'>
-            <view class='goods-single'>大白菜</view>
-            <view class='goods-single'>斤</view>
-            <view class='goods-single goods-style'>26</view>
-            <view class='goods-single goods-style'>435</view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>商品条码</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
         </view>
-        <view class='detail-list'>
-            <view class='goods-single'>大白菜</view>
-            <view class='goods-single'>斤</view>
-            <view class='goods-single goods-style'>26</view>
-            <view class='goods-single goods-style'>435</view>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>单价</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickMoney}}</view>
         </view>
-        <view class='detail-list'>
-            <view class='goods-single'>大白菜</view>
-            <view class='goods-single'>斤</view>
-            <view class='goods-single goods-style'>26</view>
-            <view class='goods-single goods-style'>435</view>
-        </view> -->
-        <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
-          <view class='contTable'>
-            <view class='contTl'>
-              <view style='min-width:160rpx;'>名称</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:100rpx;'>商品单位</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:100rpx;'>即时库存</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
-                <!-- <input type='text' value='{{item.pickNum}}'></input> -->
-              </view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:160rpx;'>昨日销量</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
-            </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>单位</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.unit}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>数量</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
+            <!-- <input type='text' value='{{item.pickNum}}'></input> -->
           </view>
-          <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
-        </scroll-view>
-    </view>
-    <!-- 订货信息 -->
-    <view class='frame-view' wx:if="{{currentid==1}}">
-        <!-- <view class='detail-box'>
-            <view class='goods-single'>名称</view>
-            <view class='goods-single'>商品条码</view>
-            <view class='goods-single'>订货数量</view>
-            <view class='goods-single'>订货金额</view>
         </view>
-        <view class='detail-list'>
-            <view class='goods-single'>大白菜</view> 
-            <view class='goods-single'>1234344444444</view> 
-            <view class='goods-single goods-style'>25</view>
-            <view class='goods-single goods-style'>456.98</view>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>小计</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}元</view>
         </view>
-        <view class='detail-list'>
-            <view class='goods-single'>大白菜</view>
-            <view class='goods-single'>1234344444444</view>
-            <view class='goods-single goods-style'>25</view>
-            <view class='goods-single goods-style'>456.98</view>
-        </view> -->
-        <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
-          <view class='contTable'>
-            <view class='contTl'>
-              <view style='min-width:160rpx;'>名称</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:100rpx;'>商品条码</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:100rpx;'>订货数量</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
-                <!-- <input type='text' value='{{item.pickNum}}'></input> -->
-              </view>
-            </view>
-            <view class='contTl'>
-              <view style='min-width:160rpx;'>订货金额</view>
-              <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
-            </view>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>备注</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.remark}}</view>
+        </view>
+      </view>
+      <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+    </scroll-view>
+  </view>
+  <!-- 订货信息 -->
+  <view class='frame-view' wx:if="{{currentid==1}}">
+    <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
+      <view class='contTable'>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>名称</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>商品条码</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>发货数量</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
+            <!-- <input type='text' value='{{item.pickNum}}'></input> -->
           </view>
-          <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
-        </scroll-view>
-    </view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:160rpx;'>发货单价</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>发货小计</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>实收数量</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickNum}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>实收单价</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickMoney}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>实收小计</view>
+          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}</view>
+        </view>
+      </view>
+      <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+    </scroll-view>
+  </view>
 </view>
 
  <!-- 按钮 -->
-    <view class='root-section3'>
-        <view class='goto' bindtap='request' wx:if='{{Listcurrentid==0}}'>确认订单</view>
-        <view class='goto' bindtap='request' wx:if='{{Listcurrentid==1}}'>确认订单</view>
-    </view>
+<view class='root-section3'>
+  <view class='goto' bindtap='request'>确认订单</view>
+</view>
 
 

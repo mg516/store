@@ -6,12 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chooselistData: ['未确认', '配送端已确认', '请货端已确认'],
     currentid: 0,
     showdelect: false,
     Startdate: '2018-07-08',
     Enddate: '2018-09-08',
-    items1: [
+    orderList: [
       { ordername: '1', checked: false },
       { ordername: '2', checked: false },
       { ordername: '3', checked: false },
@@ -19,14 +18,14 @@ Page({
       { ordername: '5', checked: false },
       { ordername: '6', checked: false }
     ],
-  },
-  //选项卡列表类型切换
-  ChooseList: function (e) {
-    var listid = e.currentTarget.dataset.listid
-    console.log(listid);
-    this.setData({
-      currentid: listid
-    })
+    //分类筛选条件-订单状态
+    pickStataus: [//全部订单状态
+      { text: '收货状态', order_status: '' },
+      { text: '未收货', order_status: '0' },
+      { text: '待收货', order_status: '1' },
+      { text: '收货完成', order_status: '2' }
+    ],
+    pickStatausIndex:0,
   },
   //搜索绑定
   searchContent: function (event) {
@@ -41,20 +40,6 @@ Page({
       })
     }
   },
-  //点击搜索
-  // searchText: function (e) {
-  //   var that = this;
-  //   var datas = {
-  //     user_token: user_token,
-  //     access_token: access_token,
-  //     action: 'list',
-  //     list_rows: 7,
-  //     search_data: that.data.searchContent,
-  //     provider_id: app.providerid
-  //   }
-  //   //调用接口请求数据
-  //   that.searchResult(datas)
-  // },
   //删除搜索
   Delect: function () {
     var searchcontent = this.data.searchContent;
@@ -62,14 +47,32 @@ Page({
       showdelect: false,
       searchContent: ''
     })
-    // var datas = {
-    //   access_token: access_token,
-    //   user_token: user_token,
-    //   action: 'list',
-    //   list_rows: 7,
-    //   page: 1
-    // }
-    // this.searchResult(datas)
+  },
+  searchpick:function(e){
+    this.setData({
+      pickStatausIndex: e.detail.value,
+      openSearch:false
+    })
+  },
+  // 取消按收货状态搜索
+  cancelSearchOrder: function () {
+    this.setData({
+      openSearch: false,
+      openClassSearch: false
+    })
+  },
+  // 展开按收货状态搜索
+  openSearchpick: function (e) {
+    let picType = e.currentTarget.dataset.pictype;
+    if (picType == 'status') {
+      this.setData({
+        openSearch: true
+      })
+    } else if (picType == 'type') {
+      this.setData({
+        openClassSearch: true
+      })
+    }
   },
   // 初始时间的点击
   startTimeChange: function (e) {
@@ -77,23 +80,6 @@ Page({
     that.setData({
       Startdate: e.detail.value
     })
-    // if (that.data.Startdate != '初始时间' && that.data.Enddate != '结束时间') {
-    //   var datas = {
-    //     user_token: user_token,
-    //     access_token: access_token,
-    //     action: 'list',
-    //     page: 1,
-    //     list_rows: 5,
-    //     start_time: e.detail.value,
-    //     end_time: that.data.Enddate,
-    //     search_data: that.data.searchContent,
-    //     category_id: that.data.typeid,
-    //     land_id: app.landid
-    //   }
-    //   //调用接口请求数据
-    //   that.FarmRequest(datas);
-    //}
-
   },
   // 结束时间的点击
   endTimeChange: function (e) {
@@ -101,23 +87,6 @@ Page({
     that.setData({
       Enddate: e.detail.value
     })
-    // if (that.data.Startdate != '初始时间' && that.data.Enddate != '结束时间') {
-    //   var datas = {
-    //     user_token: user_token,
-    //     access_token: access_token,
-    //     action: 'list',
-    //     page: 1,
-    //     list_rows: 5,
-    //     start_time: that.data.Startdate,
-    //     end_time: e.detail.value,
-    //     search_data: that.data.searchContent,
-    //     category_id: that.data.typeid,
-    //     land_id: app.landid
-    //   }
-    //   //调用接口请求数据
-    //   that.FarmRequest(datas);
-
-    // }
   },
   //跳转
   requestDetail: function (e) {
@@ -147,8 +116,6 @@ Page({
     })
     setTimeout(() => {
       wx.hideLoading()
-
-
     }, 1000)
   },
   onLoad: function () { 
@@ -160,6 +127,5 @@ Page({
       Enddate: common.today()
     })
     var currentid = this.data.currentid;
-    
   }
 })

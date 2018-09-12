@@ -1,7 +1,7 @@
 // pages/search-list/search-list.js
 const app = getApp();
-const config = require("../../utils/config.js").config;
-const common = require("../../utils/common.js").common;
+const config = require("../../../../utils/config.js").config;
+const common = require("../../../../utils/common.js").common;
 Page({
 
   /**

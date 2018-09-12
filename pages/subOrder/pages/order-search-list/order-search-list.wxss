@@ -1,5 +1,5 @@
 @import '../../../../utils/appList_details.wxss';
-@import '../order-search/order-search.wxss';
+@import '/pages/common/pages/search-goods-all/search-goods-all.wxss';
 @import '../../../../utils/inputModal/inputModal.wxss';
 .mainBox {
   top:120rpx;

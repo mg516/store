@@ -46,7 +46,7 @@ Page({
   goToSearch: function () {
     console.log('000')
     wx.navigateTo({
-      url: '/pages/subOrder/pages/order-search/order-search'
+      url: '/pages/common/pages/search-goods-all/search-goods-all'
     })
   },
   inputNumber: function (e) {

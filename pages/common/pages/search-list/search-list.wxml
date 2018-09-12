@@ -8,8 +8,8 @@
     <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
   </view>
   <view class='codeIcon imgBox' catchtap='scanCode'>
-      <image src='/images/code.png'></image>
-    </view>
+    <image src='/images/code.png'></image>
+  </view>
 </view>
 
 <!-- 内容 -->
