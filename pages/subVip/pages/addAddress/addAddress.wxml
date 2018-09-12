@@ -4,15 +4,25 @@
       <view class='card_ul'>
         <view class='card_li'>
           <view class='card_label'>收货人姓名</view>
-          <view class='card_value'><input name='sh_name' placeholder='收货人' placeholder-class='pTexta'></input></view>
+          <view class='card_value'><input name='sh_name' placeholder='收货人' placeholder-class='pltext'></input></view>
         </view>
         <view class='card_li'>
           <view class='card_label'>手机号</view>
-          <view class='card_value'><input name='sh_phone' type='number' placeholder='手机号' placeholder-class='pTexta'></input></view>
+          <view class='card_value'><input name='sh_phone' type='number' placeholder='手机号' placeholder-class='pltext'></input></view>
+        </view>
+        <view class='card_li'>
+          <view class='card_label'>会员性别</view>
+          <view class="card_value {{sexIndex!='-1'?'':'pltext'}}">
+            <picker name="sh_sex" mode="selector" value="{{sexIndex}}" range='{{sexList}}' range-key='name' bindchange="bindDateChange">
+              <view class="picker">
+                {{sexIndex!='-1'?sexList[sexIndex].name:'性别'}}
+              </view>
+            </picker>
+          </view>
         </view>
         <view class='card_li'>
           <view class='card_label'>所在地区</view>
-          <view class='card_value'>
+          <view class="card_value {{(region[0]!=customItem || region[1]==customItem || region[2]==customItem)?'pltext':''}}">
             <picker mode="region" name='sh_addr' bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
               <view class="picker">
                 {{region[0]!=customItem?region[0]:'选择地区'}}{{region[1]!=customItem?region[1]:''}}{{region[2]!=customItem?region[2]:''}}
@@ -23,7 +33,7 @@
         <view class='card_li'>
           <view class='card_label cl_top'>详细地址</view>
           <view class='card_value'>
-            <textarea name='sh_address' placeholder="详细地址" placeholder-class='pTexta'></textarea>
+            <textarea name='sh_address' placeholder="详细地址" placeholder-class='pltext'></textarea>
           </view>
         </view>
       </view>

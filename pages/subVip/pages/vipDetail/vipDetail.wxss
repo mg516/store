@@ -32,8 +32,8 @@
 .card_ul{width: 690rpx;margin: 40rpx auto 0;box-shadow:0px 4rpx 20rpx #aaaaaa;border-radius: 10rpx;padding: 50rpx 0;}
 .card_li{text-align: center;line-height: 60rpx;}
 .card_li>view{display: inline-block;vertical-align: top;font-size: 28rpx;text-align: left;}
-.card_label{width: 200rpx;color: #666666;}
-.card_value{width: 400rpx;color: #222222;}
+.card_label{width: 200rpx;color: #757575;}
+.card_value{width: 400rpx;color: #222222;font-weight: bold;}
 
 .add_addr{width: 690rpx;margin: 10rpx auto 0;}
 .add_addr>view{display: inline-block;vertical-align: top;}

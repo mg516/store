@@ -22,11 +22,7 @@
 .pt110{
   padding-top:110rpx;
 }
-.ellipsis{
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-}
+.ellipsis{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 .vbtn{position: relative;}
 .vbtn>button{position: absolute;top: 0;left: 0;bottom: 0;right: 0;z-index: 9;opacity: 0;}
 

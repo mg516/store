@@ -5,12 +5,17 @@ Page({
   data: {
     customItem: '请选择',
     region: ['选择地区', '', ''],
+    sexList: [{ name: '男', id: 1 }, { name: '女', id: 2 }],
+    sexIndex: -1,
   },
   bindRegionChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
     })
+  },
+  bindDateChange: function (e) {
+    this.setData({ sexIndex: e.detail.value })
   },
   // 提交
   formSubmit:function(e){
@@ -21,6 +26,7 @@ Page({
     let phoneStatus = common.pattFunc('ifPhone', valueArr.sh_phone)
     if (!valueArr.sh_phone) { common.tip('请输入手机号', 'none'); return ''; }
     else if (!phoneStatus) { common.tip('请输入正确的手机号', 'none');return ''; }
+    if (valueArr.sh_sex < 0) { common.tip('请选择会员性别', 'none'); return ''; }
     if (!valueArr.sh_addr[2] || valueArr.sh_addr[2].indexOf('请选择') > -1){ common.tip('请选择所在地区', 'none'); return ''; }
     if (!valueArr.sh_address.replace(/\s/g, '')){ common.tip('请输入详细地址', 'none'); return ''; }
     console.log(e.detail.value)

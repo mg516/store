@@ -39,16 +39,18 @@
 }
 
 .list-title{width: 700rpx;border-bottom:2rpx solid #F7F7F7;margin: 0 auto;}
-.list-title>view{display: inline-block;width: 350rpx;text-align: center;font-size: 30rpx;color: #2F2F2F;line-height: 90rpx;}
+.list-title>view{display: inline-block;width: 350rpx;text-align: center;font-size: 28rpx;color: #2F2F2F;line-height: 90rpx;font-weight:bold;}
 .list-title>.callphone{width: 160rpx;}
 .list-title>.addOrder{width: 160rpx;}
 
 .group_cont{margin-top: 200rpx;}
 .userLi{ width: 700rpx;margin: 0 auto;}
 .userLi>view{ display: inline-block;width: 350rpx;text-align: center;font-size: 30rpx;vertical-align: middle;line-height: 80rpx;}
-.userIndex{ display: inline-block;font-size: 26rpx;color: #ccc;width: 76rpx;}
-.userName{ display: inline-block;text-align: center;padding-left: 10rpx;}
-.userLi>.callphone{ width: 40rpx;height: 40rpx;padding: 0 60rpx; }
-.userLi>.addOrder{ width: 40rpx;height: 40rpx;padding: 0 60rpx; }
+.userIndex{ display:inline-block;font-size:20rpx;color:#ccc;width:40rpx; }
+.userName{display:inline-block;text-align:center;padding-left:10rpx;font-size:28rpx;color:#545454;width:200rpx;}
+.userLi .callphone{ width: 160rpx;text-align: center;}
+.callphone>._callphone{ width: 30rpx;height: 30rpx;margin:0 auto;}
+.userLi>.addOrder{ width: 160rpx;text-align: center;}
+.addOrder>._addOrder{ width: 30rpx;height: 30rpx;margin:0 auto;}
 
 .addUser{width: 80rpx;height: 80rpx;position: fixed;bottom: 80rpx;left: 40rpx;}

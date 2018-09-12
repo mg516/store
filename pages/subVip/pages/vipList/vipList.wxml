@@ -18,11 +18,15 @@
           <text class='userIndex'>{{index+1}}</text>
           <text class='userName'>{{userItem.name}}</text>
         </view>
-        <view class='callphone imgBox' catchtap='callphone' data-phonenum="{{userItem.phone}}">
-          <image src='../../images/callphone.png'></image>
+        <view class='callphone'>
+          <view class='_callphone imgBox' catchtap='callphone' data-phonenum="{{userItem.phone}}">
+            <image src='../../images/callphone.png'></image>
+          </view>
         </view>
-        <view class='addOrder imgBox' catchtap='toAddOrder' data-name="{{userItem.name}}" data-id="{{userItem.id}}">
-          <image src='../../images/addOrder.png'></image>
+        <view class='addOrder'>
+          <view class='_addOrder imgBox' catchtap='toAddOrder' data-name="{{userItem.name}}" data-id="{{userItem.id}}">
+            <image src='../../images/addOrder.png'></image>
+          </view>
         </view>
       </view>
     </scroll-view>
