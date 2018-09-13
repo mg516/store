@@ -1,13 +1,13 @@
 <view class='container'>
   <view class='serach-box'>
-      <view class='list-search'>
-          <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
-          <input class='search-input' placeholder='输入您想要搜索的内容' disabled='true' catchtap='toSearchList' bindinput='getSearchContent' value='{{searchContent}}'  confirm-type='search' bindconfirm="searchText"></input>
-          <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
-      </view>
+    <view class='list-search'>
+      <image class='search-icon' src='/images/searchIcon.png' bindtap='searchText'></image>
+      <input class='search-input' placeholder='输入您想要搜索的内容' catchtap='---toSearchList' bindinput='getSearchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="searchText"></input>
+      <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+    </view>
   </view>
   <view class='mainBox'>
-    <view class='mainLeft'>
+    <view class="mainLeft {{ifSearchCommit?'searching':''}}">
       <block wx:for="{{categoryList}}" wx:for-item="pItem" wx:key="*this">
         <view data-id="{{pItem.id}}" data-index="{{index}}" catchtap='chooseP' class="pName {{curPid == pItem.id?'activeI':''}}">{{pItem.name}}</view>
         <view class="cNameBox" wx:if="{{curPid == pItem.id}}">
@@ -15,14 +15,14 @@
         </view>
       </block>
     </view>
-    <view class='mainRight'>
+    <view class="mainRight {{ifSearchCommit?'searching':''}}">
       <scroll-view wx:if="{{goodsList.length>0}}" class="scroll-view_H" scroll-x scroll-y style="width: 100%">
         <view class='contTable'>
           <view class='contTl'>
             <view style='min-width:150rpx;'>名称</view>
             <view wx:for="{{goodsList}}" wx:for-item="gItem" wx:key='{{gItem.id}}'>
               <view class='table_row2 table_bold'>{{gItem.name}}</view>
-              <view class='table_row2 table_lighter'>库存量：{{gItem.sold_num}} 单价：{{gItem.saleprice}}</view>
+              <view class='table_row2 table_lighter'>商品条码：{{gItem.bar_code}} 单价：{{gItem.price}}元</view>
             </view>
           </view>
           <!-- <view class='contTl'>
@@ -37,11 +37,11 @@
           <view class='contTl'>
             <view style='min-width:100rpx;'>采购量</view>
             <view wx:for="{{goodsList}}" wx:for-item="gItem" wx:key='{{gItem.id}}' style='color:#24ae5f;'>
-              <view class='numberBox' wx:if="{{gItem.caigou>0}}">
+              <view class='numberBox' wx:if="{{gItem.needNum>0}}">
                 <view class='reduce imgBox' data-typebar="-" catchtap='changeNum' data-index="{{index}}">
                   <image src='/images/-.png'></image>
                 </view>
-                <input class='li_num' bindfocus='showInputModal' value='{{gItem.caigou?gItem.caigou:0}}' data-index="{{index}}"></input>
+                <input class='li_num' bindfocus='showInputModal' value='{{gItem.needNum?gItem.needNum:0}}' data-index="{{index}}"></input>
                 <view class='add imgBox' data-typebar="+" catchtap='changeNum' data-index="{{index}}">
                   <image src='/images/+.png'></image>
                 </view>
@@ -57,7 +57,9 @@
       </view>
     </view>
   </view>
-  <view class='nextStep' catchtap='nextStep'>下一步</view>
+  <view class="nextStep {{ifSearchCommit?'searching':''}}">
+    <view class='handleBar' catchtap='nextStep'>下一步</view>
+  </view>
 </view>
 <include src="../../../../utils/inputModal/inputModal.wxml"/>
 

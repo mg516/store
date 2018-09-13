@@ -1,16 +1,16 @@
 <!--pages/request-add/request-add.wxml-->
 <!-- 商品信息 -->
 <view class='root-section1'>
-    <view class='goods-view'>
-        <view class='goods-box'>
-            <view class='box-name'>请货人</view>
-            <view class='box-view'>张三</view>
-        </view>
-        <view class='goods-box'>
-            <view class='box-name'>请货门店</view>
-            <view class='box-view'>江岸区苗栗路店</view>
-        </view>
+  <view class='goods-view'>
+    <view class='goods-box'>
+      <view class='box-name'>请货人</view>
+      <view class='box-view'>张三</view>
     </view>
+    <view class='goods-box'>
+      <view class='box-name'>请货门店</view>
+      <view class='box-view'>江岸区苗栗路店</view>
+    </view>
+  </view>
 </view>
 
 

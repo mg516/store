@@ -4,7 +4,7 @@
     <!-- 搜索 -->
     <view class="list-search">
       <image class='search-icon' src='/images/searchIcon.png' bindtap='getOrderList'></image>
-      <input class='search-input' placeholder-style='font-size:26rpx;' placeholder='收货人/订单号/手机号/收货地址' bindinput='searchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="getSearchOrderList"></input>
+      <input class='search-input' placeholder-style='font-size:26rpx;' placeholder='订单号' bindinput='searchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="searchTextCommit"></input>
       <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
     </view>
     <!-- 选择类型 -->
@@ -26,21 +26,23 @@
       </picker>
     </view>
   </view>
-  <view class="ul" wx:if='{{currentid==0}}'>
-      <view class='wait-box' wx:for="{{orderList}}" wx:key="items" wx:for-item="i" data-currentid="{{index}}" wx:if='{{orderList}}'>
-          <view class='wait-list1' bindtap='requestDetail'>
-              <view class='wait-rows'>订单号：{{i.ordername}}</view>
-              <view class='wait-rows'>日期：2018.09.08</view>
-              <view class='wait-rows'>收货人：张三</view>
-              <view class='wait-rows'>收货地址：江岸区菱角湖万达一店</view>
-              <view class='wait-rows'>订单金额：￥2345.88</view>
-          </view>
+  <view class="ul" wx:if='{{ifLoad&&orderList&&orderList.length>0}}'>
+    <view class='wait-box' wx:for="{{orderList}}" wx:for-item="itemOrder" wx:key="{{index}}">
+      <view class='wait-list1' bindtap='requestDetail'>
+        <view class='wait-rows'>订单号：{{itemOrder.sn}}</view>
+        <view class='wait-rows'>创建时间：{{itemOrder.create_time}}</view>
+        <view class='wait-rows'>请货门店：{{itemOrder.store_name}}</view>
+        <view class='wait-rows'>金额：￥{{itemOrder.total}}</view>
+        <view class='wait-rows'>确认状态：{{itemOrder.request_status_name}}</view>
+        <view class='wait-rows'>收货状态：{{itemOrder.sh_status_name}}</view>
       </view>
-  </view>  
-  <view class='list-none' wx:if='{{!orderList}}'>
-      <image class='img-none' src='/images/bg.png'></image>
-      <view class='text-none'>暂时没有订单噢</view>
+    </view>
   </view>
+  <view class='list-none' wx:if='{{ifLoad&&(!orderList||orderList.length<=0)}}'>
+    <image class='img-none' src='/images/bg.png'></image>
+    <view class='text-none'>暂时没有订单噢</view>
+  </view>
+  <view wx:if="{{ifLoad&&nomore}}" class='nomore'>没有更多数据了~</view>
   <view class='breakage-add' bindtap='requestAdd'><image src='/images/icon_jia.png'></image></view>
 </view>    
 

@@ -29,11 +29,16 @@ var config = {
 
   // 库存
   stock: `${host}storagegoods/index`,
-
   //订单
   order: `${host}apiorder/index`,
   //销售报表
   sale: `${host}apiorderreport/index`,
+  //请货
+  request: `${host}psorder/index`,
+  // 商品分类
+  category: `${host}goodscategory/index`,
+  // 商品信息
+  goods: `${host}goods/index`,
   
   //门店信息
   store: `${host}apistore/index`,
