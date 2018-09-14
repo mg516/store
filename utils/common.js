@@ -142,6 +142,12 @@ const common = {
       default: break;
     }
     if (patt) return patt.test(str)
+  },
+  //保留N位小数 //传入数字和保留小数点位数
+  pattNumFunc: function (_num, _digits){
+    var re = new RegExp('([0-9]+\.[0-9]{' + _digits + '})[0-9]*', "g"); // re为/^\d+bl$/gim
+    let num = _num.replace(re, "$1");//保留两位小数
+    return num;
   }
 }
 

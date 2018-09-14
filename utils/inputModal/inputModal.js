@@ -35,6 +35,7 @@ let inputModal = null;
       console.log(this.data.curInputValue);
       
       callback(curInputValue);
+      wx.hideLoading();
     }
     // 减
     that.inputReduce = function () {

@@ -24,9 +24,6 @@ Page({
     idarr:[],
     categoryList:[],
   },
-  nextStep:function(){
-    
-  },
   toSearchList:function(){
     wx.navigateTo({
       url: '/pages/subOrder/pages/order-search-list/order-search-list',
@@ -63,20 +60,6 @@ Page({
     })
   },
   goodsResult:function(e){
-    // var that = this;
-    // var searchid = e.currentTarget.dataset.searchid;
-    // var searchindex = e.currentTarget.dataset.searchindex;
-    // var searchdatas = that.data.searchdatas;
-
-    // var searchname = searchdatas[searchindex].name;
-    // var searchprice = searchdatas[searchindex].price;
-    // var searchnumber = searchdatas[searchindex].number;
-    // that.setData({
-    //   searchid: searchid,
-    //   searchname: searchname,
-    //   searchprice:searchprice,
-    //   searchnumber: searchnumber
-    // })
     let chooseType = this.data.chooseType;
     if (chooseType == 'request') {
       wx.setStorageSync('requestGoods', this.data.storageData)
@@ -106,9 +89,6 @@ Page({
   },
   // 修改商品数量
   changeNum:function(e){
-    // wx.showLoading({
-    //   title: '加载中...',
-    // })
     var curIndex = e.currentTarget.dataset.index;
     var typebar = e.currentTarget.dataset.typebar;
     var goodsList = this.data.goodsList;
@@ -128,15 +108,25 @@ Page({
     for (let i = 0; i < storageData.length;i++){
       if (storageData[i].id == goodsData.id){
         storageData[i] = goodsData;
+        if (goodsData.needNum == 0) storageData.splice(i,1)
         break;
       }
-      if (i >= storageData.length){
+      if (i >= storageData.length-1){
         storageData.push(goodsData)
       }
     }
     if (storageData.length <= 0) storageData.push(goodsData)
     this.setData({
       storageData: storageData
+    })
+  },
+  // 下一步
+  nextStep: function () {
+    let chooseType = this.data.chooseType;
+    let storageData = this.data.storageData;
+    wx.setStorageSync(chooseType + 'Goods', storageData)
+    wx.navigateBack({
+      delta: 1
     })
   },
   getGoodsList:function(){
@@ -148,18 +138,25 @@ Page({
       action: 'list'
     }
     wx.request({
-      url: config.goods,
-      method: 'POST',
-      data: param,
+      url: config.goods,method: 'POST',data: param,
       success: (res) => {
         console.log(res)
         wx.hideLoading();
         if (res.data.data && res.data.data.length > 0) {
-          var goodsList = this.data.goodsList;
+          let _data = res.data.data;
+          let goodsList = this.data.goodsList;
+          let storageData = this.data.storageData;
+          for (let i = 0; i < _data.length; i++){
+            for (let j = 0; j < storageData.length;j++){
+              if (_data[i].id == storageData[j].id){
+                _data[i] = storageData[j];
+              }
+            }
+          }
           if (param.page > 1) {
-            goodsList = goodsList.concat(res.data.data)
+            goodsList = goodsList.concat(_data)
           } else {
-            goodsList = res.data.data;
+            goodsList = _data;
           }
           this.setData({
             goodsList: goodsList
@@ -187,6 +184,7 @@ Page({
       }
     })
   },
+  // 选中子分类
   chooseC: function (e) {
     var id = e.currentTarget.dataset.id;
     this.setData({
@@ -194,6 +192,7 @@ Page({
     })
     this.getGoodsList();
   },
+  // 选择父分类
   chooseP: function (e) {
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
@@ -264,13 +263,14 @@ Page({
   onShow:function(){
   },
   onLoad: function (options) {
-    if (options.backStatus == 'request') {
+    let chooseType = options.backStatus;
+    if (chooseType == 'request') {
       wx.setNavigationBarTitle({title: '选择请货商品'});
-      this.setData({ 
-        chooseType:'request',
-        storageData: wx.getStorageSync('requestGoods')||[]
-      })
     }
+    this.setData({
+      chooseType: chooseType,
+      storageData: wx.getStorageSync(chooseType + 'Goods') || [],//requestGoods
+    })
     inputModal.inputModal(this, this.MtouchInput, this.MsureInput)
     this.getCategory();
   },
@@ -283,31 +283,10 @@ Page({
   },
   // 输入框确认回调
   MsureInput: function (MinputValue) {
-    var curIndex = this.data.curIndex;
-    var goodsList = this.data.goodsList;
-    var curGoods = goodsList[curIndex];
-    
-    // 根据条码获取商品信息
-    let path = config.shopcartadd;
-    let param = {
-      num: MinputValue,
-      sign: app.globalData.sign,
-      openid: app.globalData.openid,
-      goods_id: curGoods.goods_id,
-      md_goods_id: curGoods.md_goods_id,
-      unit_id: curGoods.unit_id,
-      unit: curGoods.unit,
-      goods_price: curGoods.goods_price,
-      origin: 0
-    }
-    // 加入购物车
-    common.shopcartadd(path, param, app, this, function(){
-      wx.hideLoading();
-      goodsList[curIndex].caigou = MinputValue;
-      this.setData({
-        goodsList: goodsList
-      })
-    });
+    let curIndex = this.data.curIndex;
+    let goodsList = this.data.goodsList;
+    goodsList[curIndex].needNum = MinputValue;
+    this.saveStorage(goodsList[curIndex]);
+    this.setData({ goodsList: goodsList })
   }
-
 })

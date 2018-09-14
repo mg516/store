@@ -28,7 +28,7 @@
   </view>
   <view class="ul" wx:if='{{ifLoad&&orderList&&orderList.length>0}}'>
     <view class='wait-box' wx:for="{{orderList}}" wx:for-item="itemOrder" wx:key="{{index}}">
-      <view class='wait-list1' bindtap='requestDetail'>
+      <view class='wait-list1' bindtap='requestDetail' data-id="{{itemOrder.id}}">
         <view class='wait-rows'>订单号：{{itemOrder.sn}}</view>
         <view class='wait-rows'>创建时间：{{itemOrder.create_time}}</view>
         <view class='wait-rows'>请货门店：{{itemOrder.store_name}}</view>

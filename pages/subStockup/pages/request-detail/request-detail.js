@@ -1,9 +1,8 @@
 // pages/request-detail/request-detail.js
+const app = getApp();
+const common = require('../../../../utils/common.js').common;
+const config = require('../../../../utils/config.js').config;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     chooselistData: ['订货信息', '收货信息'],
     currentid: 0,
@@ -66,18 +65,37 @@ Page({
       delta: 1
     })
   },
-
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log(options.pageid)
-    if (options.pageid) {
-      this.setData({
-        Listcurrentid: options.pageid
-      })
-    } 
+  getOrderData:function(){
+    let orderId = this.data.orderId;
+    common.loading();
+    wx.request({
+      url: config.request,
+      method: "POST",
+      data: {
+        access_token: app.globalData.access_token,
+        user_token: app.globalData.user_token,
+        action: 'info',
+        id:this.data.orderId
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          orderDetail: res.data.data
+        })
+      },
+      complete: (res) => {
+        this.setData({
+          ifLoading: false
+        })
+        wx.hideLoading();
+        wx.stopPullDownRefresh();
+      }
+    })
   },
-
+  onLoad: function (options) {
+    this.setData({
+      orderId: options.id
+    })
+    this.getOrderData();
+  }
 })

@@ -14,11 +14,21 @@
   color: #000;
 }
 .order-list:nth-child(2n-1){
-  width: 340rpx;
+  width: 310rpx;
   /* overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap; */
 }
 .order-list:nth-child(2n){
-  width: 270rpx;
+  width: 300rpx;
+}
+.handlePick{
+  line-height: 60rpx;
+  background-color: #24ae5f;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  width: 160rpx;
+  text-align: center;
+  margin: 30rpx auto 0;
 }

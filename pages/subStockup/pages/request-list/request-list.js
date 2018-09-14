@@ -140,9 +140,9 @@ Page({
   },
   //跳转
   requestDetail: function (e) {
-    var currentid = this.data.currentid;
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../request-detail/request-detail?pageid=" + currentid
+      url: `../request-detail/request-detail?id=${id}`
     })
   },
   requestAdd: function (e) {
@@ -230,7 +230,7 @@ Page({
   onShow:function(){
     if (!this.data.Startdate && !this.data.Enddate){
       this.setData({
-        Startdate: common.GetDay(-60),
+        Startdate: common.GetDay(-30),
         Enddate: common.today()
       })
     }

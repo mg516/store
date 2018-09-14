@@ -1,5 +1,7 @@
 // pages/request-add/request-add.js
-const common = require('../../../../utils/common.js').common;
+const app = getApp();
+const config = require("../../../../utils/config.js").config;
+const common = require("../../../../utils/common.js").common;
 var goodsData = []
 Page({
 
@@ -35,21 +37,33 @@ Page({
       url: `/pages/common/pages/search-goods-all/search-goods-all?backStatus=${backStatus}`
     })
   },
+  // 编辑备注
+  keyRemark:function(e){
+    console.log(e.detail.value);
+    this.setData({
+      remark: e.detail.value
+    })
+    wx.setStorageSync('requestRemark', e.detail.value)
+  },
+  // 修改请货商品数量
   inputNumber:function(e){
-    var num = e.detail.value;
+    let num = common.pattNumFunc(e.detail.value,2);//保留两位小数
     var index = e.currentTarget.dataset.index;
     var requestGoods = this.data.requestGoods;
-    if(num){
-      requestGoods[index].num = num;
+    if (!isNaN(num) && num){
+      requestGoods[index].needNum = num;
       requestGoods[index].totalMoney = (num * requestGoods[index].price).toFixed(2);
-    }else{
-      requestGoods[index].num = null;
+    } else if (!num){
+      requestGoods[index].needNum = null;
       requestGoods[index].totalMoney = null;
+    } else {
+      return '';
     }
+    wx.setStorageSync('requestGoods', requestGoods);
     this.setData({
       requestGoods: requestGoods
     })
-    wx.setStorageSync('requestGoods', requestGoods);
+    this.countMoney();
   },
   
   // 删除商品
@@ -65,46 +79,46 @@ Page({
       success: (res) => {
         if (res.confirm) {
           requestGoods.splice(index, 1);
+          wx.setStorageSync('requestGoods', requestGoods);
           this.setData({
             requestGoods: requestGoods
           })
-          wx.setStorageSync('requestGoods', requestGoods);
+          this.countMoney();
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
   },
-  onShow: function () {
-    var requestGoodsBack = wx.getStorageSync('requestGoodsBack') || '';
-    var requestGoods = wx.getStorageSync('requestGoods') || '';
-    if (requestGoodsBack) {
-      if (requestGoods) {
-        for (let i = 0; i < requestGoods.length; i++) {
-          if (requestGoods[i].id == requestGoodsBack.id) {
-            common.tip('选中的商品已存在', 'none');
-            this.setData({
-              scrollToThere: 'scroll' + i
-            })
-            break;
-          }
-          if (i >= requestGoods.length - 1) {
-            requestGoods.push(requestGoodsBack);
-            break;
-          }
-        }
-      } else {
-        requestGoods = [requestGoodsBack];
-      }
+  // 计算金额
+  countMoney:function(){
+    let requestGoods = this.data.requestGoods;
+    let totalMoney = 0;
+    for (let i = 0; i < requestGoods.length; i++){
+      let price = parseFloat(requestGoods[i].price);
+      let needNum = parseFloat(requestGoods[i].needNum);
+      requestGoods[i].totalMoney = parseFloat((price * needNum).toFixed(2));
+      totalMoney += (requestGoods[i].totalMoney);
     }
-    wx.removeStorageSync('requestGoodsBack');
-    wx.setStorageSync('requestGoods', requestGoods);
+    totalMoney = common.pattNumFunc((totalMoney).toString(), 2);
     this.setData({
-      requestGoods: requestGoods
+      requestGoods: requestGoods,
+      totalMoney: totalMoney,//保留两位小数
     })
   },
-  onLoad: function (options) {
+  onShow: function () {
+    var storageData = wx.getStorageSync('requestGoods') || '';
+    var storageRemark = wx.getStorageSync('requestRemark') || '';
     
+    this.setData({
+      requestGoods: storageData,
+      remark: storageRemark
+    })
+    this.countMoney()
   },
-
+  onLoad: function (options) {
+    this.setData({
+      member: app.globalData.member
+    })
+  }
 })

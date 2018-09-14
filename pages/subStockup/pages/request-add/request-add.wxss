@@ -25,10 +25,22 @@ page{
 }
 .box-view{
   display: table-cell;
-  height:60rpx;
+  /* height:60rpx; */
   line-height: 60rpx;
   margin-left:20rpx;
   width:70%;
+}
+.textareaBox{
+  width:400rpx;
+  color:#222222;
+  padding:4rpx 10rpx;
+  border:2rpx solid #dedede;
+  border-radius:6rpx;
+}
+.box-view>textarea{
+  width:400rpx;
+  height:160rpx;
+  line-height:50rpx;
 }
 
 

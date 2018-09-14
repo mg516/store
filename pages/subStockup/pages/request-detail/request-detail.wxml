@@ -7,19 +7,24 @@
       <image src='/images/greenbg.png'></image>
     </view>
     <view class='img-text'>请货信息</view>
-    <view class='order-list' style='width:100%;'>订单号：<text>QWJ20180912163728700233</text></view>
-    <view class='order-list' style='width:100%;'>日期：<text>2018-09-12 16:37:28</text></view>
-    <view class='order-list'>收货人：<text>章子怡</text></view>
-    <view class='order-list'>订单状态：<text>未确认</text></view>
-    <view class='order-list'>分拣状态：<text>未分拣</text></view>
-    <view class='order-list'>付款状态：<text>未付款</text></view>
-    <view class='order-list'>订单状态：<text>未完成</text></view>
-    <view class='order-list'>订单来源：<text>移动端</text></view>
-    <view class='order-list'>是否直供：<text>直供订单</text></view>
-    <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>116.60元</text></view>
-    <view class='order-list' style='width:100%;'>收货门店：<text>青蛙家万松园千禧店　17771736154　万松园93号千禧园1栋1层4室其中一间门面</text></view>
+    <view class='order-list' style='width:100%;'>订单号：<text>{{orderDetail.sn}}</text></view>
+    <view class='order-list' style='width:100%;'>日期：<text>{{orderDetail.create_time}}</text></view>
+    <view class='order-list'>订单状态：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list'>分拣状态：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list'>付款状态：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list'>订单来源：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list'>是否直供：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>{{orderDetail.total}}元</text></view>
+    <view class='order-list'>客户：<text>{{orderDetail.name}}</text></view>
+    <view class='order-list' style='width:100%;'>收货门店：<text>{{orderDetail.store_name}}　{{orderDetail.phone}}</text></view>
+    <view class='order-list' style='width:100%;'>门店地址：<text>{{orderDetail.address}}</text></view>
+    <view class='order-list' style='width:100%;'>备注：<text>{{orderDetail.content||'无'}}</text></view>
     <view class='order-list' style='width:100%;'>发货时间：<text>1970-01-01 08:00:00</text></view>
     <view class='order-list' style='width:100%;'>订单确认状态：<text>配送端已确认</text></view>
+    <view class='order-list' style='width:100%;'>
+      <view class='handlePick' catchtap='orderHandle'>确认收货</view>
+    </view>
+    
   </view>
 </view>
 
@@ -37,36 +42,36 @@
       <view class='contTable'>
         <view class='contTl'>
           <view style='min-width:160rpx;'>名称</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.name}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>商品条码</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>单价</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickMoney}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.bar_code}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>单位</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.unit}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.unit}}</view>
         </view>
         <view class='contTl'>
-          <view style='min-width:100rpx;'>数量</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
+          <view style='min-width:160rpx;'>下单单价</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.price}}</view>
+        </view>
+        <view class='contTl'>
+          <view style='min-width:100rpx;'>下单数量</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.num}}
             <!-- <input type='text' value='{{item.pickNum}}'></input> -->
           </view>
         </view>
         <view class='contTl'>
-          <view style='min-width:160rpx;'>小计</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}元</view>
+          <view style='min-width:160rpx;'>下单小计</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.total_price}}元</view>
         </view>
         <view class='contTl'>
           <view style='min-width:160rpx;'>备注</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.remark}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.remark||'无'}}</view>
         </view>
       </view>
-      <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+      <view class='noHandle' wx:if='{{!orderDetail.goods||orderDetail.goods.length<=0}}'>无收货单</view>
     </scroll-view>
   </view>
   <!-- 订货信息 -->
@@ -75,47 +80,41 @@
       <view class='contTable'>
         <view class='contTl'>
           <view style='min-width:160rpx;'>名称</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.name}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.name}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>商品条码</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.code}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.bar_code}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>发货数量</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickNum}}
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.ps_num}}
             <!-- <input type='text' value='{{item.pickNum}}'></input> -->
           </view>
         </view>
         <view class='contTl'>
           <view style='min-width:160rpx;'>发货单价</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.pickMoney}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.ps_price}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>发货小计</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ps_total_price}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>实收数量</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickNum}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_num}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>实收单价</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.pickMoney}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_price}}</view>
         </view>
         <view class='contTl'>
           <view style='min-width:100rpx;'>实收小计</view>
-          <view wx:for='{{orderList}}' wx:key='{{item.id}}'>{{item.total}}</view>
+          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_total_price}}</view>
         </view>
       </view>
-      <view class='noHandle' wx:if='{{!orderList||orderList.length<=0}}'>无收货单</view>
+      <view class='noHandle' wx:if='{{!orderDetail.goods||orderDetail.goods.length<=0}}'>无收货单</view>
     </scroll-view>
   </view>
 </view>
-
- <!-- 按钮 -->
-<view class='root-section3'>
-  <view class='goto' bindtap='request'>确认订单</view>
-</view>
-
 

@@ -4,11 +4,21 @@
   <view class='goods-view'>
     <view class='goods-box'>
       <view class='box-name'>请货人</view>
-      <view class='box-view'>张三</view>
+      <view class='box-view'>{{member.realname}}</view>
     </view>
     <view class='goods-box'>
       <view class='box-name'>请货门店</view>
-      <view class='box-view'>江岸区苗栗路店</view>
+      <view class='box-view'>{{member.store_name}}</view>
+    </view>
+    <view class='goods-box'>
+      <view class='box-name'>合计</view>
+      <view class='box-view'>{{totalMoney}}元</view>
+    </view>
+    <view class='goods-box'>
+      <view class='box-name'>备注</view>
+      <view class='box-view textareaBox'>
+        <textarea bindinput='keyRemark' value='{{remark}}' placeholder="备注" placeholder-class='pltext'></textarea>
+      </view>
     </view>
   </view>
 </view>
@@ -31,8 +41,7 @@
             <view class='number-box'>{{items.number}}</view>
         </view>
         <view class='goods-box1 clearfix'>
-            <input type='number' class='input-list' value='{{items.num}}' placeholder-class='place-style' placeholder='请输入订货数量' bindinput='inputNumber' data-index='{{index}}'
-            data-id="{{index}}"></input>
+            <input type='number' class='input-list' value='{{items.needNum}}' placeholder-class='place-style' placeholder='请输入请货数量' bindinput='inputNumber' data-index='{{index}}' data-id="{{index}}"></input>
             <view class='unit-list'>斤</view>
         </view>
         <view class='goods-box1 clearfix'>
@@ -42,14 +51,10 @@
     </view>
 </view>
 
-
-
-
-
 <!-- 继续添加 -->
 <view class='goods-add clearfix'>
-    <image src='/images/icon_jia.png'></image>
-    <view class='goods-text' bindtap='goToSearch'>添加商品</view>
+  <image src='/images/icon_jia.png'></image>
+  <view class='goods-text' bindtap='goToSearch'>添加商品</view>
 </view>
 
 <!-- 按钮 -->
