@@ -1,120 +1,49 @@
-<!--pages/request-detail/request-detail.wxml-->
-
+<scroll-view scroll-y class='mainScroll' scroll-into-view="{{scrollToThere}}" scroll-top="{{scrollTop}}">
 <!-- 订单详情 -->
-<view class='root-section1'>
-  <view class='order-view'>
-    <view class='img-view'>
-      <image src='/images/greenbg.png'></image>
-    </view>
-    <view class='img-text'>请货信息</view>
-    <view class='order-list' style='width:100%;'>订单号：<text>{{orderDetail.sn}}</text></view>
-    <view class='order-list' style='width:100%;'>日期：<text>{{orderDetail.create_time}}</text></view>
-    <view class='order-list'>订单状态：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list'>分拣状态：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list'>付款状态：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list'>订单来源：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list'>是否直供：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>{{orderDetail.total}}元</text></view>
-    <view class='order-list'>客户：<text>{{orderDetail.name}}</text></view>
-    <view class='order-list' style='width:100%;'>收货门店：<text>{{orderDetail.store_name}}　{{orderDetail.phone}}</text></view>
-    <view class='order-list' style='width:100%;'>门店地址：<text>{{orderDetail.address}}</text></view>
-    <view class='order-list' style='width:100%;'>备注：<text>{{orderDetail.content||'无'}}</text></view>
-    <view class='order-list' style='width:100%;'>发货时间：<text>1970-01-01 08:00:00</text></view>
-    <view class='order-list' style='width:100%;'>订单确认状态：<text>配送端已确认</text></view>
-    <view class='order-list' style='width:100%;'>
-      <view class='handlePick' catchtap='orderHandle'>确认收货</view>
-    </view>
-    
-  </view>
-</view>
-
-<!-- 商品库存和订货信息 -->
-<view class='root-section2'>
-  <!-- 选项卡 -->
-  <view class='choose-box'>
-    <view class="choose-list clear" bindtap='ChooseList' wx:for="{{chooselistData}}" data-listid="{{index}}" wx:key='{{item.id}}'>
-      <text class="{{currentid==index?'choose-color':''}}">{{item}}</text>
-    </view>
-  </view>
-  <!-- 商品库存 -->
-  <view class='detail-view' wx:if="{{currentid==0}}">
-    <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
-      <view class='contTable'>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>名称</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.name}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>商品条码</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.bar_code}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>单位</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.unit}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>下单单价</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.price}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>下单数量</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.num}}
-            <!-- <input type='text' value='{{item.pickNum}}'></input> -->
-          </view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>下单小计</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.total_price}}元</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>备注</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.remark||'无'}}</view>
-        </view>
+  <view class='root-section1'>
+    <view class='order-view'>
+      <view class='img-view'>
+        <image src='/images/greenbg.png'></image>
       </view>
-      <view class='noHandle' wx:if='{{!orderDetail.goods||orderDetail.goods.length<=0}}'>无收货单</view>
-    </scroll-view>
-  </view>
-  <!-- 订货信息 -->
-  <view class='frame-view' wx:if="{{currentid==1}}">
-    <scroll-view class="scroll-view_H" scroll-x scroll-y style="width: 100%">
-      <view class='contTable'>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>名称</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.name}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>商品条码</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.bar_code}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>发货数量</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.ps_num}}
-            <!-- <input type='text' value='{{item.pickNum}}'></input> -->
-          </view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:160rpx;'>发货单价</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}' style='color:#24ae5f;'>{{item.ps_price}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>发货小计</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ps_total_price}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>实收数量</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_num}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>实收单价</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_price}}</view>
-        </view>
-        <view class='contTl'>
-          <view style='min-width:100rpx;'>实收小计</view>
-          <view wx:for='{{orderDetail.goods}}' wx:key='{{item.id}}'>{{item.ss_total_price}}</view>
-        </view>
+      <view class='img-text'>请货信息</view>
+      <view class='order-list' style='width:100%;'>订单号：<text>{{orderDetail.sn}}</text></view>
+      <view class='order-list' style='width:100%;'>日期：<text>{{orderDetail.create_time}}</text></view>
+      <view class='order-list'>订单状态：<text>{{orderDetail.order_status_name}}</text></view>
+      <view class='order-list'>分拣状态：<text>{{orderDetail.sorting_status_name}}</text></view>
+      <view class='order-list'>付款状态：<text>{{orderDetail.pay_status_name}}</text></view>
+      <view class='order-list'>订单来源：<text>{{orderDetail.name}}</text></view>
+      <!-- <view class='order-list'>是否直供：<text>{{orderDetail.name}}</text></view> -->
+      <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>{{orderDetail.total}}元</text></view>
+      <view class='order-list'>客户：<text>{{orderDetail.name}}</text></view>
+      <view class='order-list' style='width:100%;'>收货门店：<text>{{orderDetail.store_name}}　{{orderDetail.phone}}</text></view>
+      <view class='order-list' style='width:100%;'>门店地址：<text>{{orderDetail.address}}</text></view>
+      <view class='order-list' style='width:100%;'>备注：<text>{{orderDetail.content||'无'}}</text></view>
+      <view class='order-list' style='width:100%;'>发货时间：<text>1970-01-01 08:00:00</text></view>
+      <view class='order-list' style='width:100%;'>订单确认状态：<text>配送端已确认</text></view>
+      <view class='order-list' style='width:100%;'>
+        <view class='handlePick' catchtap='orderHandle'>确认收货</view>
       </view>
-      <view class='noHandle' wx:if='{{!orderDetail.goods||orderDetail.goods.length<=0}}'>无收货单</view>
-    </scroll-view>
+    </view>
   </view>
-</view>
-
+  <!-- 商品库存和订货信息 -->
+  <view class='root-section2'>
+    <view class='goods-title clearfix'>
+      <view class='goods-style'></view>
+      <view class='goods-name'>商品信息</view>
+    </view>
+  </view>
+  <view class='wait-box' wx:for="{{orderDetail.goods}}" wx:for-item="itemOrder" wx:key="{{index}}">
+    <view class='wait-list1' bindtap='requestDetail' data-id="{{itemOrder.id}}">
+      <view class='wait-rows'>名称：<text>{{itemOrder.name}}</text></view>
+      <view class='wait-rows '>{{itemOrder.bar_code}}</view>
+      <view class='wait-rows'>单位：<text>{{itemOrder.unit}}</text></view>
+      <view class='wait-rows'>请货数量：<text>{{itemOrder.num}}</text></view>
+      <view class='wait-rows'>收货数量：<input data-index="{{index}}" value='{{itemOrder.pickNum||0}}' bindfocus='showInputModal'></input></view>
+      <view class='wait-rows'>发货数量：<text>{{itemOrder.ps_num}}</text></view>
+    </view>
+  </view>
+  <view class='code_g imgBox' catchtap='codeAddGoods'>
+    <image src='/images/code_g.png'></image>
+  </view>
+</scroll-view>
+<include src="../../../../utils/inputModal/inputModalPick.wxml"/>

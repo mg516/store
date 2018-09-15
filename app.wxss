@@ -1,4 +1,5 @@
 /**app.wxss**/
+view{box-sizing: border-box;}
 .clearfix::after{
   content: ".";
   display: block;

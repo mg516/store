@@ -1,12 +1,5 @@
-.inputModel{
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0,0,0,.4);
-  z-index: 10;
-}
+/* main */
+.inputModel{position: fixed;top: 0;left: 0;bottom: 0;right: 0;background-color: rgba(0,0,0,.4);z-index: 10;}
 .inputBox{
   position: absolute;
   top: 30%;
@@ -38,12 +31,12 @@
   color: #000000;
   text-align: center;
 }
-.inputNum>input{
+.inputNumBox .inputNum>input{
   width: 200rpx;
   color: #333;
 }
-.inputNum{ position: relative; }
-.inputNum::after{
+.inputNumBox .inputNum{ position: relative; }
+.inputNumBox .inputNum::after{
   content: '';
   display: block;
   width: 140rpx;
@@ -53,25 +46,15 @@
   bottom: -10rpx;
   left: 30rpx;
 }
-.inputReduce,.inputAdd{
+.inputNumBox .inputReduce,.inputNumBox .inputAdd{
   font-size: 50rpx;
   width: 72rpx;
   border-right: 2rpx solid #bbb;
   border: 2rpx solid #DADADA;
   border-radius: 10rpx;
 }
-.inputReduce.onlyOne{
-  color: #bbb;
-}
-.inputHandleBox{
-  width: 100%;
-  /* border-top: 2rpx solid #ddd; */
-}
-.inputHandleBox{
-  width: 100%;
-  /* border-top: 2rpx solid #ddd; */
-  margin-top: 66rpx;
-}
+.inputNumBox .inputReduce.onlyOne{color: #bbb;}
+.inputHandleBox{width: 100%;/* border-top: 2rpx solid #ddd; */margin-top: 66rpx;}
 .inputHandleBox>view{
   display: inline-block;
   width: 50%;
@@ -82,11 +65,19 @@
   text-align: center;
   /* font-weight: bold; */
 }
-.inputClose{
-  color: #000;
-  background-color: #f6f6f6
-}
-.inputSure{
-  color: #fff;
-  background-color: #24AE60;
-}
+.inputClose{color: #000;background-color: #f6f6f6}
+.inputSure{color: #fff;background-color: #24AE60;}
+
+/* pick.html */
+.numBox{width: 530rpx;margin: 0 auto;font-size: 28rpx;}
+.numBox>view{width: 50%;display: inline-block;}
+
+._pick .inputNumBox>view{line-height: 50rpx;}
+._pick .inputNumBox{width: 530rpx;}
+._pick .inputLabel{font-size: 28rpx;width:160rpx;text-align:left;}
+._pick .inputNum>input{width: 200rpx;color: #333;}
+._pick .inputNum{ position: relative; }
+._pick .inputNum::after{content: '';display: block;width: 140rpx;height: 2rpx;background-color: #DADADA;position: absolute;bottom: -10rpx;left: 30rpx;}
+._pick .inputReduce,._pick .inputAdd{font-size: 40rpx;width: 60rpx;border-right: 2rpx solid #bbb;border: 2rpx solid #DADADA;border-radius: 10rpx;}
+._pick .inputReduce.onlyOne{color: #bbb;}
+._pick .inputHandleBox{margin-top: 50rpx;}

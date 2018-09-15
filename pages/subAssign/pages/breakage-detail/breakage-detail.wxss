@@ -1,2 +1,10 @@
 @import '/utils/appList_details.wxss';
 .imgUl>.imgLi{width: 100rpx;height: 100rpx;display: inline-block;vertical-align: top;padding: 10rpx;}
+.order-list{
+  display:inline-block;
+  vertical-align:middle;
+  padding-left:6px;
+  padding-right:6px;
+  box-sizing:border-box;
+  width: 100%;
+}

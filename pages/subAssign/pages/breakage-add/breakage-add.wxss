@@ -1,6 +1,6 @@
 @import '/weui.wxss';
 page{
-  padding-bottom:40rpx;
+  /* padding-bottom:40rpx; */
 }
 .mainScroll{
   width: 100vw;

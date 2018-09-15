@@ -1,63 +1,76 @@
 <!--pages/request-add/request-add.wxml-->
 <!-- 商品信息 -->
-<view class='root-section1'>
-  <view class='goods-view'>
-    <view class='goods-box'>
-      <view class='box-name'>请货人</view>
-      <view class='box-view'>{{member.realname}}</view>
-    </view>
-    <view class='goods-box'>
-      <view class='box-name'>请货门店</view>
-      <view class='box-view'>{{member.store_name}}</view>
-    </view>
-    <view class='goods-box'>
-      <view class='box-name'>合计</view>
-      <view class='box-view'>{{totalMoney}}元</view>
-    </view>
-    <view class='goods-box'>
-      <view class='box-name'>备注</view>
-      <view class='box-view textareaBox'>
-        <textarea bindinput='keyRemark' value='{{remark}}' placeholder="备注" placeholder-class='pltext'></textarea>
+<scroll-view scroll-y class='mainScroll' scroll-into-view="{{scrollToThere}}" scroll-top="{{scrollTop}}">
+  <view class='root-section1'>
+    <view class='goods-view'>
+      <view class='goods-box'>
+        <view class='box-name'>请货人</view>
+        <view class='box-view'>{{member.realname}}</view>
+      </view>
+      <view class='goods-box'>
+        <view class='box-name'>请货门店</view>
+        <view class='box-view'>{{member.store_name}}</view>
+      </view>
+      <view class='goods-box'>
+        <view class='box-name'>配送时间</view>
+        <view class='box-view'>
+          <picker mode="date" bindchange="sendTimeChange" class="time-picker {{senddate?'':'pltext'}}" end="{{senddate}}" value="{{senddate}}">{{senddate?senddate:'选择配送时间'}}</picker>
+        </view>
+      </view>
+      <view class='goods-box'>
+        <view class='box-name'>合计</view>
+        <view class='box-view'>{{totalMoney}}元</view>
+      </view>
+      <view class='goods-box'>
+        <view class='box-name'>订单备注</view>
+        <view class='box-view textareaBox'>
+          <textarea bindinput='keyRemark' value='{{remark}}' placeholder="订单备注" placeholder-class='pltext'></textarea>
+        </view>
       </view>
     </view>
   </view>
-</view>
-
-
-
-<!-- 详细信息 -->
-<view class='root-section2' wx:for='{{requestGoods}}' wx:for-item='items' wx:key='requestGoods' data-infoid='{{items.id}}'>
+  <!-- 详细信息 -->
+  <view class="root-section2" wx:for='{{requestGoods}}' wx:for-item='items' wx:key='requestGoods' data-infoid='{{items.id}}' id='scroll{{index}}'>
     <view class='goods-title clearfix'>
-        <view class='goods-style'></view>
-        <view class='goods-name'>商品信息</view>
-        <view class='goods-del imgBox' data-index='{{index}}' catchtap='delGoods'>
-          <image src='/images/del.png'></image>
-        </view>
+      <view class='goods-style'></view>
+      <view class='goods-name'>商品信息</view>
+      <view class='goods-del imgBox' data-index='{{index}}' catchtap='delGoods'>
+        <image src='/images/del.png'></image>
+      </view>
     </view>
     <!-- 商品信息 -->
-    <view class='goods-view'>
-        <view class='goods-box1 clearfix'>
-            <view class='name-box'>{{items.name}}</view>
-            <view class='number-box'>{{items.number}}</view>
-        </view>
-        <view class='goods-box1 clearfix'>
-            <input type='number' class='input-list' value='{{items.needNum}}' placeholder-class='place-style' placeholder='请输入请货数量' bindinput='inputNumber' data-index='{{index}}' data-id="{{index}}"></input>
-            <view class='unit-list'>斤</view>
-        </view>
-        <view class='goods-box1 clearfix'>
-            <view class='price-view'>单价:<text class='price-style'>￥{{items.price}}</text>元/斤</view>
-            <view class='total-view' data-id="{{index}}">金额:<text class='price-style'>￥{{items.totalMoney||'--'}}</text>元</view>
-        </view>     
+    <view class="goods-view {{scrollToThere==('scroll'+index)?'bling':''}}">
+      <view class='goods-box1 clearfix'>
+        <view class='name-box'>{{items.name}}</view>
+        <view class='number-box'>{{items.number}}</view>
+      </view>
+      <view class='goods-box1 clearfix'>
+        <input type='number' class='input-list' value='{{items.needNum}}' placeholder-class='place-style' placeholder='请输入请货数量' bindinput='inputNumber' data-index='{{index}}' data-id="{{index}}"></input>
+        <view class='unit-list'>斤</view>
+      </view>
+      <view class='goods-box1 clearfix'>
+        <view class='price-view'>单价:<text class='price-style'>￥{{items.price}}</text>元/斤</view>
+        <view class='total-view' data-id="{{index}}">金额:<text class='price-style'>￥{{items.totalMoney||'--'}}</text>元</view>
+      </view>
+      <view class='goods-box1 clearfix'>
+        <view class='unit-list'>备注：</view>
+        <input cursor-spacing="50" type='digit' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='备注' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}'></input>
+        <view class='unit-list' style='font-size:24rpx;color:#FC7903'>(选填)</view>
+      </view>
     </view>
-</view>
+  </view>
 
-<!-- 继续添加 -->
-<view class='goods-add clearfix'>
-  <image src='/images/icon_jia.png'></image>
-  <view class='goods-text' bindtap='goToSearch'>添加商品</view>
-</view>
+  <!-- 继续添加 -->
+  <view class='goods-add clearfix'>
+    <image src='/images/icon_jia.png'></image>
+    <view class='goods-text' bindtap='goToSearch'>添加商品</view>
+  </view>
 
-<!-- 按钮 -->
-<view class='submit' bindtap='Submit'>提交</view>
+  <!-- 按钮 -->
+  <view class='submit' bindtap='Submit'>提交</view>
 
-
+  <!-- 扫码 -->
+  <view class='code_g imgBox' catchtap='codeAddGoods'>
+    <image src='/images/code_g.png'></image>
+  </view>
+</scroll-view>

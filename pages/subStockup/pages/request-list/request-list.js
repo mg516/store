@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    flag: true,
     ifLoad: false,
     showdelect: false,
     Startdate: '',
@@ -152,6 +153,10 @@ Page({
   },
   onPullDownRefresh:function(){
     wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.setData({
+      pageNum: 1
+    })
+    this.getRequestList();
     setTimeout(function () {
       // function()
       wx.hideNavigationBarLoading() //完成停止加载
@@ -174,7 +179,7 @@ Page({
       list_rows: this.data.limit,
       page: this.data.pageNum,
       action: 'list',
-      direct_supply:0,//统配0，直供1
+      direct_supply: this.data.direct_supply,//统配0，直供1
       create_date_start: this.data.Startdate,
       create_date_end: this.data.Enddate
     }
@@ -224,8 +229,12 @@ Page({
       }
     })
   },
-  onLoad: function () { 
-    
+  onLoad: function (option) { 
+    let direct_supply = option.direct_supply;//0非直供订单 1直供订单
+    this.setData({
+      direct_supply: direct_supply,
+    });
+    this.onShow();
   },
   onShow:function(){
     if (!this.data.Startdate && !this.data.Enddate){
@@ -241,7 +250,7 @@ Page({
       action: 'list',
       list_rows: this.data.limit,
       page: this.data.pageNum,
-      direct_supply: 0,//统配0，直供1
+      direct_supply: this.data.direct_supply,//统配0，直供1
       create_date_start: this.data.Startdate,
       create_date_end: this.data.Enddate
     }
@@ -249,6 +258,13 @@ Page({
       param.page = 1;
       param.list_rows = parseInt(this.data.pageNum * this.data.limit)
     }
-    this.getRequestList(param);
+    if (this.data.flag && this.data.direct_supply){
+      console.log(`direct_supply${this.data.direct_supply}`)
+      this.getRequestList(param);
+      this.setData({flag:false})
+      setTimeout(()=>{ this.setData({ flag: true })}, 5000);
+    }else{
+      console.log('刷新频率过高')
+    }
   },
 })

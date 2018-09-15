@@ -92,5 +92,3 @@
   <!-- 按钮 -->
   <view class='submit' bindtap='Submit'>提交</view>
 </scroll-view>
-
-

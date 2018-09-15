@@ -2,70 +2,42 @@
 const app = getApp();
 const common = require('../../../../utils/common.js').common;
 const config = require('../../../../utils/config.js').config;
+const inputModal = require('../../../../utils/inputModal/inputModal.js');
 Page({
   data: {
     chooselistData: ['订货信息', '收货信息'],
     currentid: 0,
-    orderList: [{
-      name: '大白菜',
-      code: '515431341345',
-      pickNum: '94.6',
-      pickMoney: '63515.3',
-      id: 1,
-      unit:'个',
-      total:1500,
-      remark:'备注。。。',
-
-    }, {
-      name: '胡萝卜',
-      code: '515431341345',
-      pickNum: '654.6',
-      pickMoney: '3515.3',
-      id: 2,
-      unit:'个',
-      total:500,
-      remark:'备注。。。',
-
-    }, {
-      name: '农夫山泉',
-      code: '515431341345',
-      pickNum: '20',
-      pickMoney: '30',
-      id: 3,
-      unit:'个',
-      total:3500,
-      remark:'备注。。。',
-
-    }],
+    orderList: [],
   },
-  //选项卡列表类型切换
-  ChooseList: function (e) {
-    var listid = e.currentTarget.dataset.listid
-    this.setData({
-      currentid: listid
+  codeAddGoods: function () {
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: ['qrCode', 'barCode'],
+      success: (res) => {
+        // common.loading('加载中');
+        console.log(res.result);
+        this.setData({
+          showdelect: res.result ? true : false,
+          searchContent: res.result,
+          pageNum: 1,
+          nomore: false
+        })
+        this.getRequestList();
+      },
+      fail: (res) => {
+        console.log(res);
+        if (res.errMsg == 'scanCode:fail cancel') {
+          console.log('取消扫码')
+        } else if (res.errMsg == 'scanCode:fail') {
+          wx.showToast({
+            title: '请识别正确的二维码',
+            icon: 'none'
+          })
+        }
+      }
     })
   },
-  //跳转到配送中
-  request: function () {
-    var Listcurrentid = this.data.Listcurrentid;
-    let pages = getCurrentPages();//当前页面栈
-    let prevPage = pages[pages.length - 2];//上一页面
-    if (Listcurrentid == 0) {
-      prevPage.setData({//直接给上移页面赋值
-        currentid: 1
-      });
-      // wx.navigateTo({url: "../receipt-list/receipt-list?currentid=" + 1})
-    } else if (Listcurrentid == 1) {
-      prevPage.setData({//直接给上移页面赋值
-        currentid: 2
-      });
-      // wx.navigateTo({url: "../receipt-list/receipt-list?currentid=" + 2})
-    }
-    wx.navigateBack({//返回
-      delta: 1
-    })
-  },
-  getOrderData:function(){
+  getOrderData: function() {
     let orderId = this.data.orderId;
     common.loading();
     wx.request({
@@ -75,7 +47,7 @@ Page({
         access_token: app.globalData.access_token,
         user_token: app.globalData.user_token,
         action: 'info',
-        id:this.data.orderId
+        id: this.data.orderId
       },
       success: (res) => {
         console.log(res.data.data)
@@ -92,10 +64,25 @@ Page({
       }
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       orderId: options.id
     })
     this.getOrderData();
+    inputModal.inputModal(this, this.MtouchInput, this.MsureInput);
+  },
+  // 点击输入框回调
+  MtouchInput: function (e) {
+    var curIndex = e.currentTarget.dataset.index;
+    this.setData({
+      curIndex: curIndex,
+    })
+  },
+  // 输入框确认回调
+  MsureInput: function (MinputValue) {
+    let curIndex = this.data.curIndex;
+    let orderDetail = this.data.orderDetail;
+    orderDetail.goods[curIndex].pickNum = MinputValue;
+    this.setData({ orderDetail: orderDetail })
   }
 })

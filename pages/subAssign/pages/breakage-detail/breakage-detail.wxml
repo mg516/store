@@ -7,7 +7,6 @@
           <image src='/images/greenbg.png'></image>
       </view>
       <view class='img-text'>报损信息</view>
-
       <view class='order-list'>报损单号：{{orderData.report_loss_sn}}</view>   
       <view class='order-list'>日期：{{orderData.create_time}}</view>
       <view class='order-list'>报损人：{{orderData.name}}</view>

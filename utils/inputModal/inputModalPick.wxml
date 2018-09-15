@@ -1,0 +1,19 @@
+<view class="inputModel _pick" wx:if="{{inputModelStatus}}">
+  <view class='inputBox'>
+    <view class='inputTitle'>确认收货数量</view>
+    <view class='numBox'>
+      <view>订货数量：<text>{{orderDetail.goods[curIndex].num}}</text></view>
+      <view>订货数量：<text>{{orderDetail.goods[curIndex].ps_num}}</text></view>
+    </view>
+    <view class='inputNumBox'>
+      <view class='inputLabel'>收货数量：</view>
+      <view class="inputReduce {{curInputValue>0?'':'onlyOne'}}" catchtap="{{curInputValue>0?'inputReduce':'xx'}}">-</view>
+      <view class='inputNum'><input type='number' cursor-spacing="120" focus="true" value='{{curInputValue}}' bindinput='changeInputModal'></input></view>
+      <view class='inputAdd' catchtap='inputAdd'>+</view>
+    </view>
+    <view class='inputHandleBox'>
+      <view class='inputClose' catchtap='inputClose'>取消</view>
+      <view class='inputSure' catchtap='inputSure'>确定</view>
+    </view>
+  </view>
+</view>

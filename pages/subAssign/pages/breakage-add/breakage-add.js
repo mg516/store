@@ -257,7 +257,7 @@ Page({
     this.countMoney();
     wx.setStorageSync('baosunGoods', baosunGoods);
   },
-  // 折价原因
+  // 报损原因
   inputText: function (e) {
     var index = e.currentTarget.dataset.index;
     var typeval = e.currentTarget.dataset.typeval;

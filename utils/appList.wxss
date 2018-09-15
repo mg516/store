@@ -1,6 +1,6 @@
 /* pages/breakage-list/breakage-list.wxss */
 .root-section1{
-  width:100%;
+  /* width:100%; */
 }
 
 /* 选择列表 */

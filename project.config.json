@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 25,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -182,7 +182,8 @@
 				{
 					"id": -1,
 					"name": "新增列表",
-					"pathName": "pages/subVip/pages/vipList/vipList"
+					"pathName": "pages/subVip/pages/vipList/vipList",
+					"query": ""
 				}
 			]
 		}
