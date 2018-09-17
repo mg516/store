@@ -3,7 +3,7 @@
     <view class='inputTitle'>确认收货数量</view>
     <view class='numBox'>
       <view>订货数量：<text>{{orderDetail.goods[curIndex].num}}</text></view>
-      <view>订货数量：<text>{{orderDetail.goods[curIndex].ps_num}}</text></view>
+      <view>配送数量：<text>{{orderDetail.goods[curIndex].ps_num}}</text></view>
     </view>
     <view class='inputNumBox'>
       <view class='inputLabel'>收货数量：</view>

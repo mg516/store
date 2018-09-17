@@ -70,7 +70,7 @@
   margin: 15rpx auto;
   background-color:#f6f6f6;
   border-radius:20rpx;
-  padding:5rpx 0;
+  /* padding:5rpx 0; */
 }
 .time-title{
   font-size:32rpx;

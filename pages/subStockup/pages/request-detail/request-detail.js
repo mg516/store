@@ -9,6 +9,7 @@ Page({
     currentid: 0,
     orderList: [],
   },
+  // 扫码收货
   codeAddGoods: function () {
     wx.scanCode({
       onlyFromCamera: false,
@@ -16,13 +17,7 @@ Page({
       success: (res) => {
         // common.loading('加载中');
         console.log(res.result);
-        this.setData({
-          showdelect: res.result ? true : false,
-          searchContent: res.result,
-          pageNum: 1,
-          nomore: false
-        })
-        this.getRequestList();
+        this.searchGoods(res.result);
       },
       fail: (res) => {
         console.log(res);
@@ -37,6 +32,51 @@ Page({
       }
     })
   },
+  searchGoods:function(_code){
+    wx.request({
+      url: config.goods,
+      method: "POST",
+      data: {
+        user_token: app.globalData.user_token,
+        action: 'info',
+        sweep:1,
+        code: _code
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.data){
+          let curGoods = res.data.data;
+          let goodsList = this.data.orderDetail.goods;
+          for (let i = 0; i < goodsList.length;i++){
+            if (goodsList[i].bar_code == curGoods.bar_code){
+              this.setData({
+                scrollToThere:'goods' + i
+              })
+              break;
+            }
+            this.setData({
+              scrollToThere: 'goods' + 5
+            })
+            break;
+            if (i >= goodsList.length-1){
+              wx.showModal({
+                title: '提示',
+                content: '当前请货单不存在该商品',
+                showCancel:false
+              })
+            }
+          }
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '没有获取到商品信息，请重试',
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
+  // 获取请货单数据
   getOrderData: function() {
     let orderId = this.data.orderId;
     common.loading();

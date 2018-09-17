@@ -32,8 +32,8 @@
       <view class='goods-name'>商品信息</view>
     </view>
   </view>
-  <view class='wait-box' wx:for="{{orderDetail.goods}}" wx:for-item="itemOrder" wx:key="{{index}}">
-    <view class='wait-list1' bindtap='requestDetail' data-id="{{itemOrder.id}}">
+  <view class='wait-box' wx:for="{{orderDetail.goods}}" wx:for-item="itemOrder" wx:key="{{index}}" id="scroll{{index}}">
+    <view class='wait-list1'>
       <view class='wait-rows'>名称：<text>{{itemOrder.name}}</text></view>
       <view class='wait-rows '>{{itemOrder.bar_code}}</view>
       <view class='wait-rows'>单位：<text>{{itemOrder.unit}}</text></view>

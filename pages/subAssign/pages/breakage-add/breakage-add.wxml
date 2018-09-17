@@ -77,7 +77,7 @@
       </view>
       <view class='goods-box1 clearfix'>
         <view class='unit-list'>报损原因：</view>
-        <input cursor-spacing="50" type='digit' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='报损原因' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}' data-typeval="key4"></input>
+        <input cursor-spacing="50" type='text' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='报损原因' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}' data-typeval="key4"></input>
         <view class='unit-list' style='font-size:24rpx;color:#FC7903'>(必填)</view>
       </view>
     </view>

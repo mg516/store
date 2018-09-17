@@ -11,7 +11,77 @@ Page({
   },
   // 扫码添加商品
   codeAddGoods:function(){
-
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: ['qrCode', 'barCode'],
+      success: (res) => {
+        // common.loading('加载中');
+        console.log(res.result);
+        this.searchGoods(res.result);
+      },
+      fail: (res) => {
+        console.log(res);
+        if (res.errMsg == 'scanCode:fail cancel') {
+          console.log('取消扫码')
+        } else if (res.errMsg == 'scanCode:fail') {
+          wx.showToast({
+            title: '请识别正确的二维码',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+  searchGoods: function (_code) {
+    wx.request({
+      url: config.goods,
+      method: "POST",
+      data: {
+        user_token: app.globalData.user_token,
+        action: 'info',
+        sweep: 1,
+        code: _code
+      },
+      success: (res) => {
+        console.log(res.data)
+        if (res.data.data) {
+          let curGoods = res.data.data;
+          let requestGoods = this.data.requestGoods;
+          for (let i = 0; i < requestGoods.length; i++) {
+            if (requestGoods[i].bar_code == curGoods.bar_code) {
+              this.setData({
+                scrollToThere: 'scroll' + i
+              })
+              setTimeout(() => {
+                this.setData({ scrollToThere: null })
+              }, 500)
+              common.tip('该商品已存在','none')
+              break;
+            }
+            if (i >= requestGoods.length - 1) {
+              console.log(i)
+              requestGoods.push(curGoods);
+              wx.setStorageSync('requestGoods', requestGoods);
+              this.setData({
+                requestGoods: requestGoods,
+                scrollToThere: 'scroll' + (i + 1)
+              })
+              setTimeout(() => {
+                this.setData({ scrollToThere: null })
+              }, 500)
+              this.countMoney();
+              break;
+            }
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '没有获取到商品信息，请重试',
+            showCancel: false
+          })
+        }
+      }
+    })
   },
   //提交
   Submit: function () {
@@ -23,7 +93,7 @@ Page({
     let requestGoods = this.data.requestGoods;
     if (requestGoods.length > 0) {
       for (let i = 0; i < requestGoods.length; i++) {
-        if (!requestGoods[i].needNum || parseFloat(requestGoods[i].needNum) <= 0 || !requestGoods[i].totalMoney || parseFloat(requestGoods[i].totalMoney) <= 0) {
+        if (!requestGoods[i].needNum || parseFloat(requestGoods[i].needNum) <= 0 || !requestGoods[i].total_price || parseFloat(requestGoods[i].total_price) <= 0) {
           common.tip('信息不合法 或 不完整', 'none');
           this.setData({
             scrollToThere: 'scroll' + i
@@ -44,12 +114,30 @@ Page({
       cancelColor: '#F97D47',
       cancelText: '我再想想',
       confirmText: '提交',
-      success: function (res) {
+      success: (res) => {
         if (res.confirm) {
-          console.log('用户点击确定');
+          this.submitFunc()
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
+      }
+    })
+  },
+  submitFunc:function(){
+    wx.request({
+      url: config.request,
+      method: "POST",
+      data: {
+        user_token: app.globalData.user_token,
+        action: 'add',
+        total: this.data.totalMoney,
+        content: this.data.remark,
+        goods: this.data.requestGoods,
+        direct_supply: this.data.direct_supply
+      },
+      success: (res) => {
+        console.log(res.data)
+        
       }
     })
   },
@@ -76,6 +164,17 @@ Page({
     })
     wx.setStorageSync('requestRemark', e.detail.value)
   },
+  // 编辑请货商品描述
+  inputRemark:function(e){
+    var index = e.currentTarget.dataset.index;
+    var requestGoods = this.data.requestGoods;
+    requestGoods[index].remark = e.detail.value;
+    wx.setStorageSync('requestGoods', requestGoods);
+    this.setData({
+      requestGoods: requestGoods
+    })
+    this.countMoney();
+  },
   // 修改请货商品数量
   inputNumber:function(e){
     let num = common.pattNumFunc(e.detail.value,2);//保留两位小数
@@ -83,10 +182,10 @@ Page({
     var requestGoods = this.data.requestGoods;
     if (!isNaN(num) && num){
       requestGoods[index].needNum = num;
-      requestGoods[index].totalMoney = (num * requestGoods[index].price).toFixed(2);
+      requestGoods[index].total_price = (num * requestGoods[index].price).toFixed(2);
     } else if (!num){
       requestGoods[index].needNum = null;
-      requestGoods[index].totalMoney = null;
+      requestGoods[index].total_price = null;
     } else {
       console.log('输入数量不合法');
     }
@@ -141,8 +240,8 @@ Page({
     for (let i = 0; i < requestGoods.length; i++){
       let price = parseFloat(requestGoods[i].price);
       let needNum = parseFloat(requestGoods[i].needNum||0);
-      requestGoods[i].totalMoney = parseFloat((price * needNum).toFixed(2));
-      totalMoney += (requestGoods[i].totalMoney);
+      requestGoods[i].total_price = parseFloat((price * needNum).toFixed(2));
+      totalMoney += (requestGoods[i].total_price);
     }
     totalMoney = common.pattNumFunc((totalMoney).toString(), 2);
     this.setData({
@@ -164,7 +263,8 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      member: app.globalData.member
+      member: app.globalData.member,
+      direct_supply: options.direct_supply
     })
   }
 })

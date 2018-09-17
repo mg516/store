@@ -22,7 +22,8 @@
             <view style='min-width:150rpx;'>名称</view>
             <view wx:for="{{goodsList}}" wx:for-item="gItem" wx:key='{{gItem.id}}'>
               <view class='table_row2 table_bold'>{{gItem.name}}</view>
-              <view class='table_row2 table_lighter'>商品条码：{{gItem.bar_code}} 单价：{{gItem.price}}元</view>
+              <view class='table_row2 table_lighter'>商品条码：{{gItem.bar_code}}</view>
+              <view class='table_row2 table_lighter'>起订数量：{{gItem.least_num}} {{gItem.unit}}　单价：{{gItem.price}}元</view>
             </view>
           </view>
           <!-- <view class='contTl'>

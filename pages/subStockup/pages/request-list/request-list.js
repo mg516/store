@@ -147,8 +147,9 @@ Page({
     })
   },
   requestAdd: function (e) {
+    let direct_supply = this.data.direct_supply;
     wx.navigateTo({
-      url: "../request-add/request-add"
+      url: `../request-add/request-add?direct_supply=${direct_supply}`
     })
   },
   onPullDownRefresh:function(){

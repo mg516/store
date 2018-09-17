@@ -184,6 +184,7 @@ Page({
     this.ifLogin(e);
   },
   onShow:function(){
+    wx.removeStorageSync('user_token');
     if (!this.data.ifOnce){
       this.ifLogin();
     }

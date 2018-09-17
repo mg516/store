@@ -37,12 +37,12 @@
 .textareaBox{
   width:400rpx;
   color:#222222;
-  padding:4rpx 10rpx;
+  padding:10rpx 10rpx;
   border:2rpx solid #dedede;
   border-radius:6rpx;
 }
 .box-view>textarea{
-  width:400rpx;
+  width:100%;
   height:160rpx;
   line-height:50rpx;
 }
@@ -55,17 +55,17 @@
   margin:20rpx 30rpx;
 }
 .goods-del{
-  width:24rpx;
-  height:30rpx;
+  width:50rpx;
+  height:60rpx;
   float:right;
-  padding:16rpx;
+  padding:10rpx;
 }
 /* 商品信息头部 */
 .goods-title{
   height:60rpx;
   line-height: 60rpx;
   font-size:32rpx;
-  padding:20rpx 0;
+  margin:20rpx 0;
 }
 .goods-style{
   width:5px;

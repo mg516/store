@@ -47,8 +47,10 @@ Page({
     let searchContent = (this.data.searchContent).replace(/\s/g,'');
     var that = this;
     this.setData({
-      ifSearchCommit: searchContent ? true : false
+      ifSearchCommit: searchContent ? true : false,
+      pageNum: 1
     })
+    this.getGoodsList();
   },
   //删除搜索
   Delect: function () {
@@ -56,8 +58,10 @@ Page({
     this.setData({
       showdelect: false,
       searchContent: '',
-      ifSearchCommit:false
+      ifSearchCommit:false,
+      pageNum: 1
     })
+    this.getGoodsList();
   },
   goodsResult:function(e){
     let chooseType = this.data.chooseType;
@@ -70,7 +74,10 @@ Page({
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.getCategory();
+    this.setData({
+      pageNum: 1
+    })
+    this.getGoodsList();
     setTimeout(function () {
       // function()
       wx.hideNavigationBarLoading() //完成停止加载
@@ -83,6 +90,10 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    this.setData({
+      pageNum: this.data.pageNum + 1
+    })
+    this.getGoodsList();
     setTimeout(() => {
       wx.hideLoading()
     }, 1000)
@@ -95,8 +106,14 @@ Page({
     var MinputValue = 0;
     if (typebar == '+'){
       goodsList[curIndex].needNum = goodsList[curIndex].needNum + 1 || 1
+      if (parseFloat(goodsList[curIndex].least_num) > goodsList[curIndex].needNum){
+        goodsList[curIndex].needNum = goodsList[curIndex].least_num;
+      }
     } else if (typebar == '-'){
       goodsList[curIndex].needNum = goodsList[curIndex].needNum - 1
+      if (parseFloat(goodsList[curIndex].least_num) > goodsList[curIndex].needNum) {
+        goodsList[curIndex].needNum = 0;
+      }
     }
     this.saveStorage(goodsList[curIndex]);
     this.setData({ goodsList: goodsList})
@@ -131,11 +148,12 @@ Page({
   },
   getGoodsList:function(){
     let param = {
-      access_token: app.globalData.access_token,
       user_token: app.globalData.user_token,
+      search_data: this.data.searchContent,
       list_rows: this.data.limit,
       page: this.data.pageNum,
-      action: 'list'
+      action: 'list',
+      goods_category_id: this.data.curCid||this.data.curPid
     }
     wx.request({
       url: config.goods,method: 'POST',data: param,
@@ -187,8 +205,10 @@ Page({
   // 选中子分类
   chooseC: function (e) {
     var id = e.currentTarget.dataset.id;
+    if (id == this.data.curCid) return '';
     this.setData({
-      curCid: id
+      curCid: id,
+      pageNum: 1
     })
     this.getGoodsList();
   },
@@ -201,9 +221,11 @@ Page({
     if (categoryList[index].list && categoryList[index].list.length>0){
       curCid = categoryList[index].list[0].id;
     }
+    if (id == this.data.curPid && curCid == this.data.curCid) return '';
     this.setData({
       curPid: id,
-      curCid: curCid
+      curCid: curCid,
+      pageNum: 1
     })
     this.getGoodsList();
   },

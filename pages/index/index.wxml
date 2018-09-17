@@ -23,7 +23,7 @@
     </view>
   </view>
   <view class='blockBox'>
-    <view class='block' wx:for="{{entrance1}}" wx:for-item="enItem" wx:key="{{index}}">
+    <view class='block' wx:for="{{entrance}}" wx:for-item="enItem" wx:key="{{index}}">
       <view class='title'>{{enItem.name}}</view>
       <view class="appBox">
         <view class='appItem' wx:for='{{enItem.list}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>

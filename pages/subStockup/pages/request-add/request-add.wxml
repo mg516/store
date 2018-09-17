@@ -46,15 +46,16 @@
       </view>
       <view class='goods-box1 clearfix'>
         <input type='number' class='input-list' value='{{items.needNum}}' placeholder-class='place-style' placeholder='请输入请货数量' bindinput='inputNumber' data-index='{{index}}' data-id="{{index}}"></input>
-        <view class='unit-list'>斤</view>
+        <view class='unit-list'>{{items.unit}}</view>
+        <view class='total-view' style='text-indent:36rpx;'>起订数量：{{items.least_num}} {{items.unit}}</view>
       </view>
       <view class='goods-box1 clearfix'>
         <view class='price-view'>单价:<text class='price-style'>￥{{items.price}}</text>元/斤</view>
-        <view class='total-view' data-id="{{index}}">金额:<text class='price-style'>￥{{items.totalMoney||'--'}}</text>元</view>
+        <view class='total-view' data-id="{{index}}">金额:<text class='price-style'>￥{{items.total_price||'--'}}</text>元</view>
       </view>
       <view class='goods-box1 clearfix'>
         <view class='unit-list'>备注：</view>
-        <input cursor-spacing="50" type='digit' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='备注' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}'></input>
+        <input cursor-spacing="50" type='text' class='input-list input-long' value='{{items.remark}}' placeholder-style='font-size:26rpx;' placeholder='备注' bindinput='inputRemark' data-index='{{index}}'></input>
         <view class='unit-list' style='font-size:24rpx;color:#FC7903'>(选填)</view>
       </view>
     </view>
