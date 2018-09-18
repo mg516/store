@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 25,
 			"list": [
 				{
 					"id": -1,
@@ -184,6 +184,11 @@
 					"name": "新增列表",
 					"pathName": "pages/subVip/pages/vipList/vipList",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "申请提现",
+					"pathName": "pages/subDistri/pages/applyPresent/applyPresent"
 				}
 			]
 		}

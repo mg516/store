@@ -1,0 +1,22 @@
+<view class="container">
+  <view class='ableBox'>
+    <view class='ableBox_value'>88.88</view>
+    <view class='ableBox_label'>可提现余额（元）</view>
+    <view class='handle_detail'>账户明细</view>
+  </view>
+  <view class='dataBox'>
+    <view class='dataItem'>
+      <view class='dataItem_value'>100<text>.88</text></view>
+      <view class='dataItem_label'>全部金额（元）</view>
+    </view>
+    <view class='dataItem'>
+      <view class='dataItem_value'>12<text>.00</text></view>
+      <view class='dataItem_label'>冻结（元）</view>
+    </view>
+    <view class='dataItem'>
+      <view class='dataItem_value'>88<text>.88</text></view>
+      <view class='dataItem_label'>已提现（元）</view>
+    </view>
+  </view>
+  <view class='handle_reflect' catchtap='reflect'>申请提现</view>
+</view>

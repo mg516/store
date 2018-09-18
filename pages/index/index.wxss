@@ -68,6 +68,15 @@ page{
 .locationLi>view{display: inline-block;vertical-align: middle;}
 .location{width: 30rpx;height: 30rpx;}
 .locationText{font-size:28rpx;color:#1e1e1e;text-indent: 10rpx;width: 460rpx;}
+/* 分销区域-定位 */
+.locationLi_distri{font-size: 26rpx;padding: 4rpx 20rpx;background-color: rgba(32,30,37,.4);color: #fff;display: inline-block;border-radius: 30rpx;}
+/* 分销区域 */
+.distrBox{background-color: #fff;padding: 20rpx 30rpx;}
+.distrBox>.distrMsgBox{display: inline-block;width: 33%;}
+.distrMsgBox>view{text-align: center;}
+.distr_value{font-size: 40rpx;line-height: 60rpx;color: #201E25;}
+.distr_label{font-size: 24rpx;line-height: 40rpx;color: #918F97;}
+
 /* 功能块1 */
 .block{
   padding: 12rpx 30rpx;

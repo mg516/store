@@ -18,23 +18,23 @@
       <view class='goods-box'>
         <view class='box-name'>报损备注</view>
         <view class='box-view'>
-          <input type='text' class='remark' value='{{remark}}' placeholder='请输入报损备注' bindinput='editRemark'></input>
+          <input type='text' class='remark' value='{{remark}}' placeholder='请输入报损备注' placeholder-style='color:#aaa' bindinput='editRemark'></input>
         </view>
       </view>
       <view class='goods-box'>
         <view class='box-name'>审核人</view>
         <view class='box-view'>
-          <input type='text' class='remark' value='{{checkListStr}}' placeholder='请选择审核人' disabled='true' data-typeval="check" catchtap='chooseCheck'></input>
+          <input type='text' class='remark' value='{{checkListStr}}' placeholder='请选择审核人' placeholder-style='color:#aaa' disabled='true' data-typeval="check" catchtap='chooseCheck'></input>
         </view>
       </view>
       <view class='goods-box'>
         <view class='box-name'>抄送人</view>
         <view class='box-view'>
-          <input type='text' class='remark' value='{{lookListStr}}' placeholder='请选择审核人' disabled='true' data-typeval="look" catchtap='chooseCheck'></input>
+          <input type='text' class='remark' value='{{lookListStr}}' placeholder='请选择审核人' placeholder-style='color:#aaa' disabled='true' data-typeval="look" catchtap='chooseCheck'></input>
         </view>
       </view>
       <view class='goods-box1 clearfix'>
-        <view class='unit-list'>附件：</view>
+        <view class='unit-list'>附　　件：</view>
         <view class="box-item">
           <block wx:for="{{breakage_file}}" wx:for-item="itemImg" wx:for-index="indeximg" wx:key="*this">
             <view class="weui-uploader__file" catchtap="previewImage" id="{{item}}" data-index="{{index}}" data-indeximg="{{indeximg}}">
@@ -69,15 +69,16 @@
       </view>
       <view class='goods-box1 clearfix'>
         <view class='price-view'><view class='unit-list'>库存数量： <text class='kunc-style'>{{items.num}}</text></view></view>
-        <view class='total-view'><view class='unit-list'>报损明细：</view><input cursor-spacing="50" type='digit' class='input-list' value='{{items.report_xs}}' placeholder-style='font-size:26rpx;text-align: center;' placeholder='报损明细' bindinput='inputNumber' data-index='{{index}}' data-typeval="key1"></input><view class='unit-list'>{{items.report_unit}}</view></view>
+        <view class='total-view'><view class='unit-list'>报损明细：</view><input cursor-spacing="50" type='digit' class='input-list' value='{{items.report_xs}}' placeholder-style='font-size:26rpx;text-align: center;' placeholder='报损明细' bindinput='inputNumber' data-index='{{index}}' data-typeval="key1" style='text-align: center;'></input><view class='unit-list'>{{items.report_unit}}</view></view>
       </view>
       <view class='goods-box1 clearfix'>
-        <view class='price-view'>单价:<text class='price-style'><text style='font-size:30rpx;'>￥</text>{{items.report_sun_money}}</text>元/{{items.report_unit}}</view>
+        <view class='price-view'>单　　价:<text class='price-style'><text style='font-size:30rpx;'>￥</text>{{items.report_sun_money}}</text>元/{{items.report_unit}}</view>
         <view class='total-view'>报损总额:<text class='price-style'><text style='font-size:30rpx;'>￥</text>{{items.report_total_price*1>0?items.report_total_price:'-'}}</text>元</view>
       </view>
       <view class='goods-box1 clearfix'>
         <view class='unit-list'>报损原因：</view>
-        <input cursor-spacing="50" type='text' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='报损原因' bindinput='inputText' data-infoid='{{items.id}}' data-index='{{index}}' data-typeval="key4"></input>
+        <input cursor-spacing="50" type='text' class='input-list input-long' value='{{items.report_reson}}' placeholder-style='font-size:26rpx;' placeholder='报损原因' bindinput='inputText'
+         data-infoid='{{items.id}}' data-index='{{index}}' data-typeval="key4"></input>
         <view class='unit-list' style='font-size:24rpx;color:#FC7903'>(必填)</view>
       </view>
     </view>

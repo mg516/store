@@ -1,0 +1,45 @@
+page{background-color: #FAFAFA;}
+.ableBox{ position: relative; padding: 40rpx 0;background-color: #fff;width: 100%;height: 286rpx}
+.ableBox>.ableBox_value{ text-align: center;font-size: 60rpx;color: #201E25;line-height: 80rpx; }
+.ableBox>.ableBox_label{ text-align: center;font-size: 24rpx;color: #918F97;line-height: 50rpx; }
+.handle_detail{
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  border: 2rpx solid #6F6D75;
+  border-right: 0;
+  border-radius: 24rpx 0 0 24rpx;
+  line-height: 30rpx;
+  color: #6F6D75;
+  font-size: 28rpx;
+  padding: 8rpx 10rpx 8rpx 20rpx;
+}
+
+.dataBox{
+  position: relative;
+  z-index: 1;
+  width: 690rpx;
+  height: 160rpx;
+  margin: -80rpx auto 0;
+  background-color: #fff;
+  box-shadow: 0 0 6rpx rgba(0,0,0,.1);
+  border-radius: 20rpx;
+  padding: 30rpx 0;
+}
+.dataBox>.dataItem{display: inline-block;width: 33%;}
+.dataItem>view{text-align: center;}
+.dataItem_value{font-size: 42rpx;line-height: 60rpx;}
+.dataItem_value>text{font-size: 28rpx;}
+.dataItem_label{font-size: 24rpx;color: #918F97;line-height: 40rpx;}
+
+.handle_reflect{
+  margin: 60rpx auto 0;
+  width: 690rpx;
+  height: 80rpx;
+  background: linear-gradient(to right, #7DDD73 , #66D964);
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 34rpx;
+}

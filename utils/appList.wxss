@@ -31,7 +31,7 @@
 .list-search{
   /* width: 94%; */
   width: 710rpx;
-  height:60rpx;
+  /* height:60rpx; */
   margin: 15rpx auto;
   background-color:#f6f6f6;
   border-radius:20rpx;

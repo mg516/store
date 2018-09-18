@@ -55,10 +55,11 @@
   margin:20rpx 30rpx;
 }
 .goods-del{
-  width:50rpx;
-  height:60rpx;
+  width:24rpx;
+  height:30rpx;
   float:right;
-  padding:10rpx;
+  padding:16rpx;
+  box-sizing: content-box;
 }
 /* 商品信息头部 */
 .goods-title{
@@ -84,7 +85,7 @@
   font-size:32rpx;
   padding:10rpx 0;
   /* height:60rpx; */
-  line-height: 60rpx;
+  line-height: 50rpx;
 }
 .name-box{
   float:left;
@@ -134,7 +135,7 @@
 /* 继续添加商品 */
 .goods-add{
   padding:20rpx 0;
-  height:60rpx;
+  /* height:60rpx; */
   line-height: 60rpx;
   text-align: center;
   font-size:30rpx;

@@ -8,6 +8,36 @@ Page({
   data: {
     opacity: '0',
     ifOnce: true,
+    distributor:{
+      member:{
+        mobile:"18566215125",
+        realname:"苗刚",
+        store_name:"青蛙家苗栗路沁园店"
+      },
+      yongjin:88.88,
+      ordernum:88,
+      df_ordernum:15,
+      entrance: [{
+        list: [
+          { id: '1', name: '我的账户', icon: '/images/index/qinghuo.png', url: '/pages/subDistri/pages/myAccount/myAccount' },
+          { id: '1', name: '商品列表', icon: '/images/index/qinghuo.png', url: '/pages/subStockup/pages/request-list/request-list?direct_supply=1' }
+        ],
+        id: 6,
+        name: '账户·资产',
+        pid: 0
+      },
+        {
+          list: [
+            { id: '9', name: '扫码提货单', icon: '/images/index/saoma.png', url: 'code' },
+            { id: '8', name: '订单列表单', icon: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
+            { id: '8', name: '客户列表', icon: '/images/index/vip.png', url: '/pages/subVip/pages/vipList/vipList' },
+            { id: '8', name: '推广小单', icon: '/images/index/addorder.png', url: '/pages/subOrder/pages/order-add/order-add' },
+          ],
+          id: 6,
+          name: '客户·服务',
+          pid: 0
+        }]
+    },
     entrance1: [
       {
         list:[

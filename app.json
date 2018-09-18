@@ -14,6 +14,13 @@
   },
   "subPackages": [
     {
+      "root": "pages/subDistri",
+      "pages": [
+        "pages/myAccount/myAccount",
+        "pages/applyPresent/applyPresent"
+      ]
+    },
+    {
       "root": "pages/subOrder",
       "pages": [
         "pages/order-add/order-add",

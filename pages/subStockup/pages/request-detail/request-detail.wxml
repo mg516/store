@@ -11,7 +11,7 @@
       <view class='order-list'>订单状态：<text>{{orderDetail.order_status_name}}</text></view>
       <view class='order-list'>分拣状态：<text>{{orderDetail.sorting_status_name}}</text></view>
       <view class='order-list'>付款状态：<text>{{orderDetail.pay_status_name}}</text></view>
-      <view class='order-list'>订单来源：<text>{{orderDetail.name}}</text></view>
+      <view class='order-list'>订单来源：<text>{{orderDetail.order_origin_name}}</text></view>
       <!-- <view class='order-list'>是否直供：<text>{{orderDetail.name}}</text></view> -->
       <view class='order-list'>总计：<text style='font-weight:blod;color:#D80000;font-size:30rpx;'>{{orderDetail.total}}元</text></view>
       <view class='order-list'>客户：<text>{{orderDetail.name}}</text></view>

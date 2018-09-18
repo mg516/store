@@ -1,0 +1,41 @@
+page{background-color: #FAFAFA;}
+.mainBox{width: 690rpx;background-color: #fff;margin: 30rpx 30rpx 0 30rpx;}
+.userBox{width: 100%;padding: 30rpx 0;}
+.liner{position: relative;}
+.liner::after{
+  content: '';
+  width:650rpx;
+  height: 2rpx;
+  background-color: #F5F5F5;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 20rpx;
+}
+.userBox>view{display: inline-block;vertical-align: middle;}
+.user_label{font-size: 24rpx;color: #201E25;text-indent: 20rpx;}
+.user_head{width: 72rpx;height: 72rpx;overflow: hidden;border-radius: 50%;margin-left: 20rpx;}
+.user_msg{font-size: 28rpx;margin-left: 20rpx;}
+
+.inputBox{width: 100%;padding: 60rpx 20rpx;}
+.inputBox>.input_label{font-size: 24rpx;color: #201E25;}
+.inputBox>input{color: #201E25;font-weight: bold;position: relative;line-height: 80rpx;font-size: 60rpx;padding: 20rpx 20rpx 20rpx 40rpx;margin-top: 40rpx;}
+.inputBox>input::before{content: '¥';position: absolute;font-size: 42rpx;color: #201E25;top: 10rpx;left: 0;}
+
+.moneyBox{padding: 20rpx 20rpx;}
+.moneyBox>view{display: inline-block;}
+.moneyBox>.ableMoney{font-size: 24rpx;color: #918F97;}
+.moneyBox>.handle_allMoney{font-size: 28rpx;color: #201E25;text-indent: 50rpx;}
+
+.handle_reflect{
+  margin: 60rpx auto 0;
+  width: 690rpx;
+  height: 80rpx;
+  background: linear-gradient(to right, #7DDD73 , #66D964);
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 34rpx;
+}
+.handle_label{color: #918F97;font-size: 24rpx;text-align: left;width: 690rpx;text-indent: 20rpx;margin-top: 20rpx;}

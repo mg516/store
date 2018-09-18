@@ -8,13 +8,13 @@
       <view class='userInfo'>
         <view class='nickname' wx:if="{{member}}">{{member.realname}}　{{member.mobile}}</view>
         <open-data wx:else class='nickname' type="userNickName" lang="zh_CN"></open-data>
-        <view class='locationLi' wx:if="{{member.store_name}}">
+        <view class='locationLi' wx:if="{{member.store_name&&!distributor}}">
           <view class='location imgBox'>
             <image src='/images/location.png'></image>
           </view>
           <view class='locationText ellipsis'>{{member.store_name}}</view>
         </view>
-        <!-- <view class='usernum'>51651413138</view> -->
+        <view class='locationLi_distri' wx:if="{{distributor}}">自提站点：{{distributor.member.store_name}}</view>
       </view>
       <!-- <view class='msgBox imgBox'>
         <image src='../../images/msg.png'></image>
@@ -23,7 +23,21 @@
     </view>
   </view>
   <view class='blockBox'>
-    <view class='block' wx:for="{{entrance}}" wx:for-item="enItem" wx:key="{{index}}">
+    <view class='distrBox' wx:if="{{distributor}}">
+      <view class='distrMsgBox'>
+        <view class='distr_value'>{{distributor.yongjin}}</view>
+        <view class='distr_label'>今日佣金</view>
+      </view>
+      <view class='distrMsgBox'>
+        <view class='distr_value'>{{distributor.ordernum}}</view>
+        <view class='distr_label'>今日订单</view>
+      </view>
+      <view class='distrMsgBox'>
+        <view class='distr_value'>{{distributor.df_ordernum}}</view>
+        <view class='distr_label'>待发货订单</view>
+      </view>
+    </view>
+    <view class='block' wx:for="{{distributor?distributor.entrance:entrance1}}" wx:for-item="enItem" wx:key="{{index}}">
       <view class='title'>{{enItem.name}}</view>
       <view class="appBox">
         <view class='appItem' wx:for='{{enItem.list}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>

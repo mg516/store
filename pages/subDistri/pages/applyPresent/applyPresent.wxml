@@ -1,0 +1,24 @@
+<view class="container">
+  <view class='mainBox'>
+    <view class='userBox liner'>
+      <view class='user_label'>收款账户</view>
+      <view class='user_head'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class='user_msg'>
+        <view>苗刚</view>
+        <view>18566215125</view>
+      </view>
+    </view>
+    <view class='inputBox liner'>
+      <view class='input_label'>提现金额</view>
+      <input type='number' value='88'></input>
+    </view>
+    <view class='moneyBox'>
+      <view class='ableMoney'>可提现余额：¥999.99</view>
+      <view class='handle_allMoney'>全部提现</view>
+    </view>
+  </view>
+  <view class='handle_reflect' catchtap='reflect'>提　现</view>
+  <view class='handle_label'>提现申请后3个工作日内返回处理结果</view>
+</view>

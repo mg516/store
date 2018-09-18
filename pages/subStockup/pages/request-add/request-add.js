@@ -46,7 +46,8 @@ Page({
         console.log(res.data)
         if (res.data.data) {
           let curGoods = res.data.data;
-          let requestGoods = this.data.requestGoods;
+          curGoods.least_num > 0 ? curGoods.needNum = curGoods.least_num : curGoods.needNum = 1;
+          let requestGoods = JSON.parse(JSON.stringify(this.data.requestGoods)) || [];
           for (let i = 0; i < requestGoods.length; i++) {
             if (requestGoods[i].bar_code == curGoods.bar_code) {
               this.setData({
@@ -61,17 +62,21 @@ Page({
             if (i >= requestGoods.length - 1) {
               console.log(i)
               requestGoods.push(curGoods);
-              wx.setStorageSync('requestGoods', requestGoods);
-              this.setData({
-                requestGoods: requestGoods,
-                scrollToThere: 'scroll' + (i + 1)
-              })
-              setTimeout(() => {
-                this.setData({ scrollToThere: null })
-              }, 500)
-              this.countMoney();
               break;
             }
+          }
+          if (requestGoods.length <= 0) requestGoods.push(curGoods);
+          if (this.data.requestGoods.length < requestGoods.length){
+            wx.setStorageSync('requestGoods', requestGoods);
+            let scrollToThere = 'scroll' + requestGoods.length
+            this.setData({
+              requestGoods: requestGoods,
+              scrollToThere: scrollToThere
+            })
+            setTimeout(() => {
+              this.setData({ scrollToThere: null })
+            }, 500)
+            this.countMoney();
           }
         } else {
           wx.showModal({
@@ -86,6 +91,7 @@ Page({
   //提交
   Submit: function () {
     let senddate = this.data.senddate;
+    let newGoods = [];
     if (!senddate) {
       common.tip('请选择配送时间', 'none');
       this.setData({scrollTop: 0}); return;
@@ -93,8 +99,8 @@ Page({
     let requestGoods = this.data.requestGoods;
     if (requestGoods.length > 0) {
       for (let i = 0; i < requestGoods.length; i++) {
-        if (!requestGoods[i].needNum || parseFloat(requestGoods[i].needNum) <= 0 || !requestGoods[i].total_price || parseFloat(requestGoods[i].total_price) <= 0) {
-          common.tip('信息不合法 或 不完整', 'none');
+        if (!requestGoods[i].needNum || (parseFloat(requestGoods[i].needNum) <= 0 || parseFloat(requestGoods[i].needNum) < parseFloat(requestGoods[i].least_num)) || !requestGoods[i].total_price || parseFloat(requestGoods[i].total_price) <= 0) {
+          common.tip('商品数量为空或未达到起订数量', 'none');
           this.setData({
             scrollToThere: 'scroll' + i
           })
@@ -103,6 +109,21 @@ Page({
           },500)
           return;
         }
+        let newArr = {};
+        newArr.goods_id = requestGoods[i].id;
+        newArr.direct_supply = requestGoods[i].direct_supply;
+        newArr.num = requestGoods[i].needNum;
+        newArr.name = requestGoods[i].name;
+        newArr.thumb_url = requestGoods[i].thumb_url || ' ';
+        newArr.bar_code = requestGoods[i].bar_code || ' ';
+        newArr.code = requestGoods[i].code || ' ';
+        newArr.goods_code = requestGoods[i].goods_code || ' ';
+        newArr.total_price = requestGoods[i].total_price;
+        newArr.unit = requestGoods[i].unit || ' ';
+        newArr.unit_id = requestGoods[i].unit_id || ' ';
+        newArr.price = requestGoods[i].price;
+        newArr.remark = requestGoods[i].remark||' ';
+        newGoods.push(newArr)
       }
     } else if (!requestGoods || requestGoods.length <= 0) {
       common.tip('请选择报损商品', 'none');
@@ -116,14 +137,14 @@ Page({
       confirmText: '提交',
       success: (res) => {
         if (res.confirm) {
-          this.submitFunc()
+          this.submitFunc(newGoods)
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
   },
-  submitFunc:function(){
+  submitFunc: function (goods){
     wx.request({
       url: config.request,
       method: "POST",
@@ -131,9 +152,10 @@ Page({
         user_token: app.globalData.user_token,
         action: 'add',
         total: this.data.totalMoney,
-        content: this.data.remark,
-        goods: this.data.requestGoods,
-        direct_supply: this.data.direct_supply
+        content: this.data.remark||' ',
+        goods: goods,
+        // direct_supply: this.data.direct_supply,
+        delivery_time: this.data.senddate
       },
       success: (res) => {
         console.log(res.data)

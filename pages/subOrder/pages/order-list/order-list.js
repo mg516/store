@@ -284,7 +284,7 @@ Page({
             this.setData({
               orderList: []
             })
-          }else{
+          } else if (this.data.orderList.length>0){
             // setTimeout(function(){
             //   common.tip('没有更多数据了','none')
             // },100)
