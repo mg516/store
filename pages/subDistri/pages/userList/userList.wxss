@@ -1,0 +1,25 @@
+page{background-color: #FAFAFA;}
+.userItem{width: 100%;padding: 20rpx 30rpx;background-color: #fff;border-top: 10rpx solid #FAFAFA;}
+.liner{position: relative;}
+.liner::after{
+  content: '';
+  width:620rpx;
+  height: 2rpx;
+  background-color: #F5F5F5;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 00rpx;
+}
+.userItem>view{display: inline-block;vertical-align: middle;}
+.user_head{width: 64rpx;height: 64rpx;overflow: hidden;border-radius: 50%;}
+.user_msg{font-size: 28rpx;margin-left: 10rpx;width: 620rpx;}
+.user_msg>view{display: inline-block;}
+.user_msg>view:nth-of-type(2n-1){width: 360rpx;text-align: left;}
+.user_msg>view:nth-of-type(2n){width: 260rpx;text-align: right;}
+.user_msg>.name,.user_msg>.status{font-size: 28rpx;color: #000;line-height: 50rpx;}
+.user_msg>.offerMoney,.user_msg>.signInTime{font-size: 24rpx;color: #918F97;}
+.status_img{width: 26rpx;height: 26rpx;display: inline-block;vertical-align: middle;margin-left: 20rpx;}
+.user_detail{width: 600rpx;margin-left: 76rpx;margin-top: 16rpx;padding-top: 6rpx;}
+.user_detail>view{display: inline-block;width: 50%;color: #201E25;font-size: 24rpx;line-height: 50rpx;}
+.user_detail>.time{width: 100%}

@@ -1,0 +1,31 @@
+<view class="container">
+  <view class='topBox'>
+    <view class='message'>买家实付金额低于（商品成本价+奖励值）时，不发放奖励</view>
+    <view class='searchBox'>
+      <view class="list-search liner">
+        <image class='search-icon' src='/images/searchIcon.png' bindtap='getOrderList'></image>
+        <input class='search-input' placeholder-style='font-size:26rpx;' placeholder='请输入商品名称' bindinput='searchContent' value='{{searchContent}}' confirm-type='search' bindconfirm="getSearchOrderList"></input>
+        <image class='delect-icon' src='/images/delect.png' bindtap='Delect' wx:if="{{showdelect}}"></image> 
+      </view>
+    </view>
+  </view>
+  <view class='dataBox'>
+    <view class='dataItem' wx:for="{{goodsList}}" wx:for-item="goodsItem">
+      <view class='goodsImg imgBox'><image src='http://www.w3school.com.cn/ui2017/compatible_chrome.png'></image></view>
+      <view class='goodsMsg'>
+        <view class='goodsTitle'>{{goodsItem.name}}</view>
+        <view class='goodsText'>{{goodsItem.text}}</view>
+        <view class='goodsPrice'>
+          <text class='RMB'>¥ {{goodsItem.price}}</text> / {{goodsItem.unit}} <text class='zhuan'>赚</text><text class='RMB'> ¥ {{goodsItem.zhuan}}</text> / {{goodsItem.unit}}
+          <view class='reSale'>已售{{goodsItem.saleNum}}份</view>
+        </view>
+        <view class='shareBar'>
+          <view class='shareText btnBox' catchtap='shareGoods'>推广<button open-type="share"></button></view>
+          <view class='shareImg imgBox'>
+            <image src='/images/shareGoods.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,6 +1,6 @@
-var host = "http://gy.t.geekzj.cn/apimd/";
+// var host = "http://gy.t.geekzj.cn/apimd/";
 // var host = "http://192.168.3.29/apimd/";
-// var host = "https://wb.qingwajia.cn/apimd/";
+var host = "https://wb.qingwajia.cn/apimd/";
 // var host = "https://shop.qingwajia.cn/shop/"   //域名配置
 // var host = "http://gy.t.geekzj.cn/shop/"   //域名配置
 var config = {

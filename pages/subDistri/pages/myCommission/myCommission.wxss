@@ -1,0 +1,35 @@
+page{background-color: #FAFAFA;}
+
+.topBox{position: fixed;top: 0;left: 0;width: 100%;height:360rpx;background-color:#FAFAFA;}
+
+.ableBox{ position: relative; padding: 20rpx 0;background-color: #fff;width: 100%;height: 286rpx}
+.ableBox>.ableBox_label{ text-align: left;font-size: 24rpx;color: #918F97;line-height: 50rpx;text-indent: 60rpx; }
+.ableBox>.ableBox_value{ text-align: left;font-size: 60rpx;color: #201E25;line-height: 140rpx;text-indent: 60rpx;font-weight: bold; }
+
+
+.selectBox{
+  position: relative;
+  z-index: 1;
+  width: 690rpx;
+  /* height: 160rpx; */
+  margin: -50rpx auto 0;
+  background-color: #fff;
+  box-shadow: 0 0 6rpx rgba(0,0,0,.1);
+  border-radius: 20rpx;
+  padding: 10rpx 0;
+}
+/* .selectBox{width: 100%;position: relative;box-shadow: 0 0 8rpx #ccc;} */
+.selectBox::after{content: '';display:block;width: 100rpx;height: 2rpx;background-color: #6EB92C;bottom: 0;left: 36rpx;position: absolute;transition: left .1s;}
+.select1::after{left:36rpx;}
+.select2::after{left:208rpx;}
+.select3::after{left:380rpx;}
+.select4::after{left:552rpx;}
+.selectBox>._option{display: inline-block;width: 25%;text-align: center;font-size: 28rpx;padding: 26rpx 0;}
+
+.dataBox{width: 100%;margin-top:360rpx;background-color: #fff;}
+.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;}
+.data_item>view{display: inline-block;width: 50%;vertical-align: middle;}
+.data_label{color: #1E1E1E;font-size: 28rpx;text-align: left;line-height: 50rpx;}
+.data_time{color: #999999;font-size: 24rpx;text-align: left;line-height: 40rpx;}
+.data_value{font-size: 34rpx;text-align: right;}
+.data_value._red{color: #DD5F63;}

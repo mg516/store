@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class='container'>
-  <view class='headBoxlag'>
-    <view class='headBox'>
+  <view class='headBoxlag' wx:if="{{!distributor}}">
+    <view class='headBox' catchtap='userDetail'>
       <view class='headPic'>
         <open-data type="userAvatarUrl"></open-data>
       </view>
@@ -14,27 +14,40 @@
           </view>
           <view class='locationText ellipsis'>{{member.store_name}}</view>
         </view>
-        <view class='locationLi_distri' wx:if="{{distributor}}">自提站点：{{distributor.member.store_name}}</view>
       </view>
-      <!-- <view class='msgBox imgBox'>
-        <image src='../../images/msg.png'></image>
-        <view class='msgBar'>99</view>
-      </view> -->
+      <!-- <view class='msgBox imgBox'><image src='../../images/msg.png'></image><view class='msgBar'>99</view></view> -->
+    </view>
+  </view>
+  <view class='headBoxlag head_distri' wx:else>
+    <view class='head_bg imgBox'>
+      <image src='/images/user_bg.png'></image>
+    </view>
+    <view class='headBox' catchtap='userDetail'>
+      <view class='headPic'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class='userInfo'>
+        <view class='nickname' wx:if="{{member}}">{{member.realname}}</view>
+        <view class='nickname' wx:if="{{member}}">{{member.mobile}}</view>
+        <open-data wx:else class='nickname' type="userNickName" lang="zh_CN"></open-data>
+        <view class='locationLi_distri'>自提站点：{{distributor.member.store_name}}</view>
+      </view>
+      <view class='into imgBox'><image src='../../images/into_fff.png'></image></view>
     </view>
   </view>
   <view class='blockBox'>
     <view class='distrBox' wx:if="{{distributor}}">
-      <view class='distrMsgBox'>
+      <view class='distrMsgBox' catchtap='myCommission'>
         <view class='distr_value'>{{distributor.yongjin}}</view>
         <view class='distr_label'>今日佣金</view>
       </view>
-      <view class='distrMsgBox'>
+      <view class='distrMsgBox' catchtap='toOrderDetail' data-totype="today">
         <view class='distr_value'>{{distributor.ordernum}}</view>
         <view class='distr_label'>今日订单</view>
       </view>
-      <view class='distrMsgBox'>
+      <view class='distrMsgBox' catchtap='toOrderDetail' data-totype="1-0">
         <view class='distr_value'>{{distributor.df_ordernum}}</view>
-        <view class='distr_label'>待发货订单</view>
+        <view class='distr_label'>待自提订单</view>
       </view>
     </view>
     <view class='block' wx:for="{{distributor?distributor.entrance:entrance1}}" wx:for-item="enItem" wx:key="{{index}}">

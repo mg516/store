@@ -17,7 +17,14 @@
       "root": "pages/subDistri",
       "pages": [
         "pages/myAccount/myAccount",
-        "pages/applyPresent/applyPresent"
+        "pages/applyPresent/applyPresent",
+        "pages/accountDetail/accountDetail",
+        "pages/myCommission/myCommission",
+        "pages/goodsList/goodsList",
+        "pages/cashPostal/cashPostal",
+        "pages/userList/userList",
+        "pages/shareStore/shareStore",
+        "pages/userDetail/userDetail"
       ]
     },
     {

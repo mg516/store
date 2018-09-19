@@ -335,6 +335,35 @@ Page({
   },
   onLoad: function (options) {
     console.log(options.currentid)
+    // 获取门店自提点数据
+    let distributor = app.globalData.distributor;
+    this.setData({
+      distributor:distributor
+    })
+    if (options.distri_status) {
+      let status = options.status;
+      let orderSearchIndex = 0;
+      let classifySearchIndex = 0;
+      let Startdate = '';
+      let classifySearch = [{ text: '自提订单', order_type: '1' }];
+      let orderSearch = [//自提订单的订单状态
+        { text: '选择状态', order_status: '1' },
+        { text: '未支付', order_status: '2' },
+        { text: '待提货', order_status: '5' },
+        { text: '已完成', order_status: '6' }];
+      if (options.distri_status == '1-0') { orderSearchIndex = 2 }//待自提
+      else if (options.distri_status == 'today') { orderSearchIndex = 0; Startdate = common.today()}//今日订单
+      else if (options.distri_status == 'all') { orderSearchIndex = 0; }//全部
+      this.setData({
+        classifySearch: classifySearch,
+        classifySearchIndex: 0,
+        orderSearchIndex: orderSearchIndex,
+        orderSearch: orderSearch,
+        Startdate: Startdate || common.GetDay(-7),
+        Enddate: common.today()
+      })
+    }
+
     if (options.currentid != undefined) {
       this.setData({
         currentid: options.currentid

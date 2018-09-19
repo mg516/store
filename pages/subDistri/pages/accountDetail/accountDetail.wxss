@@ -1,0 +1,17 @@
+page{color: #201E25;}
+/* 切换条 */
+.selectBox{width: 100%;position: relative;box-shadow: 0 0 8rpx #ccc;}
+.selectBox::after{content: '';display:block;width: 120rpx;height: 2rpx;background-color: #6EB92C;bottom: 0;left: 65rpx;position: absolute;transition: left .1s;}
+.select1::after{left:65rpx;}
+.select2::after{left:315rpx;}
+.select3::after{left:565rpx;}
+.selectBox>._option{display: inline-block;width: 33%;text-align: center;font-size: 28rpx;padding: 26rpx 0;}
+
+/* 列表 */
+.dataBox{width: 100%;}
+.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;}
+.data_item>view{display: inline-block;width: 50%;vertical-align: middle;}
+.data_label{color: #1E1E1E;font-size: 28rpx;text-align: left;line-height: 50rpx;}
+.data_time{color: #999999;font-size: 24rpx;text-align: left;line-height: 40rpx;}
+.data_value{font-size: 28rpx;text-align: right;}
+.data_value._red{color: #DD5F63;}

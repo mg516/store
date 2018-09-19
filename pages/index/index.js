@@ -19,24 +19,24 @@ Page({
       df_ordernum:15,
       entrance: [{
         list: [
-          { id: '1', name: '我的账户', icon: '/images/index/qinghuo.png', url: '/pages/subDistri/pages/myAccount/myAccount' },
-          { id: '1', name: '商品列表', icon: '/images/index/qinghuo.png', url: '/pages/subStockup/pages/request-list/request-list?direct_supply=1' }
+          { id: '1', name: '我的账户', icon: '/images/index/account.png', url: '/pages/subDistri/pages/myAccount/myAccount' },
+          { id: '1', name: '商品列表', icon: '/images/index/commodity.png', url: '/pages/subDistri/pages/goodsList/goodsList' }
         ],
         id: 6,
         name: '账户·资产',
         pid: 0
       },
-        {
-          list: [
-            { id: '9', name: '扫码提货单', icon: '/images/index/saoma.png', url: 'code' },
-            { id: '8', name: '订单列表单', icon: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
-            { id: '8', name: '客户列表', icon: '/images/index/vip.png', url: '/pages/subVip/pages/vipList/vipList' },
-            { id: '8', name: '推广小单', icon: '/images/index/addorder.png', url: '/pages/subOrder/pages/order-add/order-add' },
-          ],
-          id: 6,
-          name: '客户·服务',
-          pid: 0
-        }]
+      {
+        list: [
+          { id: '9', name: '扫码提货单', icon: '/images/index/saoma.png', url: 'code' },
+          { id: '8', name: '订单列表单', icon: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
+          { id: '8', name: '客户列表', icon: '/images/index/customer.png', url: '/pages/subDistri/pages/userList/userList' },
+          { id: '8', name: '推广小店', icon: '/images/index/spread.png', url: '/pages/subDistri/pages/shareStore/shareStore' },
+        ],
+        id: 6,
+        name: '客户·服务',
+        pid: 0
+      }]
     },
     entrance1: [
       {
@@ -174,11 +174,34 @@ Page({
       }
     })
   },
+  // 分销-跳转到订单列表
+  toOrderDetail:function(e){
+    let totype = e.currentTarget.dataset.totype;
+    wx.navigateTo({
+      url: `/pages/subOrder/pages/order-list/order-list?distri_status=${totype}`,
+    })
+  },
+  // 个人中心
+  userDetail:function(){
+    wx.navigateTo({
+      url: '/pages/subDistri/pages/userDetail/userDetail',
+    })
+  },
+  // 我的佣金
+  myCommission:function(){
+    wx.navigateTo({
+      url: '/pages/subDistri/pages/myCommission/myCommission',
+    })
+  },
   //点击跳转下一页
   goTo: function (e) {
     var url = e.currentTarget.dataset.url;
     if (url == 'code'){
       this.scanCode();
+    } else if (url == "/pages/subOrder/pages/order-list/order-list" && this.data.distributor){
+      wx.navigateTo({
+        url: `/pages/subOrder/pages/order-list/order-list?distri_status=all`,
+      })
     }else{
       wx.navigateTo({
         url: url,
@@ -205,6 +228,7 @@ Page({
       entrance: app.globalData.entrance,
       member: app.globalData.member
     })
+    if (this.data.distributor) app.globalData.distributor = this.data.distributor;
   },
   ifLogin:function(e){
     console.log(1)

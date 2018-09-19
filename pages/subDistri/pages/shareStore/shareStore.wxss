@@ -1,0 +1,8 @@
+.imgBox{width: 690rpx;height: 1000rpx;}
+.handleBox{position: fixed;bottom: 0;left: 0;background-color: #fff;width: 100%;text-align: center;}
+.handleBox>view{border: 2rpx solid #F5B23B;border-radius: 10rpx;line-height: 80rpx;width: 280rpx;text-align: center;display: inline-block;margin: 40rpx 30rpx;}
+
+.saveIcon,.shareIcon{width: 32rpx;height: 32rpx;margin-right: 10rpx;}
+.saveBar>view,.shareBar>view{display: inline-block;font-size: 28rpx;vertical-align: middle;}
+.saveBar{background-color: #fff;color: #F5B23B;}
+.shareBar{background-color: #F5B23B;color: #fff;}

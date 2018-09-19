@@ -1,0 +1,20 @@
+<view class="container">
+  <view class='imgBox'>
+    <image src='/images/shareImg.png'></image>
+  </view>
+  <view class='handleBox'>
+    <view class='saveBar' catchtap='saveImg'>
+      <view class='saveIcon imgBox'>
+        <image src='/images/saveIcon.png'></image>
+      </view>
+      <view>保存图片</view>
+    </view>
+    <view class='shareBar btnBox'>
+      <button open-type="share"></button>
+      <view class='shareIcon imgBox'>
+        <image src='/images/shareIcon.png'></image>
+      </view>
+      <view>分享给好友</view>
+    </view>
+  </view>
+</view>

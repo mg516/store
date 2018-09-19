@@ -1,0 +1,36 @@
+@import '../../../../utils/appList.wxss';
+page{background-color: #FAFAFA;color: #201E25;}
+.topBox{position: fixed;top: 0;left: 0;width: 100%;background-color: #fff;z-index: 1;}
+.message{color: #EBA84D;background-color: #FEFAF4;font-size: 24rpx;width: 100%;line-height: 72rpx;text-align: center;}
+.searchBox{width:100%;background-color:#fff;}
+.list-search{border-radius: 40rpx;width: 690rpx;}
+.search-icon {top:16rpx;left:20rpx;width: 30rpx;height: 30rpx;}
+
+.liner{position: relative;}
+.liner::after{
+  content: '';
+  width:650rpx;
+  height: 2rpx;
+  background-color: #F5F5F5;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 20rpx;
+}
+
+.dataBox{width: 100%;padding: 0 30rpx;margin-top: 170rpx;background-color: #fff;}
+.dataBox>.dataItem{width: 100%;padding: 30rpx 0;}
+.dataItem>view{display: inline-block;vertical-align: middle;}
+.dataItem>.goodsImg{width: 160rpx;height: 160rpx;}
+.dataItem>.goodsMsg{margin-left: 20rpx;position: relative;}
+.goodsTitle{font-size: 34rpx;line-height: 40rpx;}
+.goodsText{font-size: 24rpx;color: #918F97;height: 70rpx;margin-top: 10rpx;}
+.goodsPrice{color: #918F97;font-size: 24rpx;position: relative;width: 510rpx;}
+.zhuan{font-size: 24rpx;text-align: center;line-height: 40rpx;background-color: #EBA84D;border-radius: 50%;display: inline-block;color: #fff;width: 40rpx;vertical-align:top;}
+.RMB{font-size: 34rpx;color: #201E25;}
+.reSale{color: #918F97;font-size: 24rpx;position: absolute;right: 0;bottom: 0;}
+/* 分享按钮 */
+.shareBar{position: absolute;top: 58rpx;right: 0;width: 102rpx;height: 40rpx;border: 2rpx solid #6EB92C;border-radius: 22rpx;text-align: center;}
+.shareBar>view{display: inline-block;vertical-align: top;}
+.shareBar>.shareText{font-size: 24rpx;color: #6EB92C;text-align: center;line-height: 40rpx;}
+.shareBar>.shareImg{width: 30rpx;height: 26rpx;margin-top: 6rpx;}

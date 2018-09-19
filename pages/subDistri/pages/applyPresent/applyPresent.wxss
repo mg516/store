@@ -17,10 +17,10 @@ page{background-color: #FAFAFA;}
 .user_head{width: 72rpx;height: 72rpx;overflow: hidden;border-radius: 50%;margin-left: 20rpx;}
 .user_msg{font-size: 28rpx;margin-left: 20rpx;}
 
-.inputBox{width: 100%;padding: 60rpx 20rpx;}
+.inputBox{width: 100%;padding: 60rpx 20rpx 20rpx 20rpx;}
 .inputBox>.input_label{font-size: 24rpx;color: #201E25;}
-.inputBox>input{color: #201E25;font-weight: bold;position: relative;line-height: 80rpx;font-size: 60rpx;padding: 20rpx 20rpx 20rpx 40rpx;margin-top: 40rpx;}
-.inputBox>input::before{content: '¥';position: absolute;font-size: 42rpx;color: #201E25;top: 10rpx;left: 0;}
+.inputBox>input{color: #201E25;font-weight: bold;height:70rpx;position: relative;line-height: 70rpx;font-size: 60rpx;padding: 20rpx 20rpx 20rpx 40rpx;margin-top: 40rpx;}
+.inputBox>input::before{content: '¥';position: absolute;font-size: 42rpx;color: #201E25;top: 20rpx;left: 0;}
 
 .moneyBox{padding: 20rpx 20rpx;}
 .moneyBox>view{display: inline-block;}

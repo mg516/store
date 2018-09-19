@@ -1,0 +1,20 @@
+<view class="container">
+  <view class='topBox'>
+    <view class='ableBox'>
+      <view class='ableBox_label'>可提现余额（元）</view>
+      <view class='ableBox_value'>88.88</view>
+    </view>
+    <view class='selectBox select{{selectIndex+1}}'>
+      <view class='_option' catchtap='checkSelect' data-index="{{index}}" wx:for="{{selectArr}}" wx:for-item="selectItem" wx:key="{{index}}">{{selectItem}}</view>
+    </view>
+  </view>
+  <view class='dataBox'>
+    <view class='data_item' wx:for="{{dataList}}" wx:for-item="dataItem" wx:key="{{index}}">
+      <view class='data_msg'>
+        <view class='data_label'>{{dataItem.name}}</view>
+        <view class='data_time'>{{dataItem.time}}</view>
+      </view>
+      <view class="data_value {{dataItem.ifIn?'':'_red'}}">{{dataItem.ifIn?'+':'-'}} {{dataItem.money}}</view>
+    </view>
+  </view>
+</view>
