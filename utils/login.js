@@ -15,6 +15,7 @@ let signUp = require("./signUp/signUp.js");
     app.globalData.sign = wx.getStorageSync('sign') || null;
     app.globalData.entrance = wx.getStorageSync('entrance') || null;
     app.globalData.member = wx.getStorageSync('member') || null;
+    app.globalData.store_cg_id = wx.getStorageSync('store_cg_id') || null;
     if (app.globalData.access_token && app.globalData.user_token && app.globalData.openid && app.globalData.entrance) {
       wx.setStorageSync('login', 'ok');
       callback(param);
@@ -49,14 +50,17 @@ let signUp = require("./signUp/signUp.js");
               app.globalData.sign = res.data.data.sign || '';
               app.globalData.entrance = res.data.data.entrance||'';
               app.globalData.member = res.data.data.member || '';
+              app.globalData.store_cg_id = res.data.data.store_cg_id || '';
               wx.setStorageSync('openid', app.globalData.openid)
               wx.setStorageSync('access_token', app.globalData.access_token)
               wx.setStorageSync('user_token', app.globalData.user_token)
               wx.setStorageSync('sign', app.globalData.sign)
               wx.setStorageSync('entrance', app.globalData.entrance)
               wx.setStorageSync('member', app.globalData.member)
+              wx.setStorageSync('store_cg_id', app.globalData.store_cg_id)
             }
-            if (app.globalData.access_token && app.globalData.user_token && app.globalData.openid && app.globalData.entrance) {
+            if (app.globalData.access_token && app.globalData.user_token && app.globalData.openid 
+            && app.globalData.entrance && app.globalData.store_cg_id) {
               wx.setStorageSync('login', 'ok');
               callback(param);
               return;

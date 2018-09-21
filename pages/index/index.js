@@ -6,39 +6,23 @@ const common = require("../../utils/common.js").common;
 const app = getApp();
 Page({
   data: {
+    waitZiTi:0,
+    todayNum:0,
+    todayMoney:'0.00',//今日佣金
     opacity: '0',
     ifOnce: true,
-    distributor:{
-      member:{
-        mobile:"18566215125",
-        realname:"苗刚",
-        store_name:"青蛙家苗栗路沁园店"
-      },
-      yongjin:88.88,
-      ordernum:88,
-      df_ordernum:15,
-      entrance: [{
+    store_cg_id:null,
+    entrance1: [
+      {
         list: [
           { id: '1', name: '我的账户', icon: '/images/index/account.png', url: '/pages/subDistri/pages/myAccount/myAccount' },
-          { id: '1', name: '商品列表', icon: '/images/index/commodity.png', url: '/pages/subDistri/pages/goodsList/goodsList' }
+          { id: '1', name: '商品列表', icon: '/images/index/commodity.png', url: '/pages/subDistri/pages/goodsList/goodsList' },
+          { id: '1', name: '扫码返佣', icon: '/images/index/codecash.png', url: 'code_cash' },
         ],
         id: 6,
         name: '账户·资产',
         pid: 0
       },
-      {
-        list: [
-          { id: '9', name: '扫码提货单', icon: '/images/index/saoma.png', url: 'code' },
-          { id: '8', name: '订单列表单', icon: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
-          { id: '8', name: '客户列表', icon: '/images/index/customer.png', url: '/pages/subDistri/pages/userList/userList' },
-          { id: '8', name: '推广小店', icon: '/images/index/spread.png', url: '/pages/subDistri/pages/shareStore/shareStore' },
-        ],
-        id: 6,
-        name: '客户·服务',
-        pid: 0
-      }]
-    },
-    entrance1: [
       {
         list:[
           { id: '1', name: '门店请货单', icon: '/images/index/qinghuo.png', url: '/pages/subStockup/pages/request-list/request-list?direct_supply=0' },
@@ -68,6 +52,8 @@ Page({
           { id: '8', name: '订单列表单', icon: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
           { id: '8', name: '新增订单', icon: '/images/index/addorder.png', url: '/pages/subOrder/pages/order-add/order-add' },
           { id: '8', name: '会员', icon: '/images/index/vip.png', url: '/pages/subVip/pages/vipList/vipList' },
+          { id: '8', name: '客户列表', icon: '/images/index/customer.png', url: '/pages/subDistri/pages/userList/userList' },
+          { id: '8', name: '推广小店', icon: '/images/index/spread.png', url: '/pages/subDistri/pages/shareStore/shareStore' },
         ],
         id: 6,
         name: '客户·服务',
@@ -84,65 +70,77 @@ Page({
         pid: 0
       }
     ],
-    entrence1: [
-      { id: '1', name: '门店请货单', image: '/images/index/qinghuo.png', url: '/pages/request-list/request-list' },
-      { id: '2', name: '门店收货单', image: '/images/index/shouhuo.png', url: '/pages/receipt-list/receipt-list' },
-      { id: '3', name: '门店退货单', image: '/images/index/tuihuo.png', url: '/pages/return-list/return-list' },
-    ],
-    entrence2: [
-      { id: '4', name: '门店报损单', image: '/images/index/baosun.png', url: '/pages/breakage-list/breakage-list' },
-      { id: '5', name: '门店调拨单', image: '/images/index/diaobo.png', url: '/pages/transfer-list/transfer-list' },
-      { id: '6', name: '门店盘点单', image: '/images/index/pandian.png', url: '/pages/check-list/check-list' },
-      { id: '7', name: '门店折价单', image: '/images/index/zhejia.png', url: '/pages/convert-list/convert-list' },
-    ],
-    entrence3: [
-      { id: '9', name: '扫码提货单', image: '/images/index/saoma.png', url: 'code' },
-      { id: '8', name: '订单列表单', image: '/images/index/dingdan.png', url: '/pages/subOrder/pages/order-list/order-list' },
-      { id: '8', name: '新增订单', image: '/images/index/addorder.png', url: '/pages/subOrder/pages/order-add/order-add' },
-    ],
-    entrence4: [
-      { id: '9', name: '门店销售额', image: '/images/index/xiaoshou.png', url: '/pages/subSale/pages/sale-money/sale-money' },
-      { id: '8', name: '门店销售情况', image: '/images/index/salestatus.png', url: '/pages/subSale/pages/sales-status/sales-status' },
-      { id: '8', name: '单品销售情况', image: '/images/index/salegoods.png', url: '/pages/subSale/pages/sale-goods/sale-goods' },
-    ],
   },
-  scanCode:function(){
+  // 扫码确认返佣者的身份
+  scanToCash: function (_res){
+    wx.request({
+      url: config.checkID,
+      method: 'POST',
+      data: {
+        openid: app.globalData.openid,
+        action: 'cash_code',
+        pick_code: _res.result
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.data.data && res.data.data.pay == 0) {
+          let cashData = res.data.data;
+          let cashStr = JSON.stringify(cashData);
+          wx.navigateTo({
+            url: '/pages/subDistri/pages/checkCasher/checkCasher?cashStr=' + cashStr,
+          })
+        } else if (res.data.data.pay == 1){
+          wx.showModal({
+            title: '温馨提示',
+            content: '该佣金已支付',
+          })
+        } else {
+          wx.showModal({
+            title: '温馨提示',
+            content: res.data.msg,
+          })
+        }
+      }
+    })
+  },
+  // 扫码前往订单
+  scanToOrder: function (_res){
+    wx.request({
+      url: config.order,
+      method: 'POST',
+      data: {
+        user_token: app.globalData.user_token,
+        action: 'pick_code',
+        pick_code: _res.result
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.data.data && res.data.data.id) {
+          wx.navigateTo({
+            url: '/pages/subOrder/pages/order-detail/order-detail?orderId=' + res.data.data.id,
+          })
+        } else {
+          wx.showModal({
+            title: '温馨提示',
+            content: res.data.msg,
+          })
+        }
+      }
+    })
+  },
+  // 扫码入口函数
+  scanCode:function(_code){
     wx.scanCode({
       onlyFromCamera: false,
       scanType: ['qrCode','barCode'],
       success: (res) => {
         // common.loading('加载中');
         console.log(res);
-        wx.request({
-          url: config.order,
-          method: 'POST',
-          data: {
-            user_token: app.globalData.user_token,
-            action: 'pick_code',
-            pick_code: res.result
-          },
-          success: (res) => {
-            console.log(res)
-            if (res.data.data && res.data.data.id){
-              wx.navigateTo({
-                // url: '/pages/userOrder/userOrder?codeMsg=' + res.result,
-                url: '/pages/subOrder/pages/order-detail/order-detail?orderId=' + res.data.data.id,
-                // url: '/pages/userOrder/userOrder?id=399&orderstatus=4',
-                // url: '/pages/userOrder/userOrder?id=374&orderstatus=3',
-              })
-            }else{
-              // wx.hideLoading();
-              wx.showModal({
-                title: '温馨提示',
-                content: res.data.msg,
-              })
-              // common.tip(res.data.msg,'none')
-            }
-          },
-          complete:(res) => {
-            // wx.hideLoading();
-          }
-        })
+        if (_code == 'code'){
+          this.scanToOrder(res);
+        } else if (_code == 'code_cash'){
+          this.scanToCash(res);
+        }
       },
       fail: (res) => {
         console.log(res);
@@ -156,14 +154,9 @@ Page({
         }
         wx.getSystemInfo({
           success: function (res) {
-            // if (res.platform == "android") {
-              // android扫一扫失败，跳回首页
             wx.switchTab({
               url: '/pages/index/index',
             })
-            // } else {
-            //   console.log("不是安卓")
-            // }
           }
         })
       },
@@ -196,12 +189,8 @@ Page({
   //点击跳转下一页
   goTo: function (e) {
     var url = e.currentTarget.dataset.url;
-    if (url == 'code'){
-      this.scanCode();
-    } else if (url == "/pages/subOrder/pages/order-list/order-list" && this.data.distributor){
-      wx.navigateTo({
-        url: `/pages/subOrder/pages/order-list/order-list?distri_status=all`,
-      })
+    if (url == 'code' || url == 'code_cash'){
+      this.scanCode(url);
     }else{
       wx.navigateTo({
         url: url,
@@ -226,9 +215,23 @@ Page({
     this.setData({ ifOnce: false })
     this.setData({
       entrance: app.globalData.entrance,
-      member: app.globalData.member
+      member: app.globalData.member,
+      store_cg_id: app.globalData.store_cg_id
     })
-    if (this.data.distributor) app.globalData.distributor = this.data.distributor;
+    // 修改自提账号的样式
+    if (this.data.store_cg_id == 3) {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#6FBA2C',
+        animation: {
+          duration: 200,
+          timingFunc: 'easeIn'
+        }
+      })
+    };
+    this.getAccount();//获取今日佣金
+    this.getTodayOrder();//获取今日订单数
+    this.getWaitZiTi();//获取待自提单数
   },
   ifLogin:function(e){
     console.log(1)
@@ -238,9 +241,42 @@ Page({
     this.ifLogin(e);
   },
   onShow:function(){
-    wx.removeStorageSync('user_token');
+    wx.removeStorageSync('access_token');
     if (!this.data.ifOnce){
       this.ifLogin();
     }
-  }
+  },
+  // 获取今日佣金
+  getAccount: function () {
+    let param = {user_token: app.globalData.user_token,list_rows: 1,page: 1,action: 'list',action_type: 2}
+    wx.request({
+      url: config.account,method: 'POST',data: param,
+      success: (res) => {
+        if (res.data.data) this.setData({todayMoney: (res.data.data.today_return_money).toFixed(2)})
+        else this.setData({todayMoney: '0.00'})
+      }
+    })
+  },
+  getTodayOrder: function () {
+    let param = { user_token: app.globalData.user_token, action: 'order_count', day_type: 1 }
+    wx.request({
+      url: config.order, method: 'POST', data: param,
+      success: (res) => {
+        if(res.data.data){
+          this.setData({ todayNum: res.data.data.count||0 })
+        }
+      }
+    })
+  },
+  getWaitZiTi: function () {
+    let param = { user_token: app.globalData.user_token, action: 'order_count', order_status: 5 }
+    wx.request({
+      url: config.order, method: 'POST', data: param,
+      success: (res) => {
+        if (res.data.data) {
+          this.setData({ waitZiTi: res.data.data.count||0 })
+        }
+      }
+    })
+  },
 })

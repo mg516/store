@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<view class='container'>
-  <view class='headBoxlag' wx:if="{{!distributor}}">
+<view class='container' wx:if="{{store_cg_id}}">
+  <view class='headBoxlag' wx:if="{{store_cg_id==1}}">
     <view class='headBox' catchtap='userDetail'>
       <view class='headPic'>
         <open-data type="userAvatarUrl"></open-data>
@@ -8,7 +8,7 @@
       <view class='userInfo'>
         <view class='nickname' wx:if="{{member}}">{{member.realname}}　{{member.mobile}}</view>
         <open-data wx:else class='nickname' type="userNickName" lang="zh_CN"></open-data>
-        <view class='locationLi' wx:if="{{member.store_name&&!distributor}}">
+        <view class='locationLi' wx:if="{{member.store_name}}">
           <view class='location imgBox'>
             <image src='/images/location.png'></image>
           </view>
@@ -18,7 +18,7 @@
       <!-- <view class='msgBox imgBox'><image src='../../images/msg.png'></image><view class='msgBar'>99</view></view> -->
     </view>
   </view>
-  <view class='headBoxlag head_distri' wx:else>
+  <view class='headBoxlag head_distri' wx:elif="{{store_cg_id==3}}">
     <view class='head_bg imgBox'>
       <image src='/images/user_bg.png'></image>
     </view>
@@ -30,27 +30,27 @@
         <view class='nickname' wx:if="{{member}}">{{member.realname}}</view>
         <view class='nickname' wx:if="{{member}}">{{member.mobile}}</view>
         <open-data wx:else class='nickname' type="userNickName" lang="zh_CN"></open-data>
-        <view class='locationLi_distri'>自提站点：{{distributor.member.store_name}}</view>
+        <view class='locationLi_distri'>自提站点：{{member.store_name}}</view>
       </view>
       <view class='into imgBox'><image src='../../images/into_fff.png'></image></view>
     </view>
   </view>
   <view class='blockBox'>
-    <view class='distrBox' wx:if="{{distributor}}">
+    <view class='distrBox' wx:if="{{store_cg_id==3}}">
       <view class='distrMsgBox' catchtap='myCommission'>
-        <view class='distr_value'>{{distributor.yongjin}}</view>
+        <view class='distr_value'>{{todayMoney}}</view>
         <view class='distr_label'>今日佣金</view>
       </view>
       <view class='distrMsgBox' catchtap='toOrderDetail' data-totype="today">
-        <view class='distr_value'>{{distributor.ordernum}}</view>
+        <view class='distr_value'>{{todayNum}}</view>
         <view class='distr_label'>今日订单</view>
       </view>
       <view class='distrMsgBox' catchtap='toOrderDetail' data-totype="1-0">
-        <view class='distr_value'>{{distributor.df_ordernum}}</view>
+        <view class='distr_value'>{{waitZiTi}}</view>
         <view class='distr_label'>待自提订单</view>
       </view>
     </view>
-    <view class='block' wx:for="{{distributor?distributor.entrance:entrance1}}" wx:for-item="enItem" wx:key="{{index}}">
+    <view class='block' wx:for="{{entrance1}}" wx:for-item="enItem" wx:key="{{index}}">
       <view class='title'>{{enItem.name}}</view>
       <view class="appBox">
         <view class='appItem' wx:for='{{enItem.list}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>
@@ -96,5 +96,6 @@
     </view>
   </view> -->
 </view>
+<view class='goSignIn' wx:if="{{!store_cg_id}}">请先注册账号</view>
 <include src="../../utils/signUp/signUp.wxml" />
 <view style="opacity:0;height:0;">{{opacity}}</view>

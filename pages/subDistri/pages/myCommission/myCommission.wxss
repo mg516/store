@@ -26,10 +26,11 @@ page{background-color: #FAFAFA;}
 .select4::after{left:552rpx;}
 .selectBox>._option{display: inline-block;width: 25%;text-align: center;font-size: 28rpx;padding: 26rpx 0;}
 
-.dataBox{width: 100%;margin-top:360rpx;background-color: #fff;}
-.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;}
+.dataBox{width: 100%;margin-top:360rpx;}
+.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;background-color: #fff;}
 .data_item>view{display: inline-block;width: 50%;vertical-align: middle;}
 .data_label{color: #1E1E1E;font-size: 28rpx;text-align: left;line-height: 50rpx;}
 .data_time{color: #999999;font-size: 24rpx;text-align: left;line-height: 40rpx;}
 .data_value{font-size: 34rpx;text-align: right;}
 .data_value._red{color: #DD5F63;}
+.noData{font-size: 28rpx;color: #918F97;text-align: center;line-height: 300rpx;}

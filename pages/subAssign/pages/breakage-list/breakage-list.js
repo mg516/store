@@ -144,7 +144,7 @@ Page({
         if (res.data.data){
           var data = res.data.data.list;
           var count = res.data.data.count;
-          if (this.data.pageNum == 1){          
+          if (this.data.pageNum == 1){
             curList = data;
           }else{
             curList = curList.concat(data);

@@ -46,3 +46,5 @@ view{box-sizing: border-box;}
 /* 没有更多数据 */
 /* <view wx:if="{{nomore}}" class='nomore'>没有更多数据了~</view> */
 .nomore{font-size:24rpx;line-height:70rpx;color:#999;text-align: center;}
+
+.goSignIn{line-height: 80vh;width: 100vw;font-size: 30rpx;text-align: center;color: #ccc;}

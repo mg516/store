@@ -2,6 +2,12 @@ Page({
   data: {
 
   },
+  preview:function(){
+    wx.previewImage({
+      urls: ['/images/shareImg.png']
+    })
+  },
+  // 保存图片
   saveImg:function(){
     wx.saveImageToPhotosAlbum({
       filePath:'/images/shareImg.png',

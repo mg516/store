@@ -23,8 +23,8 @@ page{background-color: #FAFAFA;color: #201E25;}
 .dataItem>view{display: inline-block;vertical-align: middle;}
 .dataItem>.goodsImg{width: 160rpx;height: 160rpx;}
 .dataItem>.goodsMsg{margin-left: 20rpx;position: relative;}
-.goodsTitle{font-size: 34rpx;line-height: 40rpx;}
-.goodsText{font-size: 24rpx;color: #918F97;height: 70rpx;margin-top: 10rpx;}
+.goodsTitle{font-size: 34rpx;line-height: 40rpx;width: 500rpx}
+.goodsText{font-size: 24rpx;color: #918F97;height: 70rpx;margin-top: 10rpx;width: 400rpx;}
 .goodsPrice{color: #918F97;font-size: 24rpx;position: relative;width: 510rpx;}
 .zhuan{font-size: 24rpx;text-align: center;line-height: 40rpx;background-color: #EBA84D;border-radius: 50%;display: inline-block;color: #fff;width: 40rpx;vertical-align:top;}
 .RMB{font-size: 34rpx;color: #201E25;}

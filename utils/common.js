@@ -131,7 +131,9 @@ const common = {
     }, 2000)
   },
   hidePullLoading:function(){
-    wx.hideNavigationBarLoading()
+    wx.hideLoading();
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh();
   },
   pattFunc: function (testType, str){
     let status = false;
@@ -144,10 +146,20 @@ const common = {
     if (patt) return patt.test(str)
   },
   //保留N位小数 //传入数字和保留小数点位数
-  pattNumFunc: function (_num, _digits){
+  pattNumFunc: function (__num, _digits){
+    let _num = __num.toString();
     var re = new RegExp('([0-9]+\.[0-9]{' + _digits + '})[0-9]*', "g"); // re为/^\d+bl$/gim
     let num = _num.replace(re, "$1");//保留两位小数
     return num;
+  },
+  // 拆分小数和整数部分(__digits 小数部分的位数)
+  pattIntFloat: function (__num, __digits){
+    let _num = __num.toString();
+    let _digits = __digits + 1;
+    let numArr = _num.split(".");
+    if (numArr[1]) numArr[1] += new Array(_digits - numArr[1].length).join('0')
+    else numArr[1] = new Array(_digits).join('0')
+    return numArr;
   }
 }
 

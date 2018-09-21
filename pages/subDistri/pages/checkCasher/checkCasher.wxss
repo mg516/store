@@ -1,0 +1,57 @@
+@import '../../../../utils/appList_details.wxss';
+
+.orderMsgBox>view{
+  display: inline-block;
+  vertical-align: middle;
+
+  padding-left:6px;
+  padding-right:6px;
+  box-sizing:border-box;
+}
+.order-list{
+  color: #666;
+}
+.order-list>text{
+  color: #000;
+}
+.order-list:nth-child(2n-1){
+  width: 340rpx;
+
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.order-list:nth-child(2n){
+  width: 270rpx;
+}
+.handle-sm{
+  line-height: 60rpx;
+  background-color: #24ae5f;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+}
+.pickUp{
+  width: 140rpx;
+  text-align: center;
+  margin: 30rpx auto 0;
+}
+/* .callPhoneBar{
+  display:inline-block;
+  width:136rpx;
+  height:40rpx;
+  line-height:40rpx;
+  font-size:22rpx;
+  text-align:center;
+  border:2rpx solid #24ae5f;
+  color:#24ae5f!important;
+  border-radius:24rpx;
+  margin-left:10rpx;
+} */
+.callPhoneImg{
+  display:inline-block;
+  vertical-align:top;
+  height:40rpx;
+  width:40rpx;
+  margin-left:10rpx;
+}

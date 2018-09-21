@@ -1,5 +1,5 @@
 <view class="container">
-  <view class='imgBox'>
+  <view class='imgBox' catchtap='preview'>
     <image src='/images/shareImg.png'></image>
   </view>
   <view class='handleBox'>

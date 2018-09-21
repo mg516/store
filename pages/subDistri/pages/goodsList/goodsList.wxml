@@ -11,16 +11,16 @@
   </view>
   <view class='dataBox'>
     <view class='dataItem' wx:for="{{goodsList}}" wx:for-item="goodsItem">
-      <view class='goodsImg imgBox'><image src='http://www.w3school.com.cn/ui2017/compatible_chrome.png'></image></view>
+      <view class='goodsImg imgBox'><image src="{{goodsItem.thumb_url||'/images/onimg.png'}}"></image></view>
       <view class='goodsMsg'>
-        <view class='goodsTitle'>{{goodsItem.name}}</view>
-        <view class='goodsText'>{{goodsItem.text}}</view>
+        <view class='goodsTitle ellipsis'>{{goodsItem.name}}</view>
+        <view class='goodsText ellipsis'>{{goodsItem.selling_title}}</view>
         <view class='goodsPrice'>
-          <text class='RMB'>¥ {{goodsItem.price}}</text> / {{goodsItem.unit}} <text class='zhuan'>赚</text><text class='RMB'> ¥ {{goodsItem.zhuan}}</text> / {{goodsItem.unit}}
-          <view class='reSale'>已售{{goodsItem.saleNum}}份</view>
+          <text class='RMB'>¥ {{goodsItem.saleprice}}</text> / {{goodsItem.unit}} <text class='zhuan'>赚</text><text class='RMB'> ¥ {{goodsItem.return_cash||'0.00'}}</text> / {{goodsItem.unit}}
+          <view class='reSale'>已售 {{goodsItem.sold_sales}} 份</view>
         </view>
-        <view class='shareBar'>
-          <view class='shareText btnBox' catchtap='shareGoods'>推广<button open-type="share"></button></view>
+        <view class='shareBar' catchtap='shareGoods' data-id="{{goodsItem.goods_id}}">
+          <view class='shareText'>推广</view>
           <view class='shareImg imgBox'>
             <image src='/images/shareGoods.png'></image>
           </view>

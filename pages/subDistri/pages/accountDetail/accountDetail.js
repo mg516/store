@@ -2,43 +2,72 @@ const app = getApp();
 const config = require("../../../../utils/config.js").config;
 const common = require("../../../../utils/common.js").common;
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    selectArr: ['全部', '收入明细', '提现明细'],
-    selectIndex:0,
-    dataList:[
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '1350.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '5600', ifIn: false },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-      { name: '收入-客单', time: '2018-08-08 14:00', money: '200.5', ifIn: true },
-    ],
-    pageNum:1,
+    dataList: [],
+    limit: 20,
+    pageNum: 1,
   },
-  checkSelect:function(e){
-    this.setData({
-      pageNum: 1,
-      selectIndex: e.currentTarget.dataset.index
+  getAccount: function () {
+    let param = {
+      user_token: app.globalData.user_token,
+      list_rows: this.data.limit,
+      page: this.data.pageNum,
+      action: 'list'
+    }
+    wx.showLoading({
+      title: '加载中',
     })
-    console.log(this.data.pageNum)
+    wx.request({
+      url: config.account,
+      method: 'POST',
+      data: param,
+      success: (res) => {
+        console.log(res)
+        let dataList = this.data.dataList;
+        if (res.data.data) {
+          if (param.page == 1) {
+            dataList = res.data.data.list;
+          } else {
+            dataList = dataList.concat(res.data.data.list)
+          }
+        } else {
+          if (param.page == 1) {
+            dataList = [];
+          }
+        }
+        if (param.page == 1) {
+          setTimeout(() => {
+            this.setData({
+              dataList: dataList
+            })
+          }, 10)
+        } else {
+          this.setData({
+            dataList: dataList
+          })
+        }
+      },
+      complete: (res) => {
+        wx.hideLoading();
+        common.hidePullLoading()
+      }
+    })
   },
   onLoad: function (options) {
 
   },
   onShow: function () {
-
+    this.getAccount()
   },
   onReachBottom: function () {
     this.setData({
       pageNum: this.data.pageNum + 1
     })
+    this.getAccount();
     console.log(this.data.pageNum)
   },
   onPullDownRefresh: function () {
@@ -46,6 +75,7 @@ Page({
     this.setData({
       pageNum: 1
     })
+    this.getAccount();
     console.log(this.data.pageNum)
   }
 })

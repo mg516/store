@@ -273,12 +273,14 @@ Page({
           if (param.page>1){
             // orderList.push(res.data.data)
             orderList = orderList.concat(res.data.data)
+            this.setData({orderList: orderList})
           }else{
             orderList = res.data.data;
+            this.setData({ orderList: [] })
+            setTimeout(()=>{
+              this.setData({ orderList: orderList })
+            },10)
           }
-          this.setData({
-            orderList: orderList
-          })
         }else{
           if (param.page == 1){
             this.setData({
@@ -336,16 +338,22 @@ Page({
   onLoad: function (options) {
     console.log(options.currentid)
     // 获取门店自提点数据
-    let distributor = app.globalData.distributor;
+    let store_cg_id = app.globalData.store_cg_id;
     this.setData({
-      distributor:distributor
+      store_cg_id:store_cg_id
     })
+    if (store_cg_id == 3){
+      let classifySearchIndex = 0;
+      let classifySearch = [{ text: '自提订单', order_type: '1' }];
+      this.setData({
+        classifySearch: classifySearch,
+        classifySearchIndex: 0,
+      })
+    }
     if (options.distri_status) {
       let status = options.status;
       let orderSearchIndex = 0;
-      let classifySearchIndex = 0;
       let Startdate = '';
-      let classifySearch = [{ text: '自提订单', order_type: '1' }];
       let orderSearch = [//自提订单的订单状态
         { text: '选择状态', order_status: '1' },
         { text: '未支付', order_status: '2' },
@@ -353,13 +361,10 @@ Page({
         { text: '已完成', order_status: '6' }];
       if (options.distri_status == '1-0') { orderSearchIndex = 2 }//待自提
       else if (options.distri_status == 'today') { orderSearchIndex = 0; Startdate = common.today()}//今日订单
-      else if (options.distri_status == 'all') { orderSearchIndex = 0; }//全部
       this.setData({
-        classifySearch: classifySearch,
-        classifySearchIndex: 0,
         orderSearchIndex: orderSearchIndex,
         orderSearch: orderSearch,
-        Startdate: Startdate || common.GetDay(-7),
+        Startdate: Startdate || common.GetDay(-30),
         Enddate: common.today()
       })
     }
@@ -402,7 +407,7 @@ Page({
   onLoadFunc:function(){
     if (!this.data.Startdate) {
       this.setData({
-        Startdate: common.GetDay(-7),
+        Startdate: common.GetDay(-30),
         Enddate: common.today()
       })
     }

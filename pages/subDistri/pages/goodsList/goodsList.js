@@ -7,18 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsList:[
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-      { name: '宁夏奶白菜300g', text: '超甜的白菜', price: '9.5', zhuan: '0.28', unit: '份', saleNum: '225' },
-    ]
+    limit: 10,
+    pageNum: 1,
+    goodsList:[]
+  },
+  getSearchOrderList:function(){
+    this.setData({
+      pageNum: 1,
+      nomore: false
+    })
+    this.getAccount()
   },
   //搜索绑定
   searchContent: function (event) {
@@ -43,30 +41,79 @@ Page({
       nomore: false
     })
     console.log('删除条件查询')
+    this.getAccount()
   },
-  shareGoods:function(){
-    this.onShareAppMessage()
+  // 推广，跳转至商城小程序
+  shareGoods:function(e){
+    let id = e.currentTarget.dataset.id;
+    if(!id)return '';
+    console.log(id)
+    wx.navigateToMiniProgram({
+      appId:'wx3dcd06a59742ce6d',
+      path: `/pages/index/index?sign=${app.globalData.sign}&id=${id}`,
+      // extraData: { "id":719 },
+      envVersion: 'develop',
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
+  getAccount: function () {
+    let param = {
+      user_token: app.globalData.user_token,
+      list_rows: this.data.limit,
+      page: this.data.pageNum,
+      action: 'goods_price',
+      search_data: this.data.searchContent
+    }
+    wx.showLoading({
+      title: '加载中...',
+    })
+    wx.request({
+      url: config.goods,
+      method: 'POST',
+      data: param,
+      success: (res) => {
+        console.log(res)
+        common.hidePullLoading();
+        let goodsList = this.data.goodsList;
+        if (res.data.data) {
+          console.log(res.data.data.length)
+          if (param.page == 1) {
+            goodsList = res.data.data;
+          } else {
+            goodsList = goodsList.concat(res.data.data)
+          }
+        } else {
+          if (param.page == 1) {
+            goodsList = [];
+          }
+        }
+        if (param.page == 1) {
+          this.setData({ goodsList: [] })
+          setTimeout(() => {
+            this.setData({ goodsList: goodsList })
+          }, 10)
+        } else {
+          this.setData({
+            goodsList: goodsList
+          })
+        }
+      }
+    })
   },
   onLoad: function (options) {
 
   },
   onShow: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
+    this.getAccount()
   },
   onReachBottom: function () {
     this.setData({
       pageNum: this.data.pageNum + 1
     })
     console.log(this.data.pageNum)
+    this.getAccount();
   },
   onPullDownRefresh: function () {
     common.pullLoading()
@@ -74,5 +121,6 @@ Page({
       pageNum: 1
     })
     console.log(this.data.pageNum)
+    this.getAccount();
   }
 })

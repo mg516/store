@@ -1,0 +1,19 @@
+<!--pages/receipt-detail/receipt-detail.wxml-->
+<!-- <view class='container'> -->
+<!-- 订单详情 -->
+<view class='root-section1'>
+  <view class='order-view'>
+    <view class='img-view'>
+      <image src='/images/greenbg.png'></image>
+    </view>
+    <view class='img-text'>提现详情</view>
+    <view class='orderMsgBox'>
+      <view class='order-list' style='width:100%;'>提现单号：<text>{{cashData.sn}}</text></view>
+      <view class='order-list' style='width:100%;'>提现时间：<text>{{cashData.create_time}}</text></view>
+      <view class='order-list' style='width:100%;'>客户：<text>{{cashData.name}}</text></view>
+      <view class='order-list' style='width:100%;'>金额：<text>¥{{cashData.cashback}}</text></view>
+      <view class='order-list'>付款状态：<text wx:if="{{cashData.pay==0}}">未支付</text><text wx:elif="{{orderMsg.pay==1}}">已支付</text></view>
+    </view>
+    <view class='handle-sm pickUp' catchtap='orderHandle' wx:if="{{cashData.pay==0}}">支付</view>
+  </view>
+</view>

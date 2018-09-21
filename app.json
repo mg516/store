@@ -24,7 +24,8 @@
         "pages/cashPostal/cashPostal",
         "pages/userList/userList",
         "pages/shareStore/shareStore",
-        "pages/userDetail/userDetail"
+        "pages/userDetail/userDetail",
+        "pages/checkCasher/checkCasher"
       ]
     },
     {

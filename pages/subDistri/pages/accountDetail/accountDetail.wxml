@@ -5,10 +5,11 @@
   <view class='dataBox'>
     <view class='data_item' wx:for="{{dataList}}" wx:for-item="dataItem" wx:key="{{index}}">
       <view class='data_msg'>
-        <view class='data_label'>{{dataItem.name}}</view>
-        <view class='data_time'>{{dataItem.time}}</view>
+        <view class='data_label'>{{dataItem.type_name}}</view>
+        <view class='data_time'>{{dataItem.create_time}}</view>
       </view>
-      <view class="data_value {{dataItem.ifIn?'':'_red'}}">{{dataItem.ifIn?'+':'-'}} {{dataItem.money}}</view>
+      <view wx:if="{{dataItem.change_type==1}}" class="data_value">+ {{dataItem.frozen_change}}</view>
+      <view wx:elif="{{dataItem.change_type==2}}" class="data_value _red">- {{dataItem.frozen_change}}</view>
     </view>
   </view>
 </view>
