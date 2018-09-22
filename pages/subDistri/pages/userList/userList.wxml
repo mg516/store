@@ -1,21 +1,25 @@
 <view class="container">
   <view class='userItem' wx:for="{{customerList}}" wx:for-item="userItem" wx:key="{{index}}">
-    <view class='user_head'>
-      <open-data type="userAvatarUrl"></open-data>
+    <view class='user_head imgBox'>
+      <image src='{{userItem.headimgurl}}'></image>
     </view>
     <view class='user_msg' catchtap='checkStatus' data-index="{{index}}">
       <view class='name'>{{userItem.name||userItem.nickname}}</view>
-      <view class='status'>成为新客时间</view>
+      <view class='status'>加入时间</view>
       <view class='offerMoney'>贡献佣金：¥ {{userItem.total_return_cash}}
         <view class='status_img imgBox'><image src='/images/status_close.png'></image></view>
       </view>
       <view class='signInTime'>{{userItem.date}}</view>
     </view>
     <view class='user_detail liner' wx:if="{{userItem.ifOpen}}">
-      <view class='time'>支付单数：{{userItem.order.count||0}}</view>
-      <view class='time'>交易金额：¥ {{userItem.order.total||0}}</view>
-      <view class='time'>退款金额：¥ {{userItem.order.refund_money||0}}</view>
-      <view class='time'>最近交易时间：{{userItem.order.create_time||'无交易记录'}}</view>
+      <view>订单数量：{{userItem.order.count||0}}</view>
+      <view>交易金额：¥ {{userItem.order.total||0}}</view>
+      <view>退款金额：¥ {{userItem.order.refund_money||0}}</view>
+      <view>最近交易：{{userItem.order.create_time||'无交易记录'}}</view>
     </view>
+  </view>
+  <view class='list-none' wx:if='{{ifLoad&&(!customerList||customerList.length<=0)}}'>
+    <!-- <image class='img-none' src='/images/bg.png'></image> -->
+    <view class='text-none'>还没有客户，快去分享吧</view>
   </view>
 </view>

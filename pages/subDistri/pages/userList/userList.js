@@ -74,6 +74,9 @@ Page({
         }
       },
       complete: (res) => {
+        this.setData({
+          ifLoad: true
+        })
         wx.hideLoading();
         common.hidePullLoading()
       }

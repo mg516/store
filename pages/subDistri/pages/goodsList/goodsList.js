@@ -49,7 +49,8 @@ Page({
     if(!id)return '';
     console.log(id)
     wx.navigateToMiniProgram({
-      appId:'wx3dcd06a59742ce6d',
+      // appId:'wx3dcd06a59742ce6d',
+      appId:'wxe4f4b3386a5825af',
       path: `/pages/index/index?sign=${app.globalData.sign}&id=${id}`,
       // extraData: { "id":719 },
       envVersion: 'develop',
@@ -99,6 +100,11 @@ Page({
             goodsList: goodsList
           })
         }
+      },
+      complete: (res) => {
+        this.setData({
+          ifLoad:true
+        })
       }
     })
   },

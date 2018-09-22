@@ -4,7 +4,7 @@
       <view class='label'>头像</view>
       <view class='value'>
         <view class='headpic imgBox'>
-          <image src='/images/headpic.jpg'></image>
+          <open-data type="userAvatarUrl"></open-data>
         </view>
       </view>
     </view>
@@ -12,26 +12,26 @@
   <view class='dataGroup'>
     <view class='dataItem liner'>
       <view class='label'>用户名</view>
-      <view class='value'>满分的好男人</view>
+      <view class='value'>{{personalData.realname}}</view>
     </view>
     <view class='dataItem liner'>
       <view class='label'>昵称</view>
-      <view class='value'>给钱我要去买菜</view>
+      <view class='value'>{{personalData.nickname||'无'}}</view>
     </view>
     <view class='dataItem'>
       <view class='label'>注册时间</view>
-      <view class='value'>2018-09-15</view>
+      <view class='value'>{{personalData.create_time}}</view>
     </view>
   </view>
   <view class='dataGroup'>
     <view class='dataItem' style='margin-bottom:24rpx;'>
       <view class='label' style='width:100%;'>我的服务地址</view>
-      <view class='label' style='width:100%;line-height:50rpx;'>苗刚 18566215125</view>
+      <view class='label' style='width:100%;line-height:50rpx;'>{{personalData.contacts_name}} {{personalData.contacts_phone}}</view>
       <view class='label' style='width:100%;line-height:50rpx;'>
         <view class='location imgBox'>
-          <image src='/images/location_ccc.png'></image>
+          <image src="/images/location_ccc.png"></image>
         </view>
-        <view>江岸区石桥一路88号永旺梦乐城</view>
+        <view style='display:inline;'>{{personalData.province_name}}{{personalData.city_name}}{{personalData.county_name}} {{personalData.address}}</view>
       </view>
     </view>
   </view>

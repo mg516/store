@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class='container' wx:if="{{store_cg_id}}">
   <view class='headBoxlag' wx:if="{{store_cg_id==1}}">
-    <view class='headBox' catchtap='userDetail'>
+    <view class='headBox'>
       <view class='headPic'>
         <open-data type="userAvatarUrl"></open-data>
       </view>
@@ -50,7 +50,7 @@
         <view class='distr_label'>待自提订单</view>
       </view>
     </view>
-    <view class='block' wx:for="{{entrance1}}" wx:for-item="enItem" wx:key="{{index}}">
+    <view class='block' wx:for="{{entrance}}" wx:for-item="enItem" wx:key="{{index}}">
       <view class='title'>{{enItem.name}}</view>
       <view class="appBox">
         <view class='appItem' wx:for='{{enItem.list}}' wx:key="entrance" data-url="{{item.url}}" bindtap='goTo'>

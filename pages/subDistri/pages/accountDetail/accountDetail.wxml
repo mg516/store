@@ -11,5 +11,9 @@
       <view wx:if="{{dataItem.change_type==1}}" class="data_value">+ {{dataItem.frozen_change}}</view>
       <view wx:elif="{{dataItem.change_type==2}}" class="data_value _red">- {{dataItem.frozen_change}}</view>
     </view>
+    <view class='list-none' wx:if='{{ifLoad&&(!dataList||dataList.length<=0)}}'>
+      <!-- <image class='img-none' src='/images/bg.png'></image> -->
+      <view class='text-none'>暂时没有账户记录</view>
+    </view>
   </view>
 </view>

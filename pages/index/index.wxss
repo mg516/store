@@ -78,7 +78,7 @@ page{
 .location{width: 30rpx;height: 30rpx;}
 .locationText{font-size:28rpx;color:#1e1e1e;text-indent: 10rpx;width: 460rpx;}
 /* 分销区域-定位 */
-.locationLi_distri{font-size: 26rpx;padding: 4rpx 20rpx;background-color: rgba(32,30,37,.4);color: #fff;display: inline-block;border-radius: 30rpx;}
+.locationLi_distri{font-size: 26rpx;padding: 0 20rpx;background-color: rgba(32,30,37,.4);color: #fff;display: inline-block;border-radius: 30rpx;line-height:36rpx;}
 /* 分销区域 */
 .distrBox{background-color: #fff;padding: 0rpx 30rpx 20rpx 30rpx;}
 .distrBox>.distrMsgBox{display: inline-block;width: 33%;}

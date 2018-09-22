@@ -19,13 +19,17 @@
           <text class='RMB'>¥ {{goodsItem.saleprice}}</text> / {{goodsItem.unit}} <text class='zhuan'>赚</text><text class='RMB'> ¥ {{goodsItem.return_cash||'0.00'}}</text> / {{goodsItem.unit}}
           <view class='reSale'>已售 {{goodsItem.sold_sales}} 份</view>
         </view>
-        <view class='shareBar' catchtap='shareGoods' data-id="{{goodsItem.goods_id}}">
+        <view class='shareBar' catchtap='shareGoods' data-id="{{goodsItem.id}}">
           <view class='shareText'>推广</view>
           <view class='shareImg imgBox'>
             <image src='/images/shareGoods.png'></image>
           </view>
         </view>
       </view>
+    </view>
+    <view class='list-none' wx:if='{{ifLoad&&(!goodsList||goodsList.length<=0)}}'>
+      <!-- <image class='img-none' src='/images/bg.png'></image> -->
+      <view class='text-none'>暂无商品</view>
     </view>
   </view>
 </view>

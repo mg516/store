@@ -13,7 +13,7 @@
       <view class='dataItem_value'>{{accountData.frozen_moneyArr[0]}}<text>.{{accountData.frozen_moneyArr[1]}}</text></view>
       <view class='dataItem_label'>冻结（元）</view>
     </view>
-    <view class='dataItem' catchtap='cashPostal'>
+    <view class='dataItem' catchtap='cashPostal-'>
       <view class='dataItem_value'>{{accountData.already_cashArr[0]}}<text>.{{accountData.already_cashArr[1]}}</text></view>
       <view class='dataItem_label'>已提现（元）</view>
     </view>

@@ -53,7 +53,7 @@ Page({
           { id: '8', name: '新增订单', icon: '/images/index/addorder.png', url: '/pages/subOrder/pages/order-add/order-add' },
           { id: '8', name: '会员', icon: '/images/index/vip.png', url: '/pages/subVip/pages/vipList/vipList' },
           { id: '8', name: '客户列表', icon: '/images/index/customer.png', url: '/pages/subDistri/pages/userList/userList' },
-          { id: '8', name: '推广小店', icon: '/images/index/spread.png', url: '/pages/subDistri/pages/shareStore/shareStore' },
+          { id: '8', name: '推广小店', icon: '/images/index/spread.png', url: 'shareApp' },
         ],
         id: 6,
         name: '客户·服务',
@@ -191,6 +191,17 @@ Page({
     var url = e.currentTarget.dataset.url;
     if (url == 'code' || url == 'code_cash'){
       this.scanCode(url);
+    } else if (url == 'shareApp'){
+      // 推广，跳转至商城小程序
+      wx.navigateToMiniProgram({
+        // appId:'wx3dcd06a59742ce6d',
+        appId: 'wxe4f4b3386a5825af',
+        path: `/pages/index/index?sign=${app.globalData.sign}`,
+        envVersion: 'develop',
+        success: (res) => {
+          console.log(res)
+        }
+      })
     }else{
       wx.navigateTo({
         url: url,
@@ -232,6 +243,15 @@ Page({
     this.getAccount();//获取今日佣金
     this.getTodayOrder();//获取今日订单数
     this.getWaitZiTi();//获取待自提单数
+    // let a = {
+    //   '441':[1,1,1],
+    //   id:441
+    // }
+    // for(let i in a){
+    //   let b = {};
+    //   b[i] = a[i]
+    //   console.log(b)
+    // }
   },
   ifLogin:function(e){
     console.log(1)
