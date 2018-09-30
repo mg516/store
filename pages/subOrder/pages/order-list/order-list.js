@@ -234,7 +234,7 @@ Page({
     })
   },
   // 获取订单数据
-  getOrderList:function(_param){
+  getOrderList:function(_param,typeIn){
     wx.showLoading({
       title: '加载在',
     })
@@ -276,7 +276,7 @@ Page({
             this.setData({orderList: orderList})
           }else{
             orderList = res.data.data;
-            this.setData({ orderList: [] })
+            if (!typeIn) this.setData({ orderList: [] });
             setTimeout(()=>{
               this.setData({ orderList: orderList })
             },10)
@@ -345,25 +345,26 @@ Page({
     if (store_cg_id == 3){
       let classifySearchIndex = 0;
       let classifySearch = [{ text: '自提订单', order_type: '1' }];
+      let orderSearch = [//自提订单的订单状态
+        { text: '选择状态', order_status: '1' },
+        { text: '未支付', order_status: '2' },
+        { text: '待提货', order_status: '5' },
+        { text: '已完成', order_status: '6' }];
       this.setData({
         classifySearch: classifySearch,
         classifySearchIndex: 0,
+        orderSearch: orderSearch,
+        orderSearchIndex:0
       })
     }
     if (options.distri_status) {
       let status = options.status;
       let orderSearchIndex = 0;
       let Startdate = '';
-      let orderSearch = [//自提订单的订单状态
-        { text: '选择状态', order_status: '1' },
-        { text: '未支付', order_status: '2' },
-        { text: '待提货', order_status: '5' },
-        { text: '已完成', order_status: '6' }];
       if (options.distri_status == '1-0') { orderSearchIndex = 2 }//待自提
       else if (options.distri_status == 'today') { orderSearchIndex = 0; Startdate = common.today()}//今日订单
       this.setData({
         orderSearchIndex: orderSearchIndex,
-        orderSearch: orderSearch,
         Startdate: Startdate || common.GetDay(-30),
         Enddate: common.today()
       })
@@ -432,6 +433,6 @@ Page({
         param.type = this.data.classifySearch[this.data.classifySearchIndex].order_type
       }
     }
-    this.getOrderList(param);
+    this.getOrderList(param,'onshow');
   }
 })

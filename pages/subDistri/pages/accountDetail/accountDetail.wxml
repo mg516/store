@@ -8,8 +8,10 @@
         <view class='data_label'>{{dataItem.type_name}}</view>
         <view class='data_time'>{{dataItem.create_time}}</view>
       </view>
-      <view wx:if="{{dataItem.change_type==1}}" class="data_value">+ {{dataItem.frozen_change}}</view>
-      <view wx:elif="{{dataItem.change_type==2}}" class="data_value _red">- {{dataItem.frozen_change}}</view>
+      <view class='data_valueBox'>
+        <view class="data_value" wx:if="{{dataItem.user_change!=0}}"><text>可用金额</text>　<text class="{{dataItem.user_money-dataItem.before_user_money<0?'_red':''}}">{{dataItem.user_money-dataItem.before_user_money<0?'-':'+'}}{{dataItem.user_change}}</text>　<text class='afterMoney'>{{dataItem.user_money}}</text></view>
+        <view class="data_value" wx:if="{{dataItem.frozen_change!=0}}"><text>冻结金额</text>　<text class="{{dataItem.frozen_money-dataItem.before_frozen_money<0?'_red':''}}">{{dataItem.frozen_money-dataItem.before_frozen_money<0?'-':'+'}}{{dataItem.frozen_change}}</text>　<text class='afterMoney'>{{dataItem.frozen_money}}</text></view>
+      </view>
     </view>
     <view class='list-none' wx:if='{{ifLoad&&(!dataList||dataList.length<=0)}}'>
       <!-- <image class='img-none' src='/images/bg.png'></image> -->

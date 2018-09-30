@@ -98,7 +98,9 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      orderId: options.orderId
+      orderId: options.orderId,
+      fromWhere: options.type||'',
+      store_cg_id: app.globalData.store_cg_id
     })
     this.getOrderDetail();
   },

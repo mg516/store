@@ -117,7 +117,7 @@ Page({
         console.log(res)
         if (res.data.data && res.data.data.id) {
           wx.navigateTo({
-            url: '/pages/subOrder/pages/order-detail/order-detail?orderId=' + res.data.data.id,
+            url: `/pages/subOrder/pages/order-detail/order-detail?orderId=${res.data.data.id}&type=code`,
           })
         } else {
           wx.showModal({

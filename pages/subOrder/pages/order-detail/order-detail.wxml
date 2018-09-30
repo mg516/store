@@ -36,7 +36,7 @@
       <view class='order-list' style='width:100%;' wx:if="{{orderMsg.type==2}}">收货人手机号：<text>{{orderMsg.sh_mobile}}</text></view>
       <view class='order-list' style='width:100%;white-space:normal;' wx:if="{{orderMsg.sh_address}}">收货地址：<text>{{orderMsg.sh_address}}</text></view> -->
     </view>
-    <view class='handle-sm pickUp' catchtap='orderHandle' wx:if="{{orderMsg.pay==2 && orderMsg.type==1 && orderMsg.pick==0}}">自提</view>
+    <view class='handle-sm pickUp' catchtap='orderHandle' wx:if="{{(store_cg_id&&store_cg_id==3&&fromWhere=='code') || store_cg_id!=3 && orderMsg.pay==2 && orderMsg.type==1 && orderMsg.pick==0}}">自提</view>
     <view class='handle-sm pickUp' catchtap='orderHandle' wx:elif="{{orderMsg.pay==2 && orderMsg.type==2 && orderMsg.dispatch==0}}">配送</view>
     <view class='handle-sm pickUp' catchtap='orderHandle' wx:elif="{{orderMsg.pay==2 && orderMsg.type==2 && orderMsg.dispatch==1}}">配送完成</view>
     <!-- <view class='order-list'>订单号：1</view>   

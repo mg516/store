@@ -9,9 +9,12 @@ page{color: #201E25;}
 
 /* 列表 */
 .dataBox{width: 100%;}
-.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;}
-.data_item>view{display: inline-block;width: 50%;vertical-align: middle;}
+.dataBox>.data_item{height: 110rpx;width: 100%;padding: 10rpx 40rpx 10rpx 30rpx;border-bottom:2rpx solid #efefef;display: flex;}
+.data_item>view{width: 50%;}
 .data_label{color: #1E1E1E;font-size: 28rpx;text-align: left;line-height: 50rpx;}
 .data_time{color: #999999;font-size: 24rpx;text-align: left;line-height: 40rpx;}
-.data_value{font-size: 28rpx;text-align: right;}
-.data_value._red{color: #DD5F63;}
+.data_valueBox{display: flex;align-items: center;height: 100%;flex-wrap: wrap;}
+.data_value{font-size: 26rpx;text-align: right;display: flex;justify-content: space-between;width: 100%;}
+/* .data_value text{text-align: center;} */
+.data_valueBox ._red{color: #DD5F63;}
+.data_valueBox .afterMoney{color: #aaa;font-size: 24rpx;}
